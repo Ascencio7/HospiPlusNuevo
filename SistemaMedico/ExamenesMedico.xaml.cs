@@ -24,5 +24,6 @@ namespace HospiPlus.SistemaMedico
         {
             InitializeComponent();
         }
+
     }
 }

@@ -121,9 +121,11 @@ namespace HospiPlus
             if (resultado == MessageBoxResult.Yes)
             {
                 login.Show();
+                this.Close();
+                
 
             }
-            this.Hide(); // Se oculta la ventana de los 3 niveles
+            //this.Close(); // Se oculta la ventana de los 3 niveles
 
         }
 

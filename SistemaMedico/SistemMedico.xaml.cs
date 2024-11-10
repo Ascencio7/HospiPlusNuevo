@@ -163,11 +163,6 @@ namespace HospiPlus.SistemaMedico
             MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Médico?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             // Si es así, se cierra la app
-            //if (resultado == MessageBoxResult.Yes)
-            //{
-            //Application.Current.Shutdown();
-            //}
-            //Si es así, se cierra la app
             if (resultado == MessageBoxResult.Yes)
             {
                 //Comente este cod por si acaso :D
@@ -178,14 +173,14 @@ namespace HospiPlus.SistemaMedico
                 if (ventanaRegistro != null)
                 {
                     //Para regresar al login
-                    //MainWindow niveles = new MainWindow();
-                    //niveles.Show();
+                    MainWindow niveles = new MainWindow();
+                    niveles.Show();
 
-                    loginDiegoP login = new loginDiegoP();
-                    login.Show();
                     ventanaRegistro.Close();
                 }
             }
+
+
         }
         private void btnSalirMedico_MouseEnter(object sender, MouseEventArgs e)
         {

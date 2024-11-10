@@ -145,23 +145,22 @@ namespace HospiPlus.SistemaSecretario
         #region btnSalirSecretario
         private void btnSalirSecretario_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de sistema secretaria?", "HOSPI PLUS", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            // Mensaje para confirmar si desea salir o no
+            MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Médico?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            // Si es así, se cierra la app
+            // Si se confirma, regresa al login
             if (resultado == MessageBoxResult.Yes)
             {
-                
-                //para regresar al login
-                Window ventanaRegistro = Window.GetWindow(this);
-                if (ventanaRegistro != null)
+                // Obtener la ventana actual
+                Window ventanaActual = Window.GetWindow(this);
+                if (ventanaActual != null)
                 {
-                    //Para regresar al login
-                    //MainWindow niveles = new MainWindow();
-                    //niveles.Show();
-
-                    loginDiegoP login = new loginDiegoP();
+                    // Mostrar la ventana de login
+                    loginDiegoP login = new loginDiegoP(); // Asegúrate de que el nombre de la clase sea correcto
                     login.Show();
-                    ventanaRegistro.Close();
+
+                    // Cerrar la ventana actual
+                    ventanaActual.Close();
                 }
             }
         }
