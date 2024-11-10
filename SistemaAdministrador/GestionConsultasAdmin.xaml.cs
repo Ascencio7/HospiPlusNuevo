@@ -178,10 +178,5 @@ namespace HospiPlus.SistemaAdministrador
         }
         #endregion
 
-        private void btnAgregarConsultaAdmi_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("SistemaSecretario/ConsultasSecretario.xaml", UriKind.Relative));
-
-        }
     }
 }

@@ -67,6 +67,7 @@ namespace HospiPlus.ServiceMedico
             {
                 MessageBox.Show("Ocurrió un error al intentar mostrar los registros: " + ex.Message,
                     "Validación", MessageBoxButton.OK, MessageBoxImage.Error);
+            
             }
             finally
             {

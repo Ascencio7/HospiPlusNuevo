@@ -18,7 +18,7 @@
                     <DataGridTextColumn Header="Paciente" Binding="{Binding NombreCompletoPaciente}"/>
                     <DataGridTextColumn Header="DUI Paciente" Binding="{Binding DuiPaciente}"/>
                     <DataGridTextColumn Header="Médico" Binding="{Binding NombreCompletoMedico}"/>
-                    <DataGridTextColumn Header="Fecha Emisión" Binding="{Binding FechaEmision}"/>
+                    <DataGridTextColumn Header="Fecha Emisión" Binding="{Binding FechaEmision,StringFormat=\{0:yyyy-MM-dd\}}"/>
                     <DataGridTextColumn Header="Medicamento" Binding="{Binding Medicamento}"/>
                     <DataGridTextColumn Header="Dosis" Binding="{Binding Dosis}"/>
                     <DataGridTextColumn Header="Frecuencia" Binding="{Binding Frecuencia}"/>
