@@ -41,9 +41,9 @@ namespace HospiPlus.ServiceExamenes
                             ExamenesModel model = new ExamenesModel
                             {
                                 ID = dr.GetInt32(dr.GetOrdinal("ExamenID")),
-                                PacienteID = dr.GetInt32(dr.GetOrdinal("PacienteID")),
+                                //PacienteID = dr.GetInt32(dr.GetOrdinal("PacienteID")),
                                 Pacientes = dr.GetString(dr.GetOrdinal("NombreCompletoPaciente")),
-                                ConsultaID = dr.IsDBNull(dr.GetOrdinal("ConsultaID")) ? (int?)null : dr.GetInt32(dr.GetOrdinal("ConsultaID")),
+                                //ConsultaID = dr.IsDBNull(dr.GetOrdinal("ConsultaID")) ? (int?)null : dr.GetInt32(dr.GetOrdinal("ConsultaID")),
                                 FechaConsulta = dr.GetDateTime(dr.GetOrdinal("FechaConsulta")),
                                 TipoExamen = dr.GetString(dr.GetOrdinal("TipoExamen")),
                                 FechaExamen = dr.GetDateTime(dr.GetOrdinal("FechaExamen")),

@@ -9,9 +9,9 @@ namespace HospiPlus.ModeloExamen
     public class ExamenesModel
     {
         public int ID { get; set; }
-        public int PacienteID { get; set; }
+        //public int PacienteID { get; set; }
         public string Pacientes { get; set; }
-        public int? ConsultaID { get; set; }
+        //public int? ConsultaID { get; set; }
         public DateTime FechaConsulta { get; set; }
         public string TipoExamen { get; set; }
         public DateTime FechaExamen { get; set; }

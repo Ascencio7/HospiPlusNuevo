@@ -10,22 +10,9 @@
 
     <Grid Height="444" Margin="0,3,0,3" Cursor="Hand">
 
-        <ScrollViewer VerticalScrollBarVisibility="Disabled">
 
-            <DataGrid x:Name="gridGestorExamenAdmin" ItemsSource="{Binding ExamenesMedicos}" Margin="20,108,26,28" IsReadOnly="True"  SelectionChanged="gridGestorExamenAdmin_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ExamenID}"/>
-                    <DataGridTextColumn Header="N° Paciente" Binding="{Binding PacienteID}"/>
-                    <DataGridTextColumn Header="Paciente" Binding="{Binding Pacientes}"/>
-                    <DataGridTextColumn Header="N° Consulta" Binding="{Binding ConsultaID}"/>
-                    <DataGridTextColumn Header="Fecha Consulta" Binding="{Binding FechaConsulta,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Tipo Examen" Binding="{Binding TipoExamen}"/>
-                    <DataGridTextColumn Header="Fecha Examen" Binding="{Binding FechaExamen,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    <DataGridTextColumn Header="Resultados" Binding="{Binding Resultado}"/>
-                    <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
+        <DataGrid x:Name="gridGestorExamenAdmin" Margin="20,108,26,28" IsReadOnly="True"  SelectionChanged="gridGestorExamenAdmin_SelectionChanged"/>
+
 
 
 
