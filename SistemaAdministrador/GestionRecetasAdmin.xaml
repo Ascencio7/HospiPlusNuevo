@@ -1,0 +1,41 @@
+﻿<Page x:Class="HospiPlus.SistemaAdministrador.GestionRecetasAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaAdministrador"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GestionRecetasAdmin" Background="#aed6f1">
+
+    <Grid Height="444" Margin="0,3,0,3">
+
+
+        <ScrollViewer VerticalScrollBarVisibility="Disabled">
+            <DataGrid x:Name="gridGestorRecetasAdmin" ItemsSource="{Binding Recetas}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,108,26,28" SelectionChanged="gridGestorRecetasAdmin_SelectionChanged" KeyUp="gridGestorRecetasAdmin_KeyUp">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding RecetaID}"/>
+                    <DataGridTextColumn Header="Paciente" Binding="{Binding NombreCompletoPaciente}"/>
+                    <DataGridTextColumn Header="DUI Paciente" Binding="{Binding DuiPaciente}"/>
+                    <DataGridTextColumn Header="Médico" Binding="{Binding NombreCompletoMedico}"/>
+                    <DataGridTextColumn Header="Fecha Emisión" Binding="{Binding FechaEmision}"/>
+                    <DataGridTextColumn Header="Medicamento" Binding="{Binding Medicamento}"/>
+                    <DataGridTextColumn Header="Dosis" Binding="{Binding Dosis}"/>
+                    <DataGridTextColumn Header="Frecuencia" Binding="{Binding Frecuencia}"/>
+                    <DataGridTextColumn Header="Duración" Binding="{Binding Duracion}"/>
+                    <DataGridTextColumn Header="Instrucciones" Binding="{Binding Instrucciones}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </ScrollViewer>
+
+
+        <Button x:Name="btnModificarRecetasAdmi" Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="20,57,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand"/>
+        <TextBox x:Name="txbBuscarRecetasAdmi" Background="White" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="339,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" KeyUp="txbBuscarRecetasAdmi_KeyUp"/>
+        <Button x:Name="btnBuscarRecetasAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="551,59,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnBuscarRecetasAdmi_Click"/>
+        <Button x:Name="btnCancelarRecetasAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="673,60,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarRecetasAdmi_Click"/>
+        <Label Content="Gestión de Recetas Médicas"  FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="203" FontWeight="Bold"/>
+        <Label Content="Buscar por DUI:" HorizontalAlignment="Left" Margin="218,62,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+
+    </Grid>
+</Page>

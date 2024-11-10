@@ -1,0 +1,35 @@
+﻿<Page x:Class="HospiPlus.SistemaMedico.ConsultasMedico"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaMedico"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Consultas" Background="#aed6f1">
+
+    <Grid Height="444" Margin="0,3,0,3">
+        <DataGrid x:Name="gridGConsultM" Margin="18,123,28,23" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Consulta ID" Binding="{Binding ConsultaID}" />
+                <DataGridTextColumn Header="Paciente" Binding="{Binding PacienteID}" />
+                <DataGridTextColumn Header="Médico" Binding="{Binding MedicoID}" />
+                <DataGridTextColumn Header="Especialidad" Binding="{Binding EspecialidadM}" />
+                <DataGridTextColumn Header="Altura" Binding="{Binding Altura}" />
+                <DataGridTextColumn Header="Peso" Binding="{Binding Peso}" />
+                <DataGridTextColumn Header="Alergia" Binding="{Binding Alergia}" />
+                <DataGridTextColumn Header="Sintomas" Binding="{Binding Sintomas}" />
+                <DataGridTextColumn Header="Diagnóstico" Binding="{Binding Diagnostico}" />
+                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" />
+                <DataGridTextColumn Header="Fecha Consulta" Binding="{Binding FechaConsulta, StringFormat=\{0:yyyy-MM-dd\}}" />
+                <DataGridTextColumn Header="Fecha Cita" Binding="{Binding FechaCita, StringFormat=\{0:yyyy-MM-dd\}}" />
+                <DataGridTextColumn Header="Estado Cita" Binding="{Binding EstadoCita}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox x:Name="txtBuscarConsultM" HorizontalAlignment="Left" Height="34" Margin="339,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
+        <Button x:Name="btnBuscarConsultM" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="580,76,0,0" VerticalAlignment="Top" Width="86" FontSize="12"/>
+        <Label Content="Buscar paciente por DUI:" HorizontalAlignment="Left" Margin="153,79,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Gestion de Consultas Medicas" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="327" FontWeight="Bold"/>
+    </Grid>
+</Page>

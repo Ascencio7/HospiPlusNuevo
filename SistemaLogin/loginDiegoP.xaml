@@ -1,0 +1,40 @@
+﻿<Window x:Class="HospiPlus.SistemaLogin.loginDiegoP"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospiPlus.SistemaLogin"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="HOSPI PLUS | INICIAR SESIÓN" Height="450" Width="763" FontFamily="Verdana" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Icon="/hospi plus.png">
+    <Grid Background="White" Margin="0,0,47,0">
+        <Label Content="BIENVENIDO A &#xD;&#xA;HOSPI PLUS" HorizontalAlignment="Left" Height="75" Margin="388,61,0,0" VerticalAlignment="Top" Width="308" FontFamily="Verdana" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <Image Source="/LogoPrincipal/logoPrincipal.png" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Left" Width="331" Height="450"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="454,317,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="14"/>
+        <Rectangle HorizontalAlignment="Left" Height="146" Margin="380,184,0,0" Stroke="#FFBBBBBB" VerticalAlignment="Top" Width="316">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15" Color="#FFBBBBBB" Direction="0" Opacity="100" RenderingBias="Quality"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid HorizontalAlignment="Left" Margin="376,184,0,104" Width="316">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="271*"/>
+                <ColumnDefinition Width="45*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10,0,0,29" Grid.ColumnSpan="2">
+                <TextBox x:Name="txtCorreo" 
+                Margin="0,10" 
+                FontFamily="Verdana" 
+                FontSize="16"
+                materialDesign:HintAssist.Hint ="Correo"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" KeyUp="txtCorreo_KeyUp"/>
+                <PasswordBox x:Name="txtPass" 
+                FontFamily="Verdana" 
+                FontSize="16" 
+                materialDesign:HintAssist.Hint="Contraseña" 
+                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Cursor="IBeam" KeyUp="txtPass_KeyUp"/>
+            </StackPanel>
+        </Grid>
+        <Button Background="#FF058789" Name="btnIniciarSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Height="46" Margin="437,0,0,87" VerticalAlignment="Bottom" Width="194" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Cursor="Hand" Click="btnIniciarSesion_Click" FontWeight="Bold"/>
+    </Grid>
+</Window>

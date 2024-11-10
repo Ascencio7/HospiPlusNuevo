@@ -1,0 +1,112 @@
+﻿<Page x:Class="HospiPlus.SistemaAdministrador.InicioAdministrador"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaAdministrador"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Sistema Administrador">
+
+    <Grid Background="White" Cursor="">
+        <!-- Define two columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Para los botones -->
+            <ColumnDefinition Width="*"/>
+            <!-- Para el Frame que se expandirá -->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- StackPanel para los botones a la izquierda -->
+        <StackPanel x:Name="spAcciones" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="5,9,0,0" >
+
+
+            <Button x:Name="btnGestionPacienteAdmin" Width="190" Height="50" Margin="0,10" Padding="5" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnGestionPacienteAdmin_Click" MouseEnter="btnGestionPacienteAdmin_MouseEnter" MouseLeave="btnGestionPacienteAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/paciente1.png" Width="40" Height="50" Margin="0,0,10,0"/>
+                    <TextBlock Text="Gestión Paciente" FontFamily="Verdana" VerticalAlignment="Center" Foreground="White" FontSize="12" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="btnGestionMedicoAdmin" Width="190" Height="50" Margin="0,10" Padding="5" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnGestionMedicoAdmin_Click" MouseEnter="btnGestionMedicoAdmin_MouseEnter" MouseLeave="btnGestionMedicoAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/medico1.png" Width="40" Height="50" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                    <TextBlock  Text="Gestión Médico" FontFamily="Verdana" VerticalAlignment="Center" Foreground="White" FontSize="12" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+
+            <Button Width="190" Height="50" x:Name="btnConsultasAdmin"  Margin="0,10" Padding="5" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnConsultasAdmin_Click" MouseEnter="btnConsultasAdmin_MouseEnter" MouseLeave="btnConsultasAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/consultas1.png" Width="40" Height="50" Margin="0,0,55,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Consultas" FontFamily="Verdana" VerticalAlignment="Center" Foreground="white" FontSize="12" FontWeight="Bold" />
+                </StackPanel>
+            </Button>
+
+
+
+            <Button Width="190" Height="50" x:Name="btnRecetasAdmin" Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Padding="5" Click="btnRecetasAdmin_Click" MouseEnter="btnRecetasAdmin_MouseEnter" MouseLeave="btnRecetasAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/receta1.png" Width="40" Height="50" Margin="0,0,66,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Recetas" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+
+            <Button Width="190" Height="50" Padding="5" x:Name="btnCitasAdmin"  Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnCitasAdmin_Click" MouseEnter="btnCitasAdmin_MouseEnter" MouseLeave="btnCitasAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/cita1.png" Width="40" Height="50" Margin="0,0,89,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Citas" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+
+            <Button Width="190" Height="50" Padding="5" x:Name="btnExamenesAdmin"  Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnExamenesAdmin_Click" MouseEnter="btnExamenesAdmin_MouseEnter" MouseLeave="btnExamenesAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/examen1.png" Width="40" Height="50" Margin="0,0,55,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Exámenes" FontFamily="Verdana" VerticalAlignment="Center" Foreground="white" FontSize="12" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button Width="190" Height="50" Padding="5" x:Name="btnUsuariosAdmin"  Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnUsuariosAdmin_Click" MouseEnter="btnUsuariosAdmin_MouseEnter" MouseLeave="btnUsuariosAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/usuarios1.png" Width="40" Height="50" Margin="0,0,65,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Usuarios" FontFamily="Verdana" VerticalAlignment="Center" Foreground="white" FontSize="12" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button Width="190" Height="50" Padding="5" x:Name="btnReportesAdmin"  Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnReportes_Click" MouseEnter="btnReportes_MouseEnter" MouseLeave="btnReportes_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/reporte1.png" Width="40" Height="50" Margin="0,0,69,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Reporte" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+
+            <Button Width="190" Height="50" Padding="5" x:Name="btnSalirAdmin" Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnSalirAdmin_Click" MouseEnter="btnSalirAdmin_MouseEnter" MouseLeave="btnSalirAdmin_MouseLeave">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/imagenes/salir1.png" Width="40" Height="50" Margin="0,0,95,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Salir" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+
+        <Frame x:Name="frPrincipal" Grid.Column="1" Loaded="frPrincipal_Loaded"/>
+
+
+
+
+    </Grid>
+</Page>

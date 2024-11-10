@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3F276195-4CF8-4C55-B69B-46C013DDAB8A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HospiPlus</RootNamespace>
+    <AssemblyName>HospiPlus</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=2.0.1.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.2.0.1\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.1.0.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.4.1.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Server.1.0.0\lib\net46\Microsoft.SqlServer.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.6, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.8.6\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ModeloExamen\ExamenesModel.cs" />
+    <Compile Include="ModeloMedico\CitasModel.cs" />
+    <Compile Include="ModeloMedico\ConsultaPorFechaModel.cs" />
+    <Compile Include="ModeloMedico\MedicoConHorariosModel.cs" />
+    <Compile Include="ModeloMedico\MedicosModel.cs" />
+    <Compile Include="ModeloMedico\RecetasModel.cs" />
+    <Compile Include="ModeloPaciente\ModeloConsultaPaciente.cs" />
+    <Compile Include="ModeloPaciente\PacientesModel.cs" />
+    <Compile Include="ModeloUsuario\UsuariosModel.cs" />
+    <Compile Include="ServiceExamenes\DatosExamenes.cs" />
+    <Compile Include="ServiceMedico\DatosCitas.cs" />
+    <Compile Include="ServiceMedico\DatosConsultaPorFecha.cs" />
+    <Compile Include="ServiceMedico\DatosMedicos.cs" />
+    <Compile Include="ServiceMedico\DatosRecetas.cs" />
+    <Compile Include="ServicePaciente\ConsultaPaciente.cs" />
+    <Compile Include="ServicePaciente\DatosPaciente.cs" />
+    <Compile Include="ServiceUsuario\DatosUsuarios.cs" />
+    <Compile Include="SistemaAdministrador\frmSistemaAdministrador.xaml.cs">
+      <DependentUpon>frmSistemaAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionCitasAdmin.xaml.cs">
+      <DependentUpon>GestionCitasAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionConsultasAdmin.xaml.cs">
+      <DependentUpon>GestionConsultasAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionExamenesAdmin.xaml.cs">
+      <DependentUpon>GestionExamenesAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionMedicoAdmin.xaml.cs">
+      <DependentUpon>GestionMedicoAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionPacienteAdmin.xaml.cs">
+      <DependentUpon>GestionPacienteAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionRecetasAdmin.xaml.cs">
+      <DependentUpon>GestionRecetasAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\GestionUsuariosAdmin.xaml.cs">
+      <DependentUpon>GestionUsuariosAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\InicioAdministrador.xaml.cs">
+      <DependentUpon>InicioAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\PaginaBienvenidaAdministrador.xaml.cs">
+      <DependentUpon>PaginaBienvenidaAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaAdministrador\ReporteAdministrador.xaml.cs">
+      <DependentUpon>ReporteAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaLogin\loginDiegoP.xaml.cs">
+      <DependentUpon>loginDiegoP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\CitasMedico.xaml.cs">
+      <DependentUpon>CitasMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\ConsultasMedico.xaml.cs">
+      <DependentUpon>ConsultasMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\ExamenesMedico.xaml.cs">
+      <DependentUpon>ExamenesMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\frmSistemaMedico.xaml.cs">
+      <DependentUpon>frmSistemaMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\GestionPacienteMedico.xaml.cs">
+      <DependentUpon>GestionPacienteMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\PaginaBienvenidaMedico.xaml.cs">
+      <DependentUpon>PaginaBienvenidaMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\RecetasMedico.xaml.cs">
+      <DependentUpon>RecetasMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\ReportesMedico.xaml.cs">
+      <DependentUpon>ReportesMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaMedico\SistemMedico.xaml.cs">
+      <DependentUpon>SistemMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaRegistro\Registro.xaml.cs">
+      <DependentUpon>Registro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\CitasSecretario.xaml.cs">
+      <DependentUpon>CitasSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\ConsultasSecretario.xaml.cs">
+      <DependentUpon>ConsultasSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\ExamenesSecretario.xaml.cs">
+      <DependentUpon>ExamenesSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\frmSistemaSecretario.xaml.cs">
+      <DependentUpon>frmSistemaSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\GestionPacienteSecretario.xaml.cs">
+      <DependentUpon>GestionPacienteSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\PaginaBienvenidaSecretario.xaml.cs">
+      <DependentUpon>PaginaBienvenidaSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\ReportesSecretario.xaml.cs">
+      <DependentUpon>ReportesSecretario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SistemaSecretario\SistemSecretario.xaml.cs">
+      <DependentUpon>SistemSecretario.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAcces\ConexionDB.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="SistemaAdministrador\frmSistemaAdministrador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionCitasAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionConsultasAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionExamenesAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionMedicoAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionPacienteAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionRecetasAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionUsuariosAdmin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\InicioAdministrador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\PaginaBienvenidaAdministrador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\ReporteAdministrador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaLogin\loginDiegoP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\CitasMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\ConsultasMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\ExamenesMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\frmSistemaMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\GestionPacienteMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\PaginaBienvenidaMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\RecetasMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\ReportesMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\SistemMedico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaRegistro\Registro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\CitasSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\ConsultasSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\ExamenesSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\frmSistemaSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\GestionPacienteSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\PaginaBienvenidaSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\ReportesSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaSecretario\SistemSecretario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\AdminBoton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\cita.png" />
+    <Resource Include="imagenes\cita1.png" />
+    <Resource Include="imagenes\consulta.png" />
+    <Resource Include="imagenes\consultas1.png" />
+    <Resource Include="imagenes\examen1.png" />
+    <Resource Include="imagenes\examenes.png" />
+    <Resource Include="imagenes\medico.png" />
+    <Resource Include="imagenes\medico1.png" />
+    <Resource Include="imagenes\paciente.png" />
+    <Resource Include="imagenes\paciente1.png" />
+    <Resource Include="imagenes\receta.png" />
+    <Resource Include="imagenes\receta1.png" />
+    <Resource Include="imagenes\reporte.png" />
+    <Resource Include="imagenes\reporte1.png" />
+    <Resource Include="imagenes\salir.png" />
+    <Resource Include="imagenes\salir1.png" />
+    <Resource Include="imagenes\secretarioBoton.png" />
+    <Resource Include="imagenes\usuario.png" />
+    <Resource Include="imagenes\usuarioMenu.png" />
+    <Resource Include="imagenes\usuarios1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hospi plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LogoPrincipal\logoPrincipal.png" />
+    <Resource Include="LogoUser\user2.png" />
+    <Resource Include="SistemaLogin\avatardefault_92824.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QueryHospiPlus.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
+</Project>

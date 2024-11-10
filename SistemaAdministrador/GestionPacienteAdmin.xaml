@@ -1,0 +1,43 @@
+﻿<Page x:Class="HospiPlus.SistemaAdministrador.GestionPacienteAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaAdministrador"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GestionPacienteAdmin" Background="#aed6f1">
+
+    <Grid Height="444" Margin="0,3,0,3" Cursor="Hand">
+        <Label Content="Gestor de Pacientes"  FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+
+        <ScrollViewer VerticalScrollBarVisibility="Disabled">
+            <DataGrid x:Name="gridGestorPacienteAdmin" ItemsSource="{Binding Pacientes}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,108,26,28" SelectionChanged="gridGestorPacienteAdmin_SelectionChanged" KeyUp="gridGestorPacienteAdmin_KeyUp">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding PacienteID}"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding NombrePaciente}"/>
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding ApellidoPaciente}"/>
+                    <DataGridTextColumn Header="Apellido Casada" Binding="{Binding ApellidoDeCasada}"/>
+                    <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding FechaNacimientoPaciente,StringFormat=\{0:yyyy-MM-dd\}}"/>
+                    <DataGridTextColumn Header="Sexo" Binding="{Binding SexoPaciente}"/>
+                    <DataGridTextColumn Header="Estado Civil" Binding="{Binding EstadoCivilPaciente}"/>
+                    <DataGridTextColumn Header="DUI" Binding="{Binding DUIPaciente}"/>
+                    <DataGridTextColumn Header="Teléfono" Binding="{Binding TelefonoPaciente}"/>
+                    <DataGridTextColumn Header="Correo" Binding="{Binding CorreoPaciente}"/>
+                    <DataGridTextColumn Header="Departamento" Binding="{Binding DepartamentosPaciente}"/>
+                    <DataGridTextColumn Header="Municipio" Binding="{Binding MunicipioPaciente}"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding EstadoPaciente}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </ScrollViewer>
+        <TextBox x:Name="txtBuscarPacientesAdmi" HorizontalAlignment="Left" Height="25" Margin="341,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" KeyUp="txtBuscarPacientesAdmi_KeyUp_1" FontFamily="Verdana" Background="White" TextAlignment="Center"/>
+        <Button x:Name="btnBuscarPacientePorDUIAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="522,73,0,0" VerticalAlignment="Top" Width="72" FontSize="12" Cursor="Hand" Click="btnBuscarPacientePorDUIAdmi_Click"/>
+        <Label Content="Buscar por DUI:" HorizontalAlignment="Left" Margin="230,78,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Button x:Name="btnLimpiarPacienteAdmi" Background="#FF058789" Content="Limpiar" HorizontalAlignment="Left" Height="28" Margin="620,73,0,0" VerticalAlignment="Top" Width="72" FontSize="12" Cursor="Hand" Click="btnLimpiarPacienteAdmi_Click"/>
+        <Button x:Name="btnAgregarPacienteAdmi" Background="#FF058789" Content="Agregar" HorizontalAlignment="Left" Height="28" Margin="123,73,0,0" VerticalAlignment="Top" Width="82" FontSize="12" Cursor="Hand" Click="btnAgregarPacienteAdmi_Click" />
+
+    </Grid>
+</Page>

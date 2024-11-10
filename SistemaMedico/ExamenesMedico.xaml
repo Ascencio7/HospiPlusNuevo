@@ -1,0 +1,34 @@
+﻿<Page x:Class="HospiPlus.SistemaMedico.ExamenesMedico"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaMedico"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Examenes" Background="#aed6f1">
+
+    <Grid Height="444" Margin="0,3,0,3">
+        <Label Content="Gestión de Exámenes" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="241" FontWeight="Bold"/>
+        <Label Content="Paciente:" HorizontalAlignment="Left" Margin="62,49,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Tipo de Examen:" HorizontalAlignment="Left" Margin="250,49,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Fecha del Examen:" HorizontalAlignment="Left" Margin="231,121,0,0" VerticalAlignment="Top" FontFamily="Verdana" Width="127"/>
+        <Label Content="Resultados del Examen:" HorizontalAlignment="Left" Margin="16,117,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Asociar a Consulta (Opcional):" HorizontalAlignment="Left" Margin="424,52,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+
+        <TextBlock Background="White" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="168" FontFamily="Verdana"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana"/>
+        <TextBox HorizontalAlignment="Left" Margin="223,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana"/>
+        <DatePicker HorizontalAlignment="Left" Margin="223,149,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox  HorizontalAlignment="Left" Margin="447,81,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" FontFamily="Verdana">
+            <!-- Las consultas del paciente -->
+        </ComboBox>
+
+        <DataGrid x:Name="gridGestorExamenMedico" Margin="20,250,26,28"/>
+        <Button Background="#FF058789" Content="Registrar Examen" HorizontalAlignment="Left" Height="28" Margin="632,58,0,0" VerticalAlignment="Top" Width="142" FontSize="12"/>
+        <Button Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="632,97,0,0" VerticalAlignment="Top" Width="142" FontSize="12"/>
+        <Button Background="#FF058789" Content="Eliminar" HorizontalAlignment="Left" Height="28" Margin="632,142,0,0" VerticalAlignment="Top" Width="142" FontSize="12"/>
+        <CheckBox Content="Asociar examen a la consulta" HorizontalAlignment="Left" Margin="400,152,0,0" VerticalAlignment="Top" Width="202" FontFamily="Verdana"/>
+        <Label Content="EN REVISIOOON" HorizontalAlignment="Left" Margin="370,16,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

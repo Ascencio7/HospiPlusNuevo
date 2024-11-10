@@ -1,0 +1,47 @@
+﻿<Page x:Class="HospiPlus.SistemaAdministrador.GestionUsuariosAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaAdministrador"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GestionUsuariosAdmin" Background="#aed6f1">
+
+    <Grid Height="444" Margin="0,3,0,3">
+
+
+
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" >
+            <DataGrid x:Name="gridGestorUsuario" Margin="20,194,26,28" IsReadOnly="True" SelectionChanged="gridGestorUsuario_SelectionChanged" KeyUp="gridGestorUsuario_KeyUp">
+            </DataGrid>
+        </ScrollViewer>
+
+
+
+
+
+
+        <Label Content="Gestión de Usuarios" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="211" FontWeight="Bold"/>
+        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="51,55,0,0" VerticalAlignment="Top" FontFamily="Verdana" Width="65"/>
+        <Label Content="Correo:" HorizontalAlignment="Left" Margin="51,102,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Rol:" HorizontalAlignment="Left" Margin="355,55,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtNombreUsuariosAdmi" HorizontalAlignment="Left" Margin="152,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" KeyUp="txtNombreUsuariosAdmi_KeyUp"/>
+        <TextBox x:Name="txtCorreoUsuariosAdmi" HorizontalAlignment="Left" Margin="152,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtCorreoUsuariosAdmi_KeyUp"/>
+        <ComboBox x:Name="cmbRolUsuariosAdmi" HorizontalAlignment="Left" Margin="413,49,0,0" VerticalAlignment="Top" Width="164" KeyUp="cmbRolUsuariosAdmi_KeyUp">
+            <ComboBoxItem Content="Administrador"/>
+            <ComboBoxItem Content="Secretario"/>
+            <ComboBoxItem Content="Medico"/>
+
+        </ComboBox>
+        <Button x:Name="btnModificarUsuariosAdmi" Background="#FF058789" Content="Modificar Usuario" HorizontalAlignment="Left" Height="32" Margin="651,81,0,0" VerticalAlignment="Top" Width="139" FontSize="12" Click="btnModificarUsuariosAdmi_Click"/>
+
+        <Button x:Name="btnCancelar" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="651,126,0,0" VerticalAlignment="Top" Width="139" FontSize="12" Click="btnCancelar_Click"/>
+        <PasswordBox x:Name="psContra" Background="White" HorizontalAlignment="Left" Margin="152,142,0,0" VerticalAlignment="Top" Width="164" KeyUp="psContra_KeyUp"/>
+        <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="51,143,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Button x:Name="btnGuardarUsuario" Content="Guardar Usuario" Background="#FF058789" HorizontalAlignment="Left" Margin="651,42,0,0" VerticalAlignment="Top" Width="139" FontSize="12" Click="btnGuardarUsuario_Click_1" />
+
+   
+
+    </Grid>
+</Page>
