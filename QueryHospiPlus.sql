@@ -455,7 +455,7 @@ CREATE TABLE ExamenesMedicos(
 
 
 
-
+GO
 ---PROCEDIMIENTOS ALMACENADOS CRUD PACIENTE---
 
 ---MOSTRAR PACIENTE
@@ -486,7 +486,7 @@ BEGIN
 END;
 
 
-
+GO
 ---INSERTAR PACIENTE
 CREATE PROCEDURE InsertarPaciente
     @NombrePaciente VARCHAR(50),
@@ -510,6 +510,7 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS NuevoPacienteID;
 END;
 
+GO
 ---EDITAR PACIENTE
 CREATE PROCEDURE EditarPaciente
     @PacienteID INT,
@@ -546,6 +547,7 @@ BEGIN
     SELECT 'Paciente actualizado exitosamente.' AS Mensaje;
 END;
 
+GO
 ---ELIMINAR PACIENTE (OCULTARLO)
 CREATE PROCEDURE EliminarPaciente
     @PacienteID INT
@@ -557,6 +559,7 @@ BEGIN
     SELECT 'Paciente desactivado exitosamente.' AS Mensaje;
 END;
 
+GO
 ---BUSCAR PACIENTE POR DUI
 CREATE PROCEDURE BuscarPacientePorDUI
     @DUI VARCHAR(10)
@@ -591,6 +594,7 @@ END;
 
 ---PROCEDIMIENTOS ALMACENADOS CRUD MEDICO---
 
+GO
 ---MOSTRAR MEDICO
 CREATE PROCEDURE MostrarMedicos
 AS
@@ -628,6 +632,9 @@ END;
 EXEC MostrarMedicos
 
 
+GO
+
+GO
 ---INSERTAR MEDICO
 CREATE PROCEDURE InsertarMedico
     @NombreMedico VARCHAR(50),
@@ -714,6 +721,7 @@ EXEC InsertarMedico
 select * from Medicos
 
 
+GO
 ---EDITAR MEDICO
 CREATE PROCEDURE EditarMedico
     @MedicoID INT,
@@ -787,6 +795,9 @@ END;
 
 
 
+GO
+
+GO
 ---ELIMINAR MEDICO(OCULTARLO)
 CREATE PROCEDURE EliminarMedico
     @MedicoID INT
@@ -798,6 +809,9 @@ BEGIN
     PRINT 'El médico ha sido eliminado correctamente.';
 END;
 
+GO
+
+GO
 ---PROCEDIMIENTOS PARA MOSTRAR MEDICOS CON SUS HORARIOS
 CREATE PROCEDURE MostrarMedicosConHorarios
 AS
@@ -837,6 +851,7 @@ BEGIN
     LEFT JOIN Especialidades ES ON M.EspecialidadID = ES.EspecialidadID;
 END;
 
+GO
 ---alterando el procedimiento
 ALTER PROCEDURE MostrarMedicosConHorarios
 AS
@@ -863,7 +878,7 @@ END;
 
 
 EXEC MostrarMedicosConHorarios;
-
+GO
 ---PROCEDIMIENTO PARA MOSTRAR MEDICOS POR ESPECIALIDAD
 CREATE PROCEDURE MostrarMedicosPorEspecialidad
     @EspecialidadID INT
@@ -888,6 +903,7 @@ BEGIN
         M.EspecialidadID = @EspecialidadID;
 END;
 
+GO
 ---ALTERANDO EL PROCEDIMIENTO DE MOSTRAR MEDICOS POR ESPECIALIDAD
 ALTER PROCEDURE MostrarMedicosPorEspecialidad
     @EspecialidadID INT
@@ -918,6 +934,7 @@ EXEC MostrarMedicosPorEspecialidad @EspecialidadID = 2;
 
 ---PROCEDIMIENTOS ALMACENADOS CRUD CITAS---
 
+GO
 ---MOSTRAR CITAS
 CREATE PROCEDURE MostrarCitas
     @PacienteID INT = NULL,
@@ -950,7 +967,7 @@ BEGIN
         (@FechaCita IS NULL OR C.FechaCita = @FechaCita);
 END;
 
-
+GO
 ---BUSCAR CITA POR DUI
 CREATE PROCEDURE BuscarCitasPorDUI
     @DuiPaciente NVARCHAR(10)
@@ -979,6 +996,7 @@ select * from Citas
 SELECT * FROM EstadoCita
 SELECT * FROM Especialidades
 
+GO
 --AGENDAR NUEVA CITA
 CREATE PROCEDURE AgendarNuevaCita
     @DuiPaciente NVARCHAR(10),
@@ -1021,7 +1039,8 @@ BEGIN
 END;
 
 
-
+GO
+GO
 ---AGENDAR CITA
 CREATE PROCEDURE AgendarCita
     @PacienteID INT,
@@ -1049,7 +1068,7 @@ BEGIN
     PRINT 'La cita ha sido agendada correctamente.';
 END;
 
-
+GO
 ---EDITAR CITA
 CREATE PROCEDURE EditarCita
     @CitaID INT,
@@ -1064,6 +1083,7 @@ BEGIN
     PRINT 'La cita ha sido actualizada correctamente.';
 END;
 
+GO
 ---MODIFICAR CITA
 CREATE PROCEDURE ModificarCita
     @CitaID INT,
@@ -1083,6 +1103,7 @@ BEGIN
     PRINT 'La cita ha sido actualizada correctamente.';
 END;
 
+GO
 ---ELIMINAR CITA (CANCELAR)
 CREATE PROCEDURE EliminarCita
     @CitaID INT
@@ -1096,6 +1117,7 @@ END;
 
 ---PROCEDIMIENTOS ALMACENADOS CRUD CONSULTAS MEDICAS---
 
+GO
 ---MOSTRAR CONSULTA MEDICA
 CREATE PROCEDURE MostrarConsultas
 AS
@@ -1124,6 +1146,7 @@ BEGIN
         JOIN EstadoCita est ON cit.EstadoCitaID = est.EstadoCitaID;
 END;
 
+GO
 --------------------ALTERANDO MOSTRAR CONSULTAS--------------------------------------------------------------------------
 ALTER PROCEDURE MostrarConsultas
 AS
@@ -1156,7 +1179,7 @@ END;
 EXEC MostrarConsultas;
 select * from Citas
 select * from ConsultasMedicas
-
+GO
 ---BUSCAR CONSULTA POR FECHA
 CREATE PROCEDURE BuscarConsultasPorFecha
     @FechaConsulta DATE
@@ -1187,6 +1210,7 @@ BEGIN
     WHERE c.FechaConsulta = @FechaConsulta;
 END;
 
+GO
 --------------------ALTERANDO BUSCAR CONSULTAS POR FECHA--------------------------------------------------------------------------
 ALTER PROCEDURE BuscarConsultasPorFecha
     @FechaConsulta DATE
@@ -1219,7 +1243,7 @@ BEGIN
 END;
 
 SELECT * From Medicos
-
+GO
 ---INGRESAR CONSULTA MEDICA
 CREATE PROCEDURE Ingresar_consulta
     @CitaID INT,
@@ -1243,6 +1267,7 @@ END;
 
 ---PROCEDIMIENTOS ALMACENADOS CRUD RECETAS---
 
+GO
 ---MOSTRAR RECETAS
 CREATE PROCEDURE MostrarRecetas
 AS
@@ -1267,6 +1292,9 @@ BEGIN
         JOIN Medicos m ON r.MedicoID = m.MedicoID;
 END;
 
+GO
+
+GO
 ---BUSCAR RECETAS POR DUI
 CREATE PROCEDURE BuscarRecetasPorDUI
     @DuiPaciente VARCHAR(10)
@@ -1296,6 +1324,7 @@ END;
 
 ---PROCEDIMIENTOS DE REPORTES---
 
+GO
 -----PROCEDIMIENTO ALMACENADO PARA CONSULTAS MEDICAS-------------------
 
 CREATE PROCEDURE GenerarReporteConsultasMedicas
@@ -1331,6 +1360,9 @@ EXEC GenerarReporteConsultasMedicas '2024-11-08', '2024-11-08';
 EXEC GenerarReporteConsultasMedicas '2024-10-13', '2024-11-05';
 EXEC GenerarReporteConsultasMedicas;
 
+GO
+
+GO
 ---OBTENER EXPEDIENTE DEL PACIENTE
 CREATE PROCEDURE ObtenerExpedientePaciente 
     @PacienteID INT
@@ -1391,7 +1423,7 @@ BEGIN
         EM.PacienteID = @PacienteID;
 END;
 
-
+GO
 ---OBTENER RECETAS POR PACIENTE Y FECHA
 CREATE PROCEDURE ObtenerRecetasPorPacienteYFecha
     @PacienteID INT,
@@ -1413,7 +1445,7 @@ BEGIN
       AND C.FechaCita BETWEEN @FechaInicio AND @FechaFin;
 END;
 
-
+GO
 ---PROCEDIMIENTO PARA OBTENER LOS DEPARTAMENTOS Y MUNICIPIOS---
 CREATE PROCEDURE ObtenerDepartamentos
 AS
@@ -1425,6 +1457,7 @@ BEGIN
         Departamentos;
 END;
 
+GO
 ---OBTENER MUNICIPIO SEGUN EL DEPARTAMENTO SELECCIONADO
 CREATE PROCEDURE ObtenerMunicipiosPorDepartamento
     @DepartamentosID INT
@@ -1444,7 +1477,7 @@ END;
 
 --------PROCEDIMIENTO ALMACENADO PARA USUARIOS / LOGIN / RUTH
 ---PROCEDIMIENTO PARA VERIFICAR CORREO Y CONTRA---
-
+GO
 CREATE PROCEDURE spLogin1
 @correo VARCHAR(80),
 @pass VARCHAR(60)  -- Contraseña en texto
@@ -1477,7 +1510,7 @@ exec MostrarUsuarios
 select * from Usuarios
 
 
-
+GO
 -- Insertar Usuario
 CREATE PROCEDURE InsertarUsuario
     @NombreUsuario VARCHAR(80),
@@ -1529,7 +1562,7 @@ END;
 
 
 
-
+GO
 -- Editar los Usuarios
 CREATE PROCEDURE EditarUsuario
     @UsuarioID INT,
@@ -1581,7 +1614,7 @@ EXEC EditarUsuario
 select * from Usuarios
 
 
-
+GO
 --Método para obtener la contra del usuario
 CREATE PROCEDURE spObtenerUsuarioContrasenaDesencriptada
     @UsuarioID INT
@@ -1596,3 +1629,144 @@ BEGIN
     WHERE UsuarioID = @UsuarioID;
 END;
 GO
+
+
+---Nuevos metodos 
+CREATE PROCEDURE MostrarExamenesMedicos
+AS
+BEGIN
+    SELECT 
+        e.ExamenID,
+        p.PacienteID,
+        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
+        e.ConsultaID,
+        c.FechaConsulta,
+        e.TipoExamen,
+        e.FechaExamen,
+        e.Resultado,
+        e.Observaciones
+    FROM 
+        ExamenesMedicos e
+    INNER JOIN 
+        Pacientes p ON e.PacienteID = p.PacienteID
+    LEFT JOIN 
+        ConsultasMedicas c ON e.ConsultaID = c.ConsultaID
+    ORDER BY 
+        e.ExamenID ASC; -- Ordenar por el ID del examen en orden ascendente
+END;
+
+
+exec MostrarExamenesMedicos
+select * from Usuarios
+
+GO
+CREATE PROCEDURE InsertarExamenMedico
+    @PacienteID INT,
+    @ConsultaID INT = NULL, -- Puede ser NULL
+    @TipoExamen VARCHAR(100),
+    @FechaExamen DATE,
+    @Resultado VARCHAR(255),
+    @Observaciones VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- Insertar el examen médico
+        INSERT INTO ExamenesMedicos 
+        (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
+        VALUES 
+        (@PacienteID, @ConsultaID, @TipoExamen, @FechaExamen, @Resultado, @Observaciones);
+        
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+        
+        -- Devolver el ID del examen recién insertado
+        SELECT SCOPE_IDENTITY() AS ExamenID;
+    END TRY
+    BEGIN CATCH
+        -- Revertir transacción en caso de error
+        ROLLBACK TRANSACTION;
+        THROW; -- Lanza el error para manejarlo en la aplicación
+    END CATCH;
+END;
+
+
+
+GO
+
+CREATE PROCEDURE EditarExamenMedico
+    @ExamenID INT,
+    @PacienteID INT,
+    @ConsultaID INT = NULL, -- Puede ser NULL
+    @TipoExamen VARCHAR(100),
+    @FechaExamen DATE,
+    @Resultado VARCHAR(255),
+    @Observaciones VARCHAR(255)
+AS
+BEGIN
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- Actualizar los datos del examen médico
+        UPDATE ExamenesMedicos
+        SET 
+            PacienteID = @PacienteID,
+            ConsultaID = @ConsultaID, -- Si es NULL, se establecerá en NULL
+            TipoExamen = @TipoExamen,
+            FechaExamen = @FechaExamen,
+            Resultado = @Resultado,
+            Observaciones = @Observaciones
+        WHERE ExamenID = @ExamenID;
+
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+
+        -- Retornar el ID del examen actualizado
+        SELECT @ExamenID AS ExamenID;
+    END TRY
+    BEGIN CATCH
+        -- Revertir la transacción en caso de error
+        ROLLBACK TRANSACTION;
+
+        -- Manejo de errores
+        PRINT 'Error al actualizar el examen médico: ' + ERROR_MESSAGE();
+    END CATCH;
+END;
+
+GO
+
+CREATE PROCEDURE EliminarExamenMedico
+    @ExamenID INT
+AS
+BEGIN
+    -- Actualizar el estado del examen para ocultarlo en lugar de eliminarlo permanentemente
+    UPDATE ExamenesMedicos
+    SET Observaciones = 'Este examen ha sido eliminado' -- Marcamos con una observación de eliminación
+    WHERE ExamenID = @ExamenID;
+
+    PRINT 'El examen médico ha sido eliminado correctamente.';
+END;
+
+
+
+
+EXEC InsertarExamenMedico
+    @PacienteID = 1,          -- ID del paciente
+    @ConsultaID = 2,          -- ID de la consulta (puede ser NULL si no se tiene)
+    @TipoExamen = 'Radiografía',
+    @FechaExamen = '2024-11-09',
+    @Resultado = 'Normal',
+    @Observaciones = 'Sin observaciones adicionales';
+
+
+select * from ExamenesMedicos
+
+	EXEC EditarExamenMedico
+    @ExamenID = 1,           -- ID del examen a editar
+    @PacienteID = 1,         -- Nuevo ID de paciente
+    @ConsultaID = 2,         -- Nuevo ID de consulta (puede ser NULL)
+    @TipoExamen = 'Tomografía',
+    @FechaExamen = '2024-11-10',
+    @Resultado = 'Anómalo',
+    @Observaciones = 'Requiere análisis adicional';
