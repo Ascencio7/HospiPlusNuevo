@@ -32,13 +32,8 @@ namespace HospiPlus.SistemaAdministrador
         }
 
         int pacienteid = 0;
-<<<<<<< Updated upstream
 
         // Primer reporte
-=======
-        int DUIPaciente = 0;
-        int FechaExamen = 0;
->>>>>>> Stashed changes
         private void btnExpedientePacienteReporte_Click(object sender, RoutedEventArgs e)
         {
             rptExpedientePaciente rpt = new rptExpedientePaciente();
@@ -53,7 +48,6 @@ namespace HospiPlus.SistemaAdministrador
             visor.Show();
         }
 
-<<<<<<< Updated upstream
 
         // Segundo reporte
         private void btnRecetaPorPacienteYFechaReporte_Click(object sender, RoutedEventArgs e)
@@ -65,18 +59,6 @@ namespace HospiPlus.SistemaAdministrador
 
 
             visor.crystalRecetaPorPacienteYFecha.ViewerCore.ReportSource = rpt;
-=======
-        private void btnExamenes_Click(object sender, RoutedEventArgs e)
-        {
-            rptExamenesPorPacienteFecha rpt = new rptExamenesPorPacienteFecha();
-            reporteexpediente visor = new reporteexpediente();
-
-            rpt.Load("@rptExamenesPorPacienteFecha.rpt");
-
-            rpt.SetParameterValue("@DuiPaciente", DUIPaciente);
-
-            visor.crystalExamenPacienteReport.ViewerCore.ReportSource = rpt;
->>>>>>> Stashed changes
 
             visor.Show();
         }

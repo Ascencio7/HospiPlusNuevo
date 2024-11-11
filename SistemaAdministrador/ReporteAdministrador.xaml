@@ -28,11 +28,7 @@
         <!-- Botón para generar reporte -->
         <Button x:Name="btnExpedientePacienteReporte" Content="Expediente del Paciente" Width="210" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,154,0,0" FontFamily="Verdana" Click="btnExpedientePacienteReporte_Click" />
         <Label Content="Seleccione &#xD;&#xA;su &#xD;&#xA;reporte&#xD;&#xA;como Administrador"  Background="White"  HorizontalAlignment="Left" Margin="587,38,0,0" VerticalAlignment="Top" Height="114" Width="203" Cursor="Hand" FontFamily="Verdana" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-<<<<<<< Updated upstream
         <Button x:Name="btnRecetaPorPacienteYFechaReporte" Content="Receta por paciente y fecha" HorizontalAlignment="Left" Height="70" Margin="22,246,0,0" VerticalAlignment="Top" Width="210" Click="btnRecetaPorPacienteYFechaReporte_Click"/>
-=======
-        <Button x:Name="btnExamenes" Content="Exámenes" Width="210" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,154,0,0" FontFamily="Verdana" Click="btnExamenes_Click" />
->>>>>>> Stashed changes
 
 
         <!-- DataGrid para mostrar los reportes -->
