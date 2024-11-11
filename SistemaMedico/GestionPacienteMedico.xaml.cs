@@ -136,5 +136,33 @@ namespace HospiPlus.SistemaMedico
                 txtNombrePacienteMedic.Tag = paciente.PacienteID;
             }
         }
+
+        private void cmbEstadoCivilPacienteMedic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbEstadoCivilPacienteMedic.SelectedItem != null)
+            {
+                // Verificar si la opción seleccionada es "Casado"
+                string seleccion = cmbEstadoCivilPacienteMedic.SelectedItem.ToString();
+
+                if (seleccion.Contains("Casado"))
+                {
+                    txtApellidoCasadaPacienteMedic.IsEnabled = true; // Habilitar el TextBox
+                }
+                else if (seleccion.Contains("Soltero"))
+                {
+                    txtApellidoCasadaPacienteMedic.IsEnabled = false; // Deshabilitar el TextBox
+                    txtApellidoCasadaPacienteMedic.Text = string.Empty; // Limpiar el contenido si se desactiva
+                }
+                else if (seleccion.Contains("Divorciado"))
+                {
+                    txtApellidoCasadaPacienteMedic.IsEnabled = false; // Deshabilitar el TextBox
+                    txtApellidoCasadaPacienteMedic.Text = string.Empty; // Limpiar el contenido si se desactiva
+                }
+                if (seleccion.Contains("Viudo"))
+                {
+                    txtApellidoCasadaPacienteMedic.IsEnabled = true; // Habilitar el TextBox
+                }
+            }
+        }
     }
 }

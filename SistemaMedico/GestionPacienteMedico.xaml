@@ -65,7 +65,7 @@
         <Label Content="Estado" HorizontalAlignment="Left" Margin="256,205,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbEstadoPacienteMedic" HorizontalAlignment="Left" Margin="199,231,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.416,0.486"/>
         <ComboBox x:Name="cmbSexoPacienteMedic" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="163"/>
-        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="199,120,0,0" VerticalAlignment="Top" Width="164" />
+        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="199,120,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="cmbEstadoCivilPacienteMedic_SelectionChanged" />
         <ComboBox x:Name="cmbDepartamentoPacienteMedic" HorizontalAlignment="Left" Margin="391,172,0,0" VerticalAlignment="Top" Width="140"/>
 
     </Grid>

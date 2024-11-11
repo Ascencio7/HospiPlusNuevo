@@ -50,7 +50,7 @@ namespace HospiPlus.SistemaLogin
         class SQLControl
         {
             private SqlConnection connection =
-                new SqlConnection(@"Server=RUTH-VAQUERANO\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server=DESKTOP-V3058U8;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
 
             public UsuarioInfo Login(string correo, string password)
             {

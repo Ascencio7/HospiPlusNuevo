@@ -46,7 +46,7 @@ namespace HospiPlus.SistemaSecretario
 
         //METODOS PERSONALIZADOS
         #region METODOS PERSONALIZADOS
-       
+
         //VALIDAR EL FORMULARIO
         bool ValidarFormulario()
         {
@@ -133,8 +133,8 @@ namespace HospiPlus.SistemaSecretario
 
                     gridGestorPacienteSecretaria.ItemsSource = DatosPaciente.MuestraPacientes();
                     txtNamePacienteS.Focus();
-                
-                }catch (Exception ex)
+
+                } catch (Exception ex)
                 {
                     MessageBox.Show("Ocurrió un error al mostrar los pacientes: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -161,9 +161,9 @@ namespace HospiPlus.SistemaSecretario
             txtTelPacienteS.Text = string.Empty;
             txtCorreoPacienteS.Text = string.Empty;
             txtBuscarPacienteS.Text = string.Empty;
-            
+
         }
-        
+
         //METODO PARA BUSCAR POR DUI
         void buscarPacienteDUI()
         {
@@ -197,11 +197,11 @@ namespace HospiPlus.SistemaSecretario
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró ningún paciente con ese DUI.","Informacion ||HospiPlus",MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("No se encontró ningún paciente con ese DUI.", "Informacion ||HospiPlus", MessageBoxButton.OK, MessageBoxImage.Information);
                         txtBuscarPacienteS.Clear();
                         MostrarPaciente();
                     }
-                }catch (Exception ex)
+                } catch (Exception ex)
                 {
                     MessageBox.Show("Error al buscar el paciente: " + ex.Message, "Error de Conexión ||HospiPlus", MessageBoxButton.OK, MessageBoxImage.Error);
                     txtBuscarPacienteS.Clear(); // O puedes usar txtBuscarPacientesAdmi.Text = "";
@@ -336,7 +336,7 @@ namespace HospiPlus.SistemaSecretario
         private void editarPaciente(PacientesModel pacientes)
         {
             ValidarFormulario();
-            if (MessageBox.Show("Esta seguro de quere modificar los datos?","Validacion || Hospi Plus", MessageBoxButton.YesNo,MessageBoxImage.Question)==MessageBoxResult.Yes)
+            if (MessageBox.Show("Esta seguro de quere modificar los datos?", "Validacion || Hospi Plus", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 using (SqlConnection conexion = ConexionDB.ObtenerCnx())
                 {
@@ -387,7 +387,7 @@ namespace HospiPlus.SistemaSecretario
                     }
                 }
             }
-           
+
         }
         #endregion
         //Fin de la region de METODOS AGREGAR Y EDITAR
@@ -491,7 +491,7 @@ namespace HospiPlus.SistemaSecretario
         private void gridGestorPacienteSecretaria_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PacientesModel paciente = (PacientesModel)gridGestorPacienteSecretaria.SelectedItem;
-            if (paciente==null)
+            if (paciente == null)
             {
                 return;
             }
@@ -522,7 +522,7 @@ namespace HospiPlus.SistemaSecretario
 
         private void txtNamePacienteS_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 ValidarFormulario();
             }
@@ -614,6 +614,32 @@ namespace HospiPlus.SistemaSecretario
             {
                 ValidarFormulario();
             }
+        }
+
+        private void cmbEstadoCivilPacienteS_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Verificar si la opción seleccionada es "Casado"
+            string seleccion = cmbEstadoCivilPacienteS.SelectedItem.ToString();
+
+            if (seleccion.Contains("Casado"))
+            {
+                txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+            }
+            else if (seleccion.Contains("Soltero"))
+            {
+                txtApellidoCasadaPacienteS.IsEnabled = false; // Deshabilitar el TextBox
+                txtApellidoCasadaPacienteS.Text = string.Empty; // Limpiar el contenido si se desactiva
+            }
+            else if (seleccion.Contains("Divorciado"))
+            {
+                txtApellidoCasadaPacienteS.IsEnabled = false; // Deshabilitar el TextBox
+                txtApellidoCasadaPacienteS.Text = string.Empty; // Limpiar el contenido si se desactiva
+            }
+            if (seleccion.Contains("Viudo"))
+            {
+                txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+            }
+
         }
         #endregion
         //Fin de la region de METODOS FORMULARIOS

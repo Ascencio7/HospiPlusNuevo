@@ -808,10 +808,41 @@ namespace HospiPlus.SistemaAdministrador
                 cargarMunicipios(departamentoId);
             }
         }
+
+
+
+        #endregion
+
+        #region INHABILITAR CAMPO (APELLIDO DE CASADA)
+        private void cmbEstadoCivilMedic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbEstadoCivilMedic.SelectedItem != null)
+            {
+                // Verificar si la opción seleccionada es "Casado"
+                string seleccion = cmbEstadoCivilMedic.SelectedItem.ToString();
+
+                if (seleccion.Contains("Casado"))
+                {
+                    txtApellidoCasadaMedico.IsEnabled = true; // Habilitar el TextBox
+                }
+                else if (seleccion.Contains("Soltero")) 
+                {
+                    txtApellidoCasadaMedico.IsEnabled = false; // Deshabilitar el TextBox
+                    txtApellidoCasadaMedico.Text = string.Empty; // Limpiar el contenido si se desactiva
+                }
+                else if (seleccion.Contains("Divorciado")) 
+                {
+                    txtApellidoCasadaMedico.IsEnabled = false; // Deshabilitar el TextBox
+                    txtApellidoCasadaMedico.Text = string.Empty; // Limpiar el contenido si se desactiva
+                }
+                if (seleccion.Contains("Viudo"))
+                {
+                    txtApellidoCasadaMedico.IsEnabled = true; // Habilitar el TextBox
+                }
+            }
+        }
         #endregion
 
 
-
-        
     }
 }
