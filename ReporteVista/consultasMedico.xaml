@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospiPlus.ReporteVista"
-        xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="HospiPlus.ReporteVista.examenesPaciente"
+        xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="HospiPlus.ReporteVista.consultasMedico"
         mc:Ignorable="d"
-        Title="examenesPaciente" Height="450" FontFamily="Verdana" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen" Icon="/hospi plus.png">
+        Title="consultasMedico" Height="450" Width="800" WindowState="Maximized">
     <Grid>
 
-        <Viewer:CrystalReportsViewer x:Name="crystalExamenesPaciente" ShowLogo="False"/>
+        <Viewer:CrystalReportsViewer x:Name="crystalConsultaMedico"/>
 
     </Grid>
 </Window>

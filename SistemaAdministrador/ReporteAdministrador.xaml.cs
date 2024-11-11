@@ -63,6 +63,19 @@ namespace HospiPlus.SistemaAdministrador
             visor.Show();
         }
 
+        private void btnConsultasMedico_Click(object sender, RoutedEventArgs e)
+        {
+            rptConsultasMedico rpt = new rptConsultasMedico();
+            consultasMedico visor = new consultasMedico();
+
+            rpt.Load("@rptRConsultasMedico.rpt");
+
+
+            visor.crystalConsultaMedico.ViewerCore.ReportSource = rpt;
+
+            visor.Show();
+        }
+
         private void btnExamenPaciente_Click(object sender, RoutedEventArgs e)
         {
             rptExamenPaciente rpt = new rptExamenPaciente();

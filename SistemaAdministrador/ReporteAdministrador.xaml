@@ -10,26 +10,19 @@
 
     <Grid Height="444" Margin="0,3,0,3" Cursor="Hand">
         <!-- Título -->
-        <Label Content="Reportes" FontFamily="Verdana" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <Label Content="Reportes" FontFamily="Verdana" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" />
 
         <!-- Selección de reporte -->
-        <Label Content="Seleccione Tipo de Reporte:" FontFamily="Verdana" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top" Width="180"/>
-        <ComboBox x:Name="comboBoxTipoReporte" Width="250" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,83,0,0" FontFamily="Verdana" >
-            <ComboBoxItem Content="Expediente del Paciente"/>
-            <ComboBoxItem Content="Recetas por Paciente y Fecha"/>
-            <ComboBoxItem Content="Exámenes por Paciente y Fecha"/>
-            <ComboBoxItem Content="Consultas por Médico"/>
-        </ComboBox>
 
         <!-- Selección de Paciente/Médico -->
 
         <!-- Fechas para los reportes -->
 
         <!-- Botón para generar reporte -->
-        <Button x:Name="btnExpedientePacienteReporte" Content="Expediente del Paciente" Width="250" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,154,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExpedientePacienteReporte_Click" />
-        <Label Content="Seleccione &#xD;&#xA;su &#xD;&#xA;reporte&#xD;&#xA;como Administrador"  Background="White"  HorizontalAlignment="Left" Margin="547,38,0,0" VerticalAlignment="Top" Height="70" Width="243" Cursor="Hand" FontFamily="Verdana" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="btnRecetaPorPacienteYFechaReporte" Content="Receta por paciente y fecha" HorizontalAlignment="Left" Height="70" Margin="22,246,0,0" VerticalAlignment="Top" Width="250" Click="btnRecetaPorPacienteYFechaReporte_Click" Cursor="Hand" FontWeight="Bold"/>
-        <Button x:Name="btnExamenPaciente" Content="Examen del Paciente" Width="249" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="419,154,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExamenPaciente_Click"/>
+        <Button x:Name="btnExpedientePacienteReporte" Content="Expediente del Paciente" Width="250" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="103,120,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExpedientePacienteReporte_Click" />
+        <Button x:Name="btnRecetaPorPacienteYFechaReporte" Content="Receta por paciente y fecha" HorizontalAlignment="Left" Height="70" Margin="103,241,0,0" VerticalAlignment="Top" Width="250" Click="btnRecetaPorPacienteYFechaReporte_Click" Cursor="Hand" FontWeight="Bold"/>
+        <Button x:Name="btnExamenPaciente" Content="Examen del Paciente" Width="249" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="454,120,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExamenPaciente_Click"/>
+        <Button x:Name="btnConsultasMedico" Content="Consultas Medico" Width="249" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="454,243,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnConsultasMedico_Click" />
 
 
         <!-- DataGrid para mostrar los reportes -->

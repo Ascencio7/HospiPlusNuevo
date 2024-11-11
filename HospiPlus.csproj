@@ -113,6 +113,9 @@
       <DependentUpon>rptRecetaPorPacienteYFecha.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReporteVista\consultasMedico.xaml.cs">
+      <DependentUpon>consultasMedico.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReporteVista\examenesPaciente.xaml.cs">
       <DependentUpon>examenesPaciente.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReporteVista\consultasMedico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReporteVista\examenesPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
