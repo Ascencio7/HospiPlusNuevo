@@ -37,15 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="MaterialDesignColors, Version=2.0.1.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.1\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -95,12 +89,6 @@
     <Compile Include="ModeloPaciente\ModeloConsultaPaciente.cs" />
     <Compile Include="ModeloPaciente\PacientesModel.cs" />
     <Compile Include="ModeloUsuario\UsuariosModel.cs" />
-    <Compile Include="Reportes\rptExamenesPorPacienteFecha.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptExamenesPorPacienteFecha.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reportes\rptExpedientePaciente.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -116,13 +104,8 @@
     <Compile Include="ReporteVista\expedientePaciente.xaml.cs">
       <DependentUpon>expedientePaciente.xaml</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Include="ReporteVista\recetaPorPacienteYFecha.xaml.cs">
       <DependentUpon>recetaPorPacienteYFecha.xaml</DependentUpon>
-=======
-    <Compile Include="ReporteVista\reporteexpediente.xaml.cs">
-      <DependentUpon>reporteexpediente.xaml</DependentUpon>
->>>>>>> Stashed changes
     </Compile>
     <Compile Include="ServiceExamenes\DatosBuscarExamenPorFechaExamen.cs" />
     <Compile Include="ServiceExamenes\DatosExamenes.cs" />
@@ -240,11 +223,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<<<<<<< Updated upstream
     <Page Include="ReporteVista\recetaPorPacienteYFecha.xaml">
-=======
-    <Page Include="ReporteVista\reporteexpediente.xaml">
->>>>>>> Stashed changes
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,10 +365,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptExamenesPorPacienteFecha.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptExamenesPorPacienteFecha.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptExpedientePaciente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
