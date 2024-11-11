@@ -1773,7 +1773,7 @@ select * from ExamenesMedicos
 
 
 
-
+    GO
 -- EXPEDIENTE DEL PACIENTE
 CREATE PROCEDURE ObtenerExpedientePaciente 
     @PacienteID INT
@@ -1854,7 +1854,7 @@ exec ObtenerExpedientePaciente @PacienteID = 1;
 
 
 -- Procedimiento para el segundo reporte
-
+GO
 CREATE PROCEDURE ObtenerReporteRecetasPorPacienteYFecha
     @PacienteID INT,
     @FechaInicio DATE,
@@ -1905,3 +1905,34 @@ EXEC ObtenerReporteRecetasPorPacienteYFecha
     @PacienteID = 1, 
     @FechaInicio = '2024-01-01', 
     @FechaFin = '2024-12-31';
+
+
+    GO
+    --Ultimo procedimiento agregado
+    CREATE PROCEDURE BuscarConsultasPorDUI
+    @DUI nvarchar(15)
+AS
+BEGIN
+    SELECT 
+        c.ConsultaID,
+        p.PacienteID,
+        m.MedicoID,
+        e.NombreEspecialidad AS EspecialidaMedico,
+        c.Altura,
+        c.Peso,
+        c.Alergia,
+        c.Sintomas,
+        c.Diagnostico,
+        c.Observaciones,
+        c.FechaConsulta
+    FROM 
+        ConsultasMedicas c
+    INNER JOIN 
+        Pacientes p ON c.PacienteID = p.PacienteID
+    INNER JOIN 
+        Medicos m ON c.MedicoID = m.MedicoID
+    INNER JOIN 
+        Especialidades e ON m.EspecialidadID = e.EspecialidadID
+    WHERE 
+        p.DUIPaciente LIKE @DUI;
+END
