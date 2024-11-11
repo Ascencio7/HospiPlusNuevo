@@ -1770,3 +1770,83 @@ select * from ExamenesMedicos
     @FechaExamen = '2024-11-10',
     @Resultado = 'Anómalo',
     @Observaciones = 'Requiere análisis adicional';
+
+
+
+
+-- EXPEDIENTE DEL PACIENTE
+CREATE PROCEDURE ObtenerExpedientePaciente 
+    @PacienteID INT
+AS 
+BEGIN 
+    SELECT 
+        -- Datos Personales del Paciente
+        P.NombrePaciente,
+        P.ApellidoPaciente,
+        P.ApellidoDeCasada,
+        P.FechaNacimientoPaciente,
+        S.DescripcionSexo AS Sexo,
+        EC.DescripcionEstadoCivil AS EstadoCivil,
+        P.DUIPaciente,
+        P.TelefonoPaciente,
+        P.CorreoPaciente,
+        D.Depar AS Departamento,
+        M.NombreMunicipio AS Municipio,
+        
+        -- Historial de Consultas Médicas del Paciente (Subconsulta con salto de línea)
+        (SELECT TOP 1 
+            CONCAT('Fecha Consulta: ', CM.FechaConsulta, CHAR(13) + CHAR(10), 
+                   'Altura: ', CM.Altura, CHAR(13) + CHAR(10), 
+                   'Peso: ', CM.Peso, CHAR(13) + CHAR(10),
+                   'Alergia: ', CM.Alergia, CHAR(13) + CHAR(10), 
+                   'Síntomas: ', CM.Sintomas, CHAR(13) + CHAR(10), 
+                   'Diagnóstico: ', CM.Diagnostico, CHAR(13) + CHAR(10), 
+                   'Observaciones: ', CM.Observaciones)
+         FROM ConsultasMedicas CM
+         WHERE CM.PacienteID = P.PacienteID
+         ORDER BY CM.FechaConsulta DESC) AS UltimaConsulta,
+
+        -- Exámenes Médicos del Paciente (Subconsulta con salto de línea)
+        (SELECT TOP 1 
+            CONCAT('Tipo de Examen: ', EM.TipoExamen, CHAR(13) + CHAR(10),
+                   'Fecha Examen: ', EM.FechaExamen, CHAR(13) + CHAR(10),
+                   'Resultado: ', EM.Resultado, CHAR(13) + CHAR(10),
+                   'Observaciones: ', EM.Observaciones)
+         FROM ExamenesMedicos EM
+         WHERE EM.PacienteID = P.PacienteID
+         ORDER BY EM.FechaExamen DESC) AS UltimoExamen,
+
+        -- Recetas Médicas del Paciente (Subconsulta con salto de línea)
+        (SELECT TOP 1 
+            CONCAT('Fecha Emisión: ', CONVERT(VARCHAR(10), R.FechaEmision, 103), CHAR(13) + CHAR(10),
+                   'Medicamento: ', R.Medicamento, CHAR(13) + CHAR(10),
+                   'Dosis: ', R.Dosis, CHAR(13) + CHAR(10),
+                   'Frecuencia: ', R.Frecuencia, CHAR(13) + CHAR(10),
+                   'Duración: ', R.Duracion, CHAR(13) + CHAR(10),
+                   'Instrucciones: ', R.Instrucciones)
+         FROM Recetas R
+         WHERE R.PacienteID = P.PacienteID
+         ORDER BY R.FechaEmision DESC) AS UltimaReceta
+
+    FROM 
+        Pacientes P
+    INNER JOIN 
+        Sexos S ON P.SexoID = S.SexoID
+    INNER JOIN 
+        Departamentos D ON P.DepartamentosID = D.DepartamentosID
+    INNER JOIN 
+        Municipios M ON P.MunicipioID = M.MunicipioID
+    INNER JOIN 
+        EstadosCiviles EC ON P.EstadoCivilID = EC.EstadoCivilID
+    LEFT JOIN 
+        Citas C ON P.PacienteID = C.PacienteID -- Ajustado a LEFT JOIN en caso de no tener citas
+    LEFT JOIN 
+        Medicos Med ON C.MedicoID = Med.MedicoID
+    LEFT JOIN 
+        Especialidades E ON Med.EspecialidadID = E.EspecialidadID
+    WHERE 
+        P.PacienteID = @PacienteID;
+END;
+
+
+exec ObtenerExpedientePaciente @PacienteID = 1;

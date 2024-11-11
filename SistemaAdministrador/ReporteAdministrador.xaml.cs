@@ -13,6 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+using HospiPlus.Reportes;
+using CrystalDecisions.CrystalReports.Engine;
+using HospiPlus.ReporteVista;
+
+
 namespace HospiPlus.SistemaAdministrador
 {
     /// <summary>
@@ -23,6 +29,22 @@ namespace HospiPlus.SistemaAdministrador
         public ReporteAdministrador()
         {
             InitializeComponent();
+        }
+
+        int pacienteid = 0;
+
+        private void btnExpedientePacienteReporte_Click(object sender, RoutedEventArgs e)
+        {
+            rptExpedientePaciente rpt = new rptExpedientePaciente();
+            expedientePaciente visor = new expedientePaciente();
+
+            rpt.Load("@rptExpedientePaciente.rpt");
+
+            rpt.SetParameterValue("@PacienteID", pacienteid);
+
+            visor.crystalExpedientePacienteReport.ViewerCore.ReportSource = rpt;
+
+            visor.Show();
         }
     }
 }

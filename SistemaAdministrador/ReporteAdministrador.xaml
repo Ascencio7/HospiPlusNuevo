@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReporteAdministrador" Background="#aed6f1">
 
-    <Grid Height="444" Margin="0,3,0,3">
+    <Grid Height="444" Margin="0,3,0,3" Cursor="Hand">
         <!-- Título -->
         <Label Content="Reportes" FontFamily="Verdana" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
 
         <!-- Selección de reporte -->
-        <Label Content="Seleccione Tipo de Reporte:" FontFamily="Verdana" HorizontalAlignment="Left" Margin="161,123,0,0" VerticalAlignment="Top" Width="180"/>
-        <ComboBox x:Name="comboBoxTipoReporte" Width="250" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,123,0,0" FontFamily="Verdana" >
+        <Label Content="Seleccione Tipo de Reporte:" FontFamily="Verdana" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top" Width="180"/>
+        <ComboBox x:Name="comboBoxTipoReporte" Width="250" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,83,0,0" FontFamily="Verdana" >
             <ComboBoxItem Content="Expediente del Paciente"/>
             <ComboBoxItem Content="Recetas por Paciente y Fecha"/>
             <ComboBoxItem Content="Exámenes por Paciente y Fecha"/>
@@ -24,14 +24,11 @@
         <!-- Selección de Paciente/Médico -->
 
         <!-- Fechas para los reportes -->
-        <Label Content="Desde:" HorizontalAlignment="Left" Margin="161,171,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker x:Name="datePickerDesde" Width="150" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,171,0,0" FontFamily="Verdana"/>
-
-        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="161,221,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker x:Name="datePickerHasta" Width="150" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,221,0,0" FontFamily="Verdana"/>
 
         <!-- Botón para generar reporte -->
-        <Button Content="Generar Reporte" Width="150" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,271,0,0" FontFamily="Verdana" />
+        <Button x:Name="btnExpedientePacienteReporte" Content="Expediente del Paciente" Width="210" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,154,0,0" FontFamily="Verdana" Click="btnExpedientePacienteReporte_Click" />
+        <Label Content="Seleccione &#xD;&#xA;su &#xD;&#xA;reporte&#xD;&#xA;como Administrador"  Background="White"  HorizontalAlignment="Left" Margin="587,38,0,0" VerticalAlignment="Top" Height="114" Width="203" Cursor="Hand" FontFamily="Verdana" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
 
         <!-- DataGrid para mostrar los reportes -->
     </Grid>
