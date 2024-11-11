@@ -1850,3 +1850,58 @@ END;
 
 
 exec ObtenerExpedientePaciente @PacienteID = 1;
+
+
+
+-- Procedimiento para el segundo reporte
+
+CREATE PROCEDURE ObtenerReporteRecetasPorPacienteYFecha
+    @PacienteID INT,
+    @FechaInicio DATE,
+    @FechaFin DATE
+AS 
+BEGIN 
+    SELECT 
+        -- Datos del paciente
+        P.NombrePaciente,
+        P.ApellidoPaciente,
+        P.ApellidoDeCasada,
+        P.DUIPaciente,
+        P.TelefonoPaciente,
+        P.CorreoPaciente,
+        D.Depar AS Departamento,
+        M.NombreMunicipio AS Municipio,
+        
+        -- Recetas Médicas del Paciente
+        CONVERT(VARCHAR(10), R.FechaEmision, 103) AS FechaEmision, -- Formatear solo la fecha (sin hora)
+        R.Medicamento,
+        R.Dosis,
+        R.Frecuencia,
+        R.Duracion,
+        R.Instrucciones,
+        CONCAT(MedRec.NombreMedico, ' ', MedRec.ApellidoMedico) AS Doctor
+    FROM 
+        Pacientes P
+    INNER JOIN 
+        Departamentos D ON P.DepartamentosID = D.DepartamentosID
+    INNER JOIN 
+        Municipios M ON P.MunicipioID = M.MunicipioID
+    LEFT JOIN 
+        Recetas R ON P.PacienteID = R.PacienteID
+    LEFT JOIN 
+        Medicos MedRec ON R.MedicoID = MedRec.MedicoID
+    WHERE 
+        P.PacienteID = @PacienteID
+        AND (R.FechaEmision BETWEEN @FechaInicio AND @FechaFin OR R.FechaEmision IS NULL)
+    ORDER BY 
+        R.FechaEmision DESC;
+END;
+
+
+
+
+
+EXEC ObtenerReporteRecetasPorPacienteYFecha 
+    @PacienteID = 1, 
+    @FechaInicio = '2024-01-01', 
+    @FechaFin = '2024-12-31';

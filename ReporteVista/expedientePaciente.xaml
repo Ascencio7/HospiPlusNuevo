@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:HospiPlus.ReporteVista"
         xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="HospiPlus.ReporteVista.expedientePaciente"
         mc:Ignorable="d"
-        Title="expedientePaciente" Height="450" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Title="Expediente del Paciente" Height="450" FontFamily="Verdana" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen" Icon="/hospi plus.png">
     <Grid>
 
-        <Viewer:CrystalReportsViewer x:Name="crystalExpedientePacienteReport" />
+        <Viewer:CrystalReportsViewer x:Name="crystalExpedientePacienteReport" ShowLogo="False" />
 
     </Grid>
 </Window>

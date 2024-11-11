@@ -95,8 +95,17 @@
       <DependentUpon>rptExpedientePaciente.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\rptRecetaPorPacienteYFecha.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRecetaPorPacienteYFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteVista\expedientePaciente.xaml.cs">
       <DependentUpon>expedientePaciente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVista\recetaPorPacienteYFecha.xaml.cs">
+      <DependentUpon>recetaPorPacienteYFecha.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServiceExamenes\DatosBuscarExamenPorFechaExamen.cs" />
     <Compile Include="ServiceExamenes\DatosExamenes.cs" />
@@ -211,6 +220,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ReporteVista\expedientePaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReporteVista\recetaPorPacienteYFecha.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -356,6 +369,10 @@
     <EmbeddedResource Include="Reportes\rptExpedientePaciente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptExpedientePaciente.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptRecetaPorPacienteYFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRecetaPorPacienteYFecha.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

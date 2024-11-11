@@ -33,6 +33,7 @@ namespace HospiPlus.SistemaAdministrador
 
         int pacienteid = 0;
 
+        // Primer reporte
         private void btnExpedientePacienteReporte_Click(object sender, RoutedEventArgs e)
         {
             rptExpedientePaciente rpt = new rptExpedientePaciente();
@@ -43,6 +44,21 @@ namespace HospiPlus.SistemaAdministrador
             rpt.SetParameterValue("@PacienteID", pacienteid);
 
             visor.crystalExpedientePacienteReport.ViewerCore.ReportSource = rpt;
+
+            visor.Show();
+        }
+
+
+        // Segundo reporte
+        private void btnRecetaPorPacienteYFechaReporte_Click(object sender, RoutedEventArgs e)
+        {
+            rptRecetaPorPacienteYFecha rpt = new rptRecetaPorPacienteYFecha();
+            recetaPorPacienteYFecha visor = new recetaPorPacienteYFecha();
+
+            rpt.Load("@rptRecetaPorPacienteYFecha.rpt");
+
+
+            visor.crystalRecetaPorPacienteYFecha.ViewerCore.ReportSource = rpt;
 
             visor.Show();
         }
