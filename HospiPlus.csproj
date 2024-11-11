@@ -79,6 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ModeloCita\ModelCita.cs" />
     <Compile Include="ModeloExamen\BuscarExamenPorFechaModel.cs" />
     <Compile Include="ModeloExamen\ExamenesModel.cs" />
     <Compile Include="ModeloMedico\CitasModel.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="ModeloMedico\RecetasModel.cs" />
     <Compile Include="ModeloPaciente\ModeloConsultaPaciente.cs" />
     <Compile Include="ModeloPaciente\PacientesModel.cs" />
+    <Compile Include="ModeloReceta\ModelReceta.cs" />
     <Compile Include="ModeloUsuario\UsuariosModel.cs" />
     <Compile Include="Reportes\rptConsultasMedico.cs">
       <AutoGen>True</AutoGen>

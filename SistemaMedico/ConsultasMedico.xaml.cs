@@ -1,4 +1,5 @@
-﻿using HospiPlus.ModeloPaciente;
+﻿using HospiPlus.DataAcces;
+using HospiPlus.ModeloPaciente;
 using HospiPlus.ServicePaciente;
 using System;
 using System.Collections.Generic;
@@ -38,5 +39,80 @@ namespace HospiPlus.SistemaMedico
             List<ModeloConsultaPaciente> consultas = ConsultaPaciente.ObtenerConsultas();
             gridGConsultM.ItemsSource = consultas;
         }
+
+        #region Método para buscar consultas por DUI
+        public void buscarConsultaDUIPaciente()
+        {
+            string dui = txtBuscarConsultM.Text;
+
+            if (string.IsNullOrWhiteSpace(dui))
+            {
+                MessageBox.Show("Ingresa un número de DUI válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CargarConsultas();
+                return;
+            }
+
+            if (dui.Length != 10)
+            {
+                MessageBox.Show("El DUI debe contener exactamente 10 dígitos incluyendo '-'.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtBuscarConsultM.Clear();
+                return;
+            }
+
+            using (var conexion = ConexionDB.ObtenerCnx())
+            {
+                try
+                {
+                    ConexionDB.AbrirConexion(conexion);
+
+                    var consultasEncontradas = ConsultaPaciente.BuscarConsultasPorDUI(dui);
+                    if (consultasEncontradas != null && consultasEncontradas.Count > 0)
+                    {
+                        gridGConsultM.ItemsSource = consultasEncontradas;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ninguna consulta para el paciente con ese DUI.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                        txtBuscarConsultM.Clear();
+                        CargarConsultas();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al buscar la consulta: " + ex.Message, "Error de Conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CargarConsultas();
+                    return;
+                }
+            }
+        }
+        #endregion
+
+        #region Botón para buscar consulta
+        private void btnBuscarConsultM_Click(object sender, RoutedEventArgs e)
+        {
+            buscarConsultaDUIPaciente();
+        }
+        #endregion
+
+        #region Botón para cancelar
+        private void btnCancelarBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea cancelar la búsqueda?", "Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                txtBuscarConsultM.Clear();
+                CargarConsultas();
+            }
+        }
+        #endregion
+
+        #region Evento ENTER
+        private void txtBuscarConsultM_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                buscarConsultaDUIPaciente();
+            }
+        }
+        #endregion
     }
 }

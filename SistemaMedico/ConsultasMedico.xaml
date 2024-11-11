@@ -28,8 +28,10 @@
         </DataGrid>
 
         <TextBox x:Name="txtBuscarConsultM" HorizontalAlignment="Left" Height="34" Margin="339,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
-        <Button x:Name="btnBuscarConsultM" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="580,76,0,0" VerticalAlignment="Top" Width="86" FontSize="12"/>
-        <Label Content="Buscar paciente por DUI:" HorizontalAlignment="Left" Margin="153,79,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <Label Content="Gestion de Consultas Medicas" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="327" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Margin="580,76,0,0" VerticalAlignment="Top">
+            <Button x:Name="btnBuscarConsultM" Background="#FF058789" Content="Buscar" Height="28" Width="86" FontSize="12" Click="btnBuscarConsultM_Click"/>
+            <Button x:Name="btnCancelarBuscar" Background="#FF058789" Content="Cancelar" Height="28" Width="86" FontSize="12" Margin="10,0,0,0" Click="btnCancelarBuscar_Click"/>
+        </StackPanel>
+        <Label Content="Buscar consulta por DUI:" HorizontalAlignment="Left" Margin="125,90,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" RenderTransformOrigin="-0.263,0.444"/>
     </Grid>
 </Page>

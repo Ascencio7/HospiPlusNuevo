@@ -6,11 +6,39 @@
       xmlns:local="clr-namespace:HospiPlus.SistemaMedico"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Citas" Background="#aed6f1">
+      Title="GestionCitasMedico" Background="#aed6f1">
 
-    <Grid Height="444" Margin="0,3,0,3">
+    <Grid Background="#aed6f1" Height="444" Margin="0,3,0,3" Cursor="Hand">
+        
+        <ScrollViewer VerticalScrollBarVisibility="Disabled">
+            <DataGrid x:Name="gridGestorCitaMedico" ItemsSource="{Binding Citas}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,108,10,0" Height="326" VerticalAlignment="Top" SelectionChanged="gridGestorCitaMedico_SelectionChanged" KeyUp="gridGestorCitaMedico_KeyUp">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding CitaID}"/>
+                    <DataGridTextColumn Header="Paciente" Binding="{Binding Paciente}"/>
+                    <DataGridTextColumn Header="DUI Paciente" Binding="{Binding DUIPaciente}"/>
+                    <DataGridTextColumn Header="Médico" Binding="{Binding Medico}"/>
+                    <DataGridTextColumn Header="Especialidad" Binding="{Binding Especialidad}"/>
+                    <DataGridTextColumn Header="Fecha Cita" Binding="{Binding FechaCita, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <DataGridTextColumn Header="Hora Cita" Binding="{Binding HoraCita, StringFormat=\{0:hh\\:mm\}}"/>
+                    <DataGridTextColumn Header="Estado Cita" Binding="{Binding EstadoCita}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        
         <Label Content="Gestión de Citas Médicas" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="273" FontWeight="Bold"/>
 
-        <DataGrid x:Name="gridGestorCitaMedico" Margin="20,62,26,28"/>
+        
+        <TextBox x:Name="txtBuscarCitasMedico" TextAlignment="Center" Background="White" HorizontalAlignment="Left" Height="28" Margin="245,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Cursor="Hand" KeyUp="txtBuscarCitasMedico_KeyUp"/>
+
+        
+        <Button x:Name="btnBuscarCitaMedico" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="432,62,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnBuscarCitaMedico_Click"/>
+
+        
+        <Label Content="Buscar por DUI:" HorizontalAlignment="Left" Margin="134,62,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+
+ 
+        <Button x:Name="btnCancelarCitaMedico" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="538,62,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarCitaMedico_Click"/>
+
     </Grid>
 </Page>
