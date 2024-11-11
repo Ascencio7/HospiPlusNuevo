@@ -12,19 +12,19 @@
     <Grid Height="444" Margin="0,3,0,3" Cursor="" >
         <Label Content="Gestión de Pacientes"  FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-       
+
         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Apellido:" HorizontalAlignment="Left" Margin="251,42,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <Label Content="Fecha de nacimiento:" HorizontalAlignment="Left" Margin="584,39,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Fecha de nacimiento:" HorizontalAlignment="Left" Margin="212,92,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Sexo:" HorizontalAlignment="Left" Margin="69,93,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="242,95,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="436,42,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="DUI:" HorizontalAlignment="Left" Margin="451,93,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
 
         <TextBox x:Name="txtNombrePacienteMedic" HorizontalAlignment="Left" Margin="9,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana"/>
         <TextBox x:Name="txtApellidoPacienteMedic" HorizontalAlignment="Left" Margin="199,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
         <TextBox x:Name="txtDUIPacienteMedic" HorizontalAlignment="Left" Margin="391,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
 
-        
+
         <DataGrid x:Name="gridGestorPacienteMedico" Margin="10,273,10,10" 
           AutoGenerateColumns="False" IsReadOnly="True" 
           SelectionMode="Single" AlternatingRowBackground="LightGray"
@@ -48,26 +48,26 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        
+
         <Button x:Name="btnAgregarPacienteMedic" Content="Agregar" HorizontalAlignment="Left" Margin="667,128,0,284" Width="109" FontSize="12" Background="#FF058789" Click="btnAgregarPacienteMedic_Click"/>
         <Button x:Name="btnModificarPacienteMedic" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="667,174,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Background="#FF058789"/>
         <Button x:Name="btnCancelarPacienteMedic" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="667,210,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Background="#FF058789" Click="btnCancelarPacienteMedic_Click"/>
 
-       
+
         <TextBox x:Name="txTelefonoPacienteMedic" HorizontalAlignment="Left" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
         <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="61,149,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Correo:" HorizontalAlignment="Left" Margin="251,151,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <TextBox x:Name="txtCorreoPacienteMedic" HorizontalAlignment="Left" Margin="199,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
         <Label Content="Departamentos:" HorizontalAlignment="Left" Margin="425,151,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker x:Name="dtFechaNPacienteMedic" HorizontalAlignment="Left" Height="24" Margin="571,63,0,0" VerticalAlignment="Top" Width="164" Cursor="IBeam"/>
-        <Label Content="Apellido Casada" HorizontalAlignment="Left" Margin="409,44,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtApellidoCasadaPacienteMedic" HorizontalAlignment="Left" Margin="391,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana"/>
+        <DatePicker x:Name="dtFechaNPacienteMedic" HorizontalAlignment="Left" Height="24" Margin="199,120,0,0" VerticalAlignment="Top" Width="164" Cursor="IBeam"/>
+        <Label Content="Apellido Casada" HorizontalAlignment="Left" Margin="656,38,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <TextBox x:Name="txtApellidoCasadaPacienteMedic" HorizontalAlignment="Left" Margin="636,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana"/>
 
-        
+
         <Label Content="Municipios" HorizontalAlignment="Left" Margin="61,207,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbMunicipioPacienteMedic" HorizontalAlignment="Left" Margin="16,231,0,0" VerticalAlignment="Top" Width="157">
             <ComboBoxItem Content="Seleccione Municipio" Tag="-1" />
-            
+
         </ComboBox>
 
         <Label Content="Estado" HorizontalAlignment="Left" Margin="256,205,0,0" VerticalAlignment="Top"/>
@@ -81,7 +81,7 @@
             <ComboBoxItem Content="Femenino" Tag="2" />
         </ComboBox>
 
-        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="199,120,0,0" VerticalAlignment="Top" Width="164">
+        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="396,64,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="cmbEstadoCivilPacienteMedic_SelectionChanged_1">
             <ComboBoxItem Content="Soltero" Tag="1" />
             <ComboBoxItem Content="Casado" Tag="2" />
             <ComboBoxItem Content="Viudo" Tag="3" />

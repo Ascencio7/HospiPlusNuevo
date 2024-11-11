@@ -40,6 +40,7 @@
         <Button x:Name="btnCancelarConsultaAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="606,58,0,0" VerticalAlignment="Top" Width="84" FontSize="12" Cursor="Hand" Click="btnCancelarConsultaAdmi_Click"/>
         <DatePicker x:Name="dtBuscarCitasAdmi" Background="White" HorizontalAlignment="Left" Height="28" Margin="330,56,0,0" VerticalAlignment="Top" Width="131" Cursor="Hand" KeyUp="dtBuscarCitasAdmi_KeyUp"/>
         <Button x:Name="btnBuscarConsultaAdmi" Cursor="Hand" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="504,58,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnBuscarConsultaAdmi_Click"/>
+        <Button x:Name="btnAgregar" Cursor="Hand" Background="#FF058789" Content="Agregar" HorizontalAlignment="Left" Height="28" Margin="35,56,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnAgregar_Click"/>
 
     </Grid>
 </Page>

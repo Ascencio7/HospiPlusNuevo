@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using HospiPlus.DataAcces;
 using HospiPlus.ModeloPaciente;
 using HospiPlus.ServicePaciente;
+using HospiPlus.ModeloMedico;
 
 
 namespace HospiPlus.SistemaMedico
@@ -114,37 +115,6 @@ namespace HospiPlus.SistemaMedico
                 AgregarPaciente();
             }
 
-        private void gridGestorPacienteMedico_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (gridGestorPacienteMedico.SelectedItem is ModeloPaciente.PacientesModel paciente)
-            {
-                // Cargar datos en los TextBox
-                txtNombrePacienteMedic.Text = paciente.NombrePaciente;
-                txtApellidoPacienteMedic.Text = paciente.ApellidoPaciente;
-                txtApellidoCasadaPacienteMedic.Text = paciente.ApellidoDeCasada;
-                txtDUIPacienteMedic.Text = paciente.DUIPaciente;
-                txTelefonoPacienteMedic.Text = paciente.TelefonoPaciente;
-                txtCorreoPacienteMedic.Text = paciente.CorreoPaciente;
-
-                // Cargar fecha de nacimiento
-                if (DateTime.TryParse(paciente.FechaNacimientoPaciente.ToString(), out DateTime fechaNacimiento))
-                {
-                    dtFechaNPacienteMedic.SelectedDate = fechaNacimiento;
-                }
-
-                // Seleccionar valores en los ComboBox
-                cmbSexoPacienteMedic.SelectedValue = paciente.SexoPaciente.ToString();
-                cmbEstadoCivilPacienteMedic.SelectedValue = paciente.EstadoCivilPaciente.ToString();
-                cmbDepartamentoPacienteMedic.SelectedValue = paciente.DepartamentosPaciente.ToString();
-                cmbMunicipioPacienteMedic.SelectedValue = paciente.MunicipioPaciente.ToString();
-                cmbEstadoPacienteMedic.SelectedValue = paciente.EstadoPaciente.ToString();
-
-                // Habilitar botones de modificar y cancelar
-                btnModificarPacienteMedic.IsEnabled = true;
-                btnCancelarPacienteMedic.IsEnabled = true;
-                btnAgregarPacienteMedic.IsEnabled = false;
-            }
-        }
 
         #region Cargar Departamentos
         public void cargarDepartamentosPacientes()
@@ -332,15 +302,39 @@ namespace HospiPlus.SistemaMedico
 
         private void btnCancelarPacienteMedic_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult respuesta = MessageBox.Show("¿Cancelar la operacion?", "Confirmacion", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            MessageBoxResult respuesta = MessageBox.Show("¿Cancelar la operacion?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (respuesta == MessageBoxResult.Yes)
             {
                 LimpiarCampos();
+                CargarPacientes();
             }
-                
         }
 
-        private void cmbEstadoCivilPacienteMedic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void gridGestorPacienteMedico_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PacientesModel pacientes = (PacientesModel)gridGestorPacienteMedico.SelectedItem;
+            if (pacientes == null)
+            {
+                return; // No hay médico seleccionado, salimos del método
+            }
+
+            // Asignación de valores a los TextBox
+            txtNombrePacienteMedic.Text = pacientes.NombrePaciente;
+            txtApellidoPacienteMedic.Text = pacientes.ApellidoPaciente;
+            txtApellidoCasadaPacienteMedic.Text = pacientes.ApellidoDeCasada;
+            dtFechaNPacienteMedic.Text = pacientes.FechaNacimientoPaciente.ToString("yyyy-MM-dd");
+            txTelefonoPacienteMedic.Text = pacientes.TelefonoPaciente;
+            cmbDepartamentoPacienteMedic.Text = pacientes.DepartamentosPaciente.ToString();
+            cmbMunicipioPacienteMedic.Text = pacientes.MunicipioPaciente.ToString();
+            txtCorreoPacienteMedic.Text = pacientes.CorreoPaciente;
+            txtDUIPacienteMedic.Text = pacientes.DUIPaciente;
+            cmbSexoPacienteMedic.Text = pacientes.SexoPaciente; // Descripción del Sexo
+            cmbEstadoCivilPacienteMedic.Text = pacientes.EstadoCivilPaciente; // Descripción del Estado Civil
+            cmbEstadoPacienteMedic.Text = pacientes.EstadoPaciente;
+        }
+
+        private void cmbEstadoCivilPacienteMedic_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (cmbEstadoCivilPacienteMedic.SelectedItem != null)
             {
@@ -366,7 +360,6 @@ namespace HospiPlus.SistemaMedico
                     txtApellidoCasadaPacienteMedic.IsEnabled = true; // Habilitar el TextBox
                 }
             }
-                
         }
     }
 

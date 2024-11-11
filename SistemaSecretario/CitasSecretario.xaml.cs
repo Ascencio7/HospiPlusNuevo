@@ -334,11 +334,5 @@ namespace HospiPlus.SistemaSecretario
 
         #endregion
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-
     }
 }

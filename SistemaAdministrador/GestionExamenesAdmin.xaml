@@ -9,9 +9,13 @@
       Title="GestionExamenesAdmin" Background="#aed6f1">
 
     <Grid Height="444" Margin="0,3,0,3" Cursor="Hand">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="213*"/>
+            <ColumnDefinition Width="187*"/>
+        </Grid.ColumnDefinitions>
 
 
-        <DataGrid x:Name="gridGestorExamenAdmin" Margin="20,108,26,28" IsReadOnly="True" SelectionChanged="gridGestorExamenAdmin_SelectionChanged" AutoGenerateColumns="False" KeyUp="gridGestorExamenAdmin_KeyUp">
+        <DataGrid x:Name="gridGestorExamenAdmin" Margin="20,108,26,28" IsReadOnly="True" SelectionChanged="gridGestorExamenAdmin_SelectionChanged" AutoGenerateColumns="False" KeyUp="gridGestorExamenAdmin_KeyUp" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Pacientes" Binding="{Binding Pacientes}"/>
@@ -27,10 +31,11 @@
 
 
         <Label Content="Gestión de Exámenes" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="241" FontWeight="Bold" Cursor="Hand"/>
-        <Button x:Name="btnBuscarExamenAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="414,68,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnBuscarExamenAdmi_Click"/>
-        <Label Content="Buscar por Fecha:" HorizontalAlignment="Left" Margin="103,73,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <Button x:Name="btnCancelarExamenAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="543,68,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarExamenAdmi_Click"/>
-        <DatePicker x:Name="dtBuscarExamenPorFechaAdmin" HorizontalAlignment="Left" Margin="249,70,0,0" VerticalAlignment="Top" Width="114" KeyUp="dtBuscarExamenPorFechaAdmin_KeyUp"/>
+        <Button x:Name="btnBuscarExamenAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="97,65,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnBuscarExamenAdmi_Click" Grid.Column="1"/>
+        <Label Content="Buscar por Fecha:" HorizontalAlignment="Left" Margin="234,72,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Button x:Name="btnCancelarExamenAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="239,65,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarExamenAdmi_Click" Grid.Column="1"/>
+        <DatePicker x:Name="dtBuscarExamenPorFechaAdmin" HorizontalAlignment="Left" Margin="356,70,0,0" VerticalAlignment="Top" Width="114" KeyUp="dtBuscarExamenPorFechaAdmin_KeyUp" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAgregar" Cursor="Hand" Background="#FF058789" Content="Agregar" HorizontalAlignment="Left" Height="28" Margin="35,56,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnAgregar_Click"/>
 
     </Grid>
 </Page>
