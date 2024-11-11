@@ -26,8 +26,8 @@ namespace HospiPlus.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VLADIMIR\\SQLEXPRESS;Initial Catalog=HOSPIPLUS2;Integrated Security=Tr" +
-            "ue;Encrypt=False;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=RUTH-VAQUERANO\\SQLEXPRESS;Initial Catalog=HOSPIPLUS2;Integrated Secur" +
+            "ity=True;Encrypt=False;")]
         public string conexionDB {
             get {
                 return ((string)(this["conexionDB"]));

@@ -19,6 +19,7 @@ using HospiPlus.SistemaLogin;
 using HospiPlus.SistemaAdministrador;
 using HospiPlus.SistemaMedico;
 using HospiPlus.SistemaSecretario;
+using static HospiPlus.SistemaLogin.loginDiegoP;
 
 
 
@@ -160,26 +161,37 @@ namespace HospiPlus.SistemaMedico
         private void btnSalirMedico_Click(object sender, RoutedEventArgs e)
         {
             // Mensaje para estar seguro si desea salir o no
-            MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Médico?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            // Si es así, se cierra la app
-            if (resultado == MessageBoxResult.Yes)
+            if (SessionInfo.UsuarioRol == "Administrador")
             {
-                //Comente este cod por si acaso :D
-                /*Application.Current.Shutdown();*/
+                MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Administrador?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                //para regresar al login
-                Window ventanaRegistro = Window.GetWindow(this);
-                if (ventanaRegistro != null)
+                if (resultado == MessageBoxResult.Yes)
                 {
-                    //Para regresar al login
-                    MainWindow niveles = new MainWindow();
-                    niveles.Show();
-
-                    ventanaRegistro.Close();
+                    Window ventanaRegistro = Window.GetWindow(this);
+                    if (ventanaRegistro != null)
+                    {
+                        MainWindow niveles = new MainWindow();
+                        niveles.Show();
+                        ventanaRegistro.Close();
+                    }
                 }
             }
+            else if (SessionInfo.UsuarioRol == "Medico")
+            {
+                MessageBoxResult resultado = MessageBox.Show("¿Seguro de quiere cerrar sesión?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    Window ventanaActual = Window.GetWindow(this);
+                    if (ventanaActual != null)
+                    {
+                        loginDiegoP login = new loginDiegoP();
+                        login.Show();
+                        ventanaActual.Close();
+                    }
+                }
+            }
+        
 
         }
         private void btnSalirMedico_MouseEnter(object sender, MouseEventArgs e)

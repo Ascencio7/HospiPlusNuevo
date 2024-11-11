@@ -46,7 +46,7 @@ namespace HospiPlus
         {
             frmSistemaAdministrador sisAdmin = new frmSistemaAdministrador();
             sisAdmin.Show();
-            this.Hide();
+            this.Close();
         }
         private void btnSistemaAdministrador_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -71,7 +71,7 @@ namespace HospiPlus
             frmSistemaMedico sisMedico = new frmSistemaMedico();
             sisMedico.Show();
 
-            //this.Hide();
+            this.Close();
         }
         private void btnSistemaMedico_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -94,7 +94,7 @@ namespace HospiPlus
         {
             frmSistemaSecretario sisSecretario = new frmSistemaSecretario();
             sisSecretario.Show();
-            //this.Hide();
+            this.Close();
         }
         private void SistemaSecretario_MouseEnter(object sender, MouseEventArgs e)
         {

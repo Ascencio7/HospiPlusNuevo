@@ -37,6 +37,10 @@ namespace HospiPlus.SistemaLogin
         {
             InitializeComponent();
         }
+        public class SessionInfo
+        {
+            public static string UsuarioRol { get; set; }
+        }
         class UsuarioInfo
         {
             public int UsuarioID { get; set; }
@@ -46,7 +50,7 @@ namespace HospiPlus.SistemaLogin
         class SQLControl
         {
             private SqlConnection connection =
-                new SqlConnection(@"Server=RUTH-VAQUERANO\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server=DESKTOP-V3058U8;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
 
             public UsuarioInfo Login(string correo, string password)
             {
@@ -108,6 +112,8 @@ namespace HospiPlus.SistemaLogin
 
             if (usuario != null) // Si encontró un usuario
             {
+                SessionInfo.UsuarioRol = usuario.Rol;  // Guardar el rol del usuario logueado
+
                 // Redirige según el rol del usuario
                 switch (usuario.Rol)
                 {

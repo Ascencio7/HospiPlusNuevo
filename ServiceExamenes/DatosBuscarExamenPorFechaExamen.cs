@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using HospiPlus.DataAcces;
-using System.Windows.Controls;
 
+using HospiPlus.ServiceExamenes;
 using HospiPlus.ModeloExamen;
-
+using HospiPlus.DataAcces;
+using System.Windows;
 
 namespace HospiPlus.ServiceExamenes
 {

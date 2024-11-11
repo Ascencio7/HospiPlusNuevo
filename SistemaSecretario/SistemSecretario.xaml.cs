@@ -18,6 +18,7 @@ using HospiPlus.SistemaLogin;
 using HospiPlus.SistemaAdministrador;
 using HospiPlus.SistemaMedico;
 using System.Security.Principal;
+using static HospiPlus.SistemaLogin.loginDiegoP;
 
 
 
@@ -145,22 +146,35 @@ namespace HospiPlus.SistemaSecretario
         #region btnSalirSecretario
         private void btnSalirSecretario_Click(object sender, RoutedEventArgs e)
         {
-            // Mensaje para confirmar si desea salir o no
-            MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Médico?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            // Si se confirma, regresa al login
-            if (resultado == MessageBoxResult.Yes)
+            // Validar si el usuario es Administrador o Secretario
+            if (SessionInfo.UsuarioRol == "Administrador")
             {
-                // Obtener la ventana actual
-                Window ventanaActual = Window.GetWindow(this);
-                if (ventanaActual != null)
-                {
-                    // Mostrar la ventana de login
-                    loginDiegoP login = new loginDiegoP(); // Asegúrate de que el nombre de la clase sea correcto
-                    login.Show();
+                MessageBoxResult resultado = MessageBox.Show("¿Seguro de salir de Sistema Administrador?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    // Cerrar la ventana actual
-                    ventanaActual.Close();
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    Window ventanaRegistro = Window.GetWindow(this);
+                    if (ventanaRegistro != null)
+                    {
+                        MainWindow niveles = new MainWindow();
+                        niveles.Show();
+                        ventanaRegistro.Close();
+                    }
+                }
+            }
+            else if (SessionInfo.UsuarioRol == "Secretario")
+            {
+                MessageBoxResult resultado = MessageBox.Show("¿Seguro de quiere cerrar sesión?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    Window ventanaActual = Window.GetWindow(this);
+                    if (ventanaActual != null)
+                    {
+                        loginDiegoP login = new loginDiegoP();
+                        login.Show();
+                        ventanaActual.Close();
+                    }
                 }
             }
         }
