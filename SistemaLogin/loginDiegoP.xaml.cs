@@ -23,6 +23,7 @@ using MaterialDesignThemes.Wpf;
 
 
 using System.Security.Cryptography;
+using System.Web.UI.WebControls;
 
 
 namespace HospiPlus.SistemaLogin
@@ -50,7 +51,7 @@ namespace HospiPlus.SistemaLogin
         class SQLControl
         {
             private SqlConnection connection =
-                new SqlConnection(@"Server=DESKTOP-V3058U8;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server=VLADIMIR\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
 
             public UsuarioInfo Login(string correo, string password)
             {
@@ -155,6 +156,16 @@ namespace HospiPlus.SistemaLogin
         {
             IniciarSesion(); // Llamada al Método de Iniciar Sesión
         }
+        private void btnIniciarSesion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Cambiar el color cuando el cursor entra en el área del botón
+            btnIniciarSesion.Background = new SolidColorBrush(Color.FromRgb(41, 16, 153));
+        }
+        private void btnIniciarSesion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            // Restaurar el color original cuando el cursor sale del área del botón
+            btnIniciarSesion.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
+        }
 
 
         #region Eventos ENTER
@@ -174,5 +185,29 @@ namespace HospiPlus.SistemaLogin
             }
         }
         #endregion
+
+        private void btnCerrarsesion_Click(object sender, RoutedEventArgs e)
+        {
+            // Mensaje para estar seguro si desea salir o no
+            MessageBoxResult resultado = MessageBox.Show("¿Seguro que quiere cerrar sesión?", "HOSPI PLUS | Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // Si es así, se cierra la app
+            if (resultado == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();   
+            }
+        }
+
+        private void btnCerrarsesion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Cambiar el color cuando el cursor entra en el área del botón
+            btnCerrarsesion.Background = new SolidColorBrush(Color.FromRgb(41, 16, 153));
+        }
+
+        private void btnCerrarsesion_MouseLeave(object sender, MouseEventArgs e)
+        {
+            // Restaurar el color original cuando el cursor sale del área del botón
+            btnCerrarsesion.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
+        }
     }
 }

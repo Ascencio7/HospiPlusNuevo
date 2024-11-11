@@ -31,6 +31,7 @@
         <Button x:Name="btnBuscarCitaAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="432,62,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnBuscarCitaAdmi_Click"/>
         <Label Content="Buscar por DUI:" HorizontalAlignment="Left" Margin="134,62,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Button x:Name="btnCancelarCitaAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="538,62,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarCitaAdmi_Click"/>
+        <Button x:Name="btnAgregar" Background="#FF058789" Content="Agregar" HorizontalAlignment="Left" Height="28" Margin="25,62,0,0" VerticalAlignment="Top" Width="86" FontSize="12" Click="btnAgregar_Click"/>
 
     </Grid>
 </Page>

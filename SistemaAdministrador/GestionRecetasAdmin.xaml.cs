@@ -199,6 +199,13 @@ namespace HospiPlus.SistemaAdministrador
                 }
             }
         }
+
         #endregion
+
+        private void btnAgregarAdmiRecetas_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("SistemaMedico/RecetasMedico.xaml", UriKind.Relative));
+
+        }
     }
 }

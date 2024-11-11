@@ -35,6 +35,7 @@
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Cursor="IBeam" KeyUp="txtPass_KeyUp"/>
             </StackPanel>
         </Grid>
-        <Button Background="#FF058789" Name="btnIniciarSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Height="46" Margin="437,0,0,87" VerticalAlignment="Bottom" Width="194" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Cursor="Hand" Click="btnIniciarSesion_Click" FontWeight="Bold"/>
+        <Button Background="#FF058789" Name="btnIniciarSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Height="46" Margin="437,0,0,87" VerticalAlignment="Bottom" Width="194" FontFamily="Verdana" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Cursor="Hand" Click="btnIniciarSesion_Click" FontWeight="Bold" MouseEnter="btnIniciarSesion_MouseEnter" MouseLeave="btnIniciarSesion_MouseLeave"/>
+        <Button x:Name="btnCerrarsesion" Content="Cerrar sesión" Margin="640,402,-34,0" Background="#FF058789" FontWeight="Bold" Click="btnCerrarsesion_Click" FontSize="10" MouseEnter="btnCerrarsesion_MouseEnter" MouseLeave="btnCerrarsesion_MouseLeave"/>
     </Grid>
 </Window>

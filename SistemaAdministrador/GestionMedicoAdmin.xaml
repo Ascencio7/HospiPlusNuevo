@@ -10,7 +10,6 @@
       Title="GestionMedicoAdmin" Background="#aed6f1">
 
     <Grid Background="#aed6f1" Height="444" Margin="0,3,0,3" Cursor="Hand">
-
         <ScrollViewer VerticalScrollBarVisibility="Disabled">
 
 
@@ -128,12 +127,13 @@
 
 
         <Label Content="Hora Final:" HorizontalAlignment="Left" Margin="200,189,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtHoraInicio" HorizontalAlignment="Left" Margin="14,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" KeyUp="txtHoraInicio_KeyUp"/>
-        <TextBox x:Name="txtHoraFinal" HorizontalAlignment="Left" Margin="173,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" KeyUp="txtHoraFinal_KeyUp" Height="22"/>
+        <materialDesign:TimePicker x:Name="timePickerHoraInicio" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top" Width="127" TabIndex="5"/>
+        <materialDesign:TimePicker x:Name="timePickerHoraFnicio" HorizontalAlignment="Left" Margin="173,218,0,0" VerticalAlignment="Top" Width="128" TabIndex="5"/>
         <ComboBox x:Name="cbMunicipiosMedicosAdmin" HorizontalAlignment="Left" Margin="319,157,0,0" VerticalAlignment="Top" Width="142"/>
 
 
 
 
     </Grid>
+
 </Page>

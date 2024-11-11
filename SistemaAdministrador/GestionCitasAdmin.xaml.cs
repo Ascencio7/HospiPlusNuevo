@@ -205,5 +205,11 @@ namespace HospiPlus.SistemaAdministrador
             }
         }
         #endregion
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("SistemaSecretario/CitasSecretario.xaml", UriKind.Relative));
+
+        }
     }
 }

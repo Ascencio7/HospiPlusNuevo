@@ -98,11 +98,11 @@ namespace HospiPlus.SistemaAdministrador
             cmbEstadoCivilMedic.Text = medicos.EstadoCivilMedico; // Descripción del Estado Civil
             cmbEspMedic.Text = medicos.EspecialidadID; // Descripción de la Especialidad del Médico
             cmbEstadoMedic.Text = medicos.EstadoMedico;
-            
+
 
             // Asignación de horas
-            txtHoraInicio.Text = medicos.HoraInicio.ToString(@"hh\:mm");
-            txtHoraFinal.Text = medicos.HoraFin.ToString(@"hh\:mm");
+            timePickerHoraFnicio.Text = medicos.HoraInicio.ToString(@"hh\:mm");
+            timePickerHoraFnicio.Text = medicos.HoraFin.ToString(@"hh\:mm");
 
             // Asignación de días
             if (medicos.Dias != null)
@@ -150,7 +150,7 @@ namespace HospiPlus.SistemaAdministrador
                 estado = false;
                 mensaje += "Teléfono\n";
             }
-            
+
 
             if (string.IsNullOrWhiteSpace(txtCorreoMedico.Text))
             {
@@ -182,13 +182,13 @@ namespace HospiPlus.SistemaAdministrador
                 mensaje += "Días\n";
             }
 
-            if (string.IsNullOrWhiteSpace(txtHoraInicio.Text))
+            if (string.IsNullOrWhiteSpace(timePickerHoraInicio.Text))
             {
                 estado = false;
                 mensaje += "Hora Inicio\n";
             }
 
-            if (string.IsNullOrWhiteSpace(txtHoraFinal.Text))
+            if (string.IsNullOrWhiteSpace(timePickerHoraFnicio.Text))
             {
                 estado = false;
                 mensaje += "Hora Fin\n";
@@ -270,8 +270,8 @@ namespace HospiPlus.SistemaAdministrador
                         cmd.Parameters.AddWithValue("@DiaID", ((ComboBoxItem)cmbDiasMedic.SelectedItem).Tag);
 
                         // Convertir horas a TimeSpan
-                        cmd.Parameters.AddWithValue("@HoraInicio", TimeSpan.Parse(txtHoraInicio.Text));
-                        cmd.Parameters.AddWithValue("@HoraFin", TimeSpan.Parse(txtHoraFinal.Text));
+                        cmd.Parameters.AddWithValue("@HoraInicio", timePickerHoraInicio.SelectedTime.Value);
+                        cmd.Parameters.AddWithValue("@HoraFin", timePickerHoraFnicio.SelectedTime.Value);
 
                         cmd.Parameters.AddWithValue("@EspecialidadID", ((ComboBoxItem)cmbEspMedic.SelectedItem).Tag);
                         cmd.Parameters.AddWithValue("@EstadoID", ((ComboBoxItem)cmbEstadoMedic.SelectedItem).Tag);
@@ -338,8 +338,9 @@ namespace HospiPlus.SistemaAdministrador
                 // Obtener solo el día seleccionado de cmbDiasMedic
                 Dias = ObtenerDiaSeleccionado(), // Método que obtiene el día seleccionado
 
-                HoraInicio = TimeSpan.Parse(txtHoraInicio.Text),
-                HoraFin = TimeSpan.Parse(txtHoraFinal.Text),
+                HoraInicio = timePickerHoraInicio.SelectedTime.HasValue ? timePickerHoraInicio.SelectedTime.Value.TimeOfDay : TimeSpan.Zero,
+                HoraFin = timePickerHoraFnicio.SelectedTime.HasValue ? timePickerHoraFnicio.SelectedTime.Value.TimeOfDay : TimeSpan.Zero,
+
                 EspecialidadID = ObtenerTagDeComboBox(cmbEspMedic),
                 EstadoMedico = ObtenerTagDeComboBox(cmbEstadoMedic)
             };
@@ -465,18 +466,18 @@ namespace HospiPlus.SistemaAdministrador
         #region Botón Eliminar Médicos
         private void btnEliminarMedicoAdmi_Click(object sender, RoutedEventArgs e)
         {
-            if(gridGestorMedicoAdmin.SelectedItem == null)
+            if (gridGestorMedicoAdmin.SelectedItem == null)
             {
                 MessageBox.Show("Por favor, selecciona un médico de la lista.", "Médico no seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MedicosModel medicoEliminar =  (MedicosModel)gridGestorMedicoAdmin.SelectedItem;
+            MedicosModel medicoEliminar = (MedicosModel)gridGestorMedicoAdmin.SelectedItem;
 
 
             MessageBoxResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar al médico seleccionado?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if(result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes)
             {
                 eliminarMedico(medicoEliminar.MedicoID);
             }
@@ -489,7 +490,7 @@ namespace HospiPlus.SistemaAdministrador
         #region Método para Eliminar Médicos
         public void eliminarMedico(int medicoID)
         {
-            using(SqlConnection conexion = ConexionDB.ObtenerCnx())
+            using (SqlConnection conexion = ConexionDB.ObtenerCnx())
             {
                 try
                 {
@@ -500,7 +501,7 @@ namespace HospiPlus.SistemaAdministrador
                         cmd.Parameters.AddWithValue("@MedicoID", medicoID);
 
                         var columnaAfectada = cmd.ExecuteNonQuery();
-                        if(columnaAfectada > 0)
+                        if (columnaAfectada > 0)
                         {
                             MessageBox.Show("Médico eliminado correctamente", "Eliminar",
                                 MessageBoxButton.OK, MessageBoxImage.Information);
@@ -513,7 +514,8 @@ namespace HospiPlus.SistemaAdministrador
                         MostrarMedicos();
                         LimpiarCampos();
                     }
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Ocurrió un error al eliminar el médico: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     MostrarMedicos();
@@ -535,7 +537,7 @@ namespace HospiPlus.SistemaAdministrador
         {
             // Se reemplaza el punto por dos puntos para que sea un formato de hora valido
             hora = hora.Replace(".", ":"); // La hora con minutos se debe ingresar con :
-            if(TimeSpan.TryParse(hora, out TimeSpan resultado))
+            if (TimeSpan.TryParse(hora, out TimeSpan resultado))
             {
                 return resultado;
             }
@@ -568,23 +570,23 @@ namespace HospiPlus.SistemaAdministrador
 
         #region Método para limpiar campos
         void LimpiarCampos()
-            {
-                txtNombreMedico.Text = string.Empty;
-                txtApellidoMedico.Text = string.Empty;
-                txtApellidoCasadaMedico.Text = string.Empty;
-                dtFechaNaciMedico.Text = string.Empty;
-                txtTelefonoMedico.Text = string.Empty;
-                cbDepartamentosMedicos.SelectedIndex = -1; // Vuelve a 0 el indice
-                cbMunicipiosMedicosAdmin.SelectedIndex = -1;
-                txtCorreoMedico.Text = string.Empty;
-                txtDUIMedico.Text = string.Empty;
-                cmbSexoMedic.SelectedIndex = -1; //Vuelve a 0 el indice
-                cmbEstadoCivilMedic.SelectedIndex = -1; // Vuelve a 0 el indice
-                cmbDiasMedic.SelectedIndex = -1; // O el índice que desees por defecto
-                txtHoraInicio.Text = string.Empty;
-                txtHoraFinal.Text = string.Empty;
-                cmbEspMedic.SelectedIndex = -1; // Vuelve a 0 el indice
-                cmbEstadoMedic.SelectedIndex = -1; // Vuelve a 0 el indice
+        {
+            txtNombreMedico.Text = string.Empty;
+            txtApellidoMedico.Text = string.Empty;
+            txtApellidoCasadaMedico.Text = string.Empty;
+            dtFechaNaciMedico.Text = string.Empty;
+            txtTelefonoMedico.Text = string.Empty;
+            cbDepartamentosMedicos.SelectedIndex = -1; // Vuelve a 0 el indice
+            cbMunicipiosMedicosAdmin.SelectedIndex = -1;
+            txtCorreoMedico.Text = string.Empty;
+            txtDUIMedico.Text = string.Empty;
+            cmbSexoMedic.SelectedIndex = -1; //Vuelve a 0 el indice
+            cmbEstadoCivilMedic.SelectedIndex = -1; // Vuelve a 0 el indice
+            cmbDiasMedic.SelectedIndex = -1; // O el índice que desees por defecto
+            timePickerHoraInicio.Text = string.Empty;
+            timePickerHoraFnicio.Text = string.Empty;
+            cmbEspMedic.SelectedIndex = -1; // Vuelve a 0 el indice
+            cmbEstadoMedic.SelectedIndex = -1; // Vuelve a 0 el indice
         }
         #endregion
 
@@ -594,7 +596,7 @@ namespace HospiPlus.SistemaAdministrador
         // Inicio Evento ENTER: para ahorrar tiempo en dar click al botón de ingresar los datos
         private void txtNombreMedico_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 agregarMedico();
             }
@@ -700,12 +702,12 @@ namespace HospiPlus.SistemaAdministrador
         #endregion
 
 
-        
+
         #region Validacion de 10 para DUI
         // Validar que el DUI tenga la longitud de 10 caracteres
         private void txtDUIMedico_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(txtDUIMedico.Text.Length > 10)
+            if (txtDUIMedico.Text.Length > 10)
             {
                 txtDUIMedico.Text = txtDUIMedico.Text.Substring(0, 10);
                 txtDUIMedico.CaretIndex = txtDUIMedico.Text.Length;
@@ -802,7 +804,7 @@ namespace HospiPlus.SistemaAdministrador
         #region Selecciona Depar y carga Muni
         private void cbDepartamentosMedicos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cbDepartamentosMedicos.SelectedItem is ComboBoxItem selectdItem)
+            if (cbDepartamentosMedicos.SelectedItem is ComboBoxItem selectdItem)
             {
                 int departamentoId = (int)selectdItem.Tag;
                 cargarMunicipios(departamentoId);
@@ -818,27 +820,27 @@ namespace HospiPlus.SistemaAdministrador
         {
             if (cmbEstadoCivilMedic.SelectedItem != null)
             {
-                // Verificar si la opción seleccionada es "Casado"
                 string seleccion = cmbEstadoCivilMedic.SelectedItem.ToString();
 
                 if (seleccion.Contains("Casado"))
                 {
                     txtApellidoCasadaMedico.IsEnabled = true; // Habilitar el TextBox
                 }
-                else if (seleccion.Contains("Soltero")) 
+                else if (seleccion.Contains("Soltero") || seleccion.Contains("Divorciado"))
                 {
                     txtApellidoCasadaMedico.IsEnabled = false; // Deshabilitar el TextBox
                     txtApellidoCasadaMedico.Text = string.Empty; // Limpiar el contenido si se desactiva
                 }
-                else if (seleccion.Contains("Divorciado")) 
-                {
-                    txtApellidoCasadaMedico.IsEnabled = false; // Deshabilitar el TextBox
-                    txtApellidoCasadaMedico.Text = string.Empty; // Limpiar el contenido si se desactiva
-                }
-                if (seleccion.Contains("Viudo"))
+                else if (seleccion.Contains("Viudo"))
                 {
                     txtApellidoCasadaMedico.IsEnabled = true; // Habilitar el TextBox
                 }
+            }
+            else
+            {
+                // Manejo del caso donde no hay nada seleccionado
+                txtApellidoCasadaMedico.IsEnabled = false;
+                txtApellidoCasadaMedico.Text = string.Empty;
             }
         }
         #endregion

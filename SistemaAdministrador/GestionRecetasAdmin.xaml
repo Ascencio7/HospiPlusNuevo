@@ -30,7 +30,7 @@
         </ScrollViewer>
 
 
-        <Button x:Name="btnModificarRecetasAdmi" Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="20,57,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand"/>
+        <Button x:Name="btnAgregarAdmiRecetas" Background="#FF058789" Content="Agregar" HorizontalAlignment="Left" Height="28" Margin="20,57,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnAgregarAdmiRecetas_Click"/>
         <TextBox x:Name="txbBuscarRecetasAdmi" Background="White" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="339,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" KeyUp="txbBuscarRecetasAdmi_KeyUp"/>
         <Button x:Name="btnBuscarRecetasAdmi" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Height="28" Margin="551,59,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnBuscarRecetasAdmi_Click"/>
         <Button x:Name="btnCancelarRecetasAdmi" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="673,60,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Cursor="Hand" Click="btnCancelarRecetasAdmi_Click"/>
