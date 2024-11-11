@@ -218,8 +218,6 @@ namespace HospiPlus.SistemaAdministrador
         #endregion
 
 
-
-
         #region Boton para Agregar Medicos
         private void btnAgregarMedicoAdmi_Click(object sender, RoutedEventArgs e)
         {
@@ -239,7 +237,6 @@ namespace HospiPlus.SistemaAdministrador
 
         #region Método para Agregar Medicos
         // Método para agregar médicos
-
         private void agregarMedico()
         {
             ValidarFormulario();
@@ -796,8 +793,6 @@ namespace HospiPlus.SistemaAdministrador
             }
         }// fin del método
         #endregion
-
-
 
 
 

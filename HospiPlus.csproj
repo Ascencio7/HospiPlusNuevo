@@ -88,6 +88,7 @@
     <Compile Include="ModeloMedico\RecetasModel.cs" />
     <Compile Include="ModeloPaciente\ModeloConsultaPaciente.cs" />
     <Compile Include="ModeloPaciente\PacientesModel.cs" />
+    <Compile Include="ModeloReceta\ModelReceta.cs" />
     <Compile Include="ModeloUsuario\UsuariosModel.cs" />
     <Compile Include="Reportes\rptConsultasMedico.cs">
       <AutoGen>True</AutoGen>
@@ -453,7 +454,9 @@
   <ItemGroup>
     <Content Include="QueryHospiPlus.sql" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ModeloCita\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>

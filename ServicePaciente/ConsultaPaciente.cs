@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using HospiPlus.ModeloPaciente;
 using HospiPlus.ServicePaciente;
+using System.Data.Common;
 
 namespace HospiPlus.ServicePaciente
 {
@@ -96,6 +97,50 @@ namespace HospiPlus.ServicePaciente
                 MessageBox.Show($"Error al obtener las consultas: {ex.Message}",
                                 "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            return consultas;
+        }
+
+        public static List<ModeloConsultaPaciente> BuscarConsultasPorDUI(string dui)
+        {
+            List<ModeloConsultaPaciente> consultas = new List<ModeloConsultaPaciente>();
+
+            using (var conexion = ConexionDB.ObtenerCnx())
+            {
+                ConexionDB.AbrirConexion(conexion);
+                using (var command = conexion.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "BuscarConsultasPorDUI";
+
+                    command.Parameters.Add(new SqlParameter("@DUI", dui));
+
+                    using (DbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ModeloConsultaPaciente consulta = new ModeloConsultaPaciente()
+                            {
+                                ConsultaID = int.Parse(reader["ConsultaID"].ToString()),
+                                PacienteID = reader["PacienteID"].ToString(),
+                                MedicoID = reader["MedicoID"].ToString(),
+                                EspecialidadM = reader["EspecialidadM"].ToString(),
+                                Altura = decimal.Parse(reader["Altura"].ToString()),
+                                Peso = decimal.Parse(reader["Peso"].ToString()),
+                                Alergia = reader["Alergia"].ToString(),
+                                Sintomas = reader["Sintomas"].ToString(),
+                                Diagnostico = reader["Diagnostico"].ToString(),
+                                Observaciones = reader["Observaciones"].ToString(),
+                                FechaConsulta = DateTime.Parse(reader["FechaConsulta"].ToString()),
+                                FechaCita = DateTime.Parse(reader["FechaCita"].ToString()),
+                                EstadoCita = reader["EstadoCita"].ToString()
+                            };
+
+                            consultas.Add(consulta);
+                        }
+                    }
+                }
+            }
+
             return consultas;
         }
     }

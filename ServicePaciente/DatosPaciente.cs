@@ -15,6 +15,8 @@ namespace HospiPlus.ServicePaciente
     public class DatosPaciente
     {
         public DatosPaciente() { }
+
+
         public static List<PacientesModel> MuestraPacientes()
         {
             List<PacientesModel> lstPacientes = new List<PacientesModel>();
@@ -63,8 +65,6 @@ namespace HospiPlus.ServicePaciente
             return lstPacientes;
         } //Fin de Mostrar pacientes
 
-
-
         // Inicio para buscar a los pacientes por numero de DUI
         public static List<PacientesModel> BuscarPacientePorDUI(string dui)
         {
@@ -106,7 +106,6 @@ namespace HospiPlus.ServicePaciente
             return pacientes;
         } //Fin del proceso de buscar pacientes por DUI
 
-
         //metodo para ingresar o registrar un nuevo paciente
         public static bool GuardarPaciente(PacientesModel paciente)
         {
@@ -147,8 +146,89 @@ namespace HospiPlus.ServicePaciente
             }
         }
 
+        #region OTROS METODOS
+        // Método para obtener municipios
+        private List<string> ObtenerMunicipios(string departamento)
+        {
+            List<string> municipios = new List<string>();
+            try
+            {
+                using (SqlConnection conn = ConexionDB.ObtenerCnx())
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT NombreMunicipio FROM Municipios WHERE DepartamentoID = (SELECT DepartamentoID FROM Departamentos WHERE NombreDepartamento = @Departamento) ORDER BY NombreMunicipio", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Departamento", departamento);
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                municipios.Add(reader["NombreMunicipio"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Error de base de datos al obtener municipios: {sqlEx.Message}",
+                               "Error de Base de Datos",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show($"Error inesperado al obtener municipios: {error.Message}",
+                               "Error",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+            return municipios;
+        }
 
-        
+        // Método para obtener departamentos
+        private List<string> ObtenerDepartamentos()
+        {
+            List<string> departamentos = new List<string>();
+            try
+            {
+                using (SqlConnection conn = ConexionDB.ObtenerCnx())
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT NombreDepartamento FROM Departamentos ORDER BY NombreDepartamento", conn))
+                    {
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                departamentos.Add(reader["NombreDepartamento"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Error de base de datos al obtener departamentos: {sqlEx.Message}",
+                               "Error de Base de Datos",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show($"Error inesperado al obtener departamentos: {error.Message}",
+                               "Error",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+            return departamentos;
+        }
+        #endregion
+
+
+
+
+
 
     }
 }
