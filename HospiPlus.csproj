@@ -89,6 +89,12 @@
     <Compile Include="ModeloPaciente\ModeloConsultaPaciente.cs" />
     <Compile Include="ModeloPaciente\PacientesModel.cs" />
     <Compile Include="ModeloUsuario\UsuariosModel.cs" />
+    <Compile Include="Reportes\rptConsultasMedico.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptConsultasMedico.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\rptExamenPaciente.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +112,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptRecetaPorPacienteYFecha.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReporteVista\examenesPaciente.xaml.cs">
+      <DependentUpon>examenesPaciente.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReporteVista\expedientePaciente.xaml.cs">
       <DependentUpon>expedientePaciente.xaml</DependentUpon>
@@ -225,6 +234,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReporteVista\examenesPaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReporteVista\expedientePaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -371,6 +384,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptConsultasMedico.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptConsultasMedico.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptExamenPaciente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

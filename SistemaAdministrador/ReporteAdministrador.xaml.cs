@@ -62,5 +62,18 @@ namespace HospiPlus.SistemaAdministrador
 
             visor.Show();
         }
+
+        private void btnExamenPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            rptExamenPaciente rpt = new rptExamenPaciente();
+            examenesPaciente visor = new examenesPaciente();
+
+            rpt.Load("@rptExamenPaciente.rpt");
+
+
+            visor.crystalExamenesPaciente.ViewerCore.ReportSource = rpt;
+
+            visor.Show();
+        }
     }
 }
