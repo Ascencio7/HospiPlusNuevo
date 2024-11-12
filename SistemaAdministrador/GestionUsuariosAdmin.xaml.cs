@@ -148,7 +148,7 @@ namespace HospiPlus.SistemaAdministrador
             try
             {
                 // Abre la conexión a la base de datos
-                using (SqlConnection connection = new SqlConnection(@"Server=DESKTOP-V3058U8;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False"))
+                using (SqlConnection connection = new SqlConnection(@"Server=RUTH-VAQUERANO\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False"))
                 {
                     connection.Open();
 

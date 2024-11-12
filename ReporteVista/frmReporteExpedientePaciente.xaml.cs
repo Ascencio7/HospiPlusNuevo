@@ -35,7 +35,7 @@ namespace HospiPlus.ReporteVista
                 try
                 {
                     // Crear y configurar el reporte
-                    rptExamenPaciente rpt = new rptExamenPaciente();
+                    rptExpedientePaciente rpt = new rptExpedientePaciente();
                     expedientePaciente visor = new expedientePaciente();
 
                     // Configurar el parámetro de PacienteID
