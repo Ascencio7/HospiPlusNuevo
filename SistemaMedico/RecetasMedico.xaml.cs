@@ -105,7 +105,9 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-        // Evento para guardar la receta
+
+
+
         private void btnGuardarRecetMedic_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampos())
@@ -120,17 +122,21 @@ namespace HospiPlus.SistemaMedico
                             command.CommandType = System.Data.CommandType.StoredProcedure;
                             command.CommandText = "InsertarReceta";
 
-                            // Obtener el MedicoID desde el ComboBox
-                            int medicoID = (int)cmbMedicoID.SelectedValue; // Asegúrate de que el valor seleccionado sea un MedicoID
+                            // Obteniendo valores de MedicoID y ConsultaID
+                            int medicoID = (int)cmbMedicoID.SelectedValue;
+                            
 
+                            // Añadiendo los parámetros
                             command.Parameters.AddWithValue("@PacienteID", int.Parse(txtPacRecMedic.Text));
                             command.Parameters.AddWithValue("@MedicoID", medicoID);
                             command.Parameters.AddWithValue("@FechaEmision", DateTime.Parse(datePickerFechaEmision.Text));
+                            
                             command.Parameters.AddWithValue("@Medicamento", txtMedicamRecMedic.Text);
                             command.Parameters.AddWithValue("@Dosis", txtDosisRecMedic.Text);
                             command.Parameters.AddWithValue("@Frecuencia", txtFrecRecMedic.Text);
                             command.Parameters.AddWithValue("@Duracion", txtDuraRecMedic.Text);
                             command.Parameters.AddWithValue("@Instrucciones", txtInstrucRecMedic.Text);
+
                             command.ExecuteNonQuery();
                         }
                     }
@@ -144,7 +150,8 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-        // Método para validar campos (ejemplo de validación)
+
+        //
         private bool ValidarCampos()
         {
             if (string.IsNullOrEmpty(txtPacRecMedic.Text) ||
@@ -152,7 +159,7 @@ namespace HospiPlus.SistemaMedico
                 string.IsNullOrEmpty(txtDosisRecMedic.Text) ||
                 string.IsNullOrEmpty(txtFrecRecMedic.Text) ||
                 string.IsNullOrEmpty(txtDuraRecMedic.Text) ||
-                cmbMedicoID.SelectedItem == null) // Asegúrate de que un médico esté seleccionado
+                cmbMedicoID.SelectedItem == null) 
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
                 return false;
@@ -162,8 +169,44 @@ namespace HospiPlus.SistemaMedico
 
         private void gridGestorRecetaMedico_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (gridGestorRecetaMedico.SelectedItem != null)
+            {
+                ModelReceta recetaSeleccionada = (ModelReceta)gridGestorRecetaMedico.SelectedItem;
 
+                try
+                {
+                    txtPacRecMedic.Text = recetaSeleccionada.PacienteID;
+
+                    
+                    if (recetaSeleccionada.MedicoID != null)
+                    {
+                        cmbMedicoID.SelectedValue = recetaSeleccionada.MedicoID;
+                    }
+
+                    
+                    if (recetaSeleccionada.FechaEmision != null)
+                    {
+                        datePickerFechaEmision.SelectedDate = recetaSeleccionada.FechaEmision;
+                    }
+
+                    txtMedicamRecMedic.Text = recetaSeleccionada.Medicamento;
+                    txtDosisRecMedic.Text = recetaSeleccionada.Dosis;
+                    txtFrecRecMedic.Text = recetaSeleccionada.Frecuencia;
+                    txtDuraRecMedic.Text = recetaSeleccionada.Duracion;
+                    txtInstrucRecMedic.Text = recetaSeleccionada.Instrucciones;
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Error de formato: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error inesperado: " + ex.Message);
+                }
+            }
         }
+
+        
     }
 
 }

@@ -9,7 +9,7 @@
       Title="Consultas" Background="#aed6f1">
 
     <Grid Height="444" Margin="0,3,0,3" Cursor="IBeam">
-        <DataGrid x:Name="gridGConsultM" Margin="23,296,23,10" AutoGenerateColumns="False">
+        <DataGrid x:Name="gridGConsultM" Margin="23,296,23,10" AutoGenerateColumns="False" SelectionChanged="gridGConsultM_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Consulta ID" Binding="{Binding ConsultaID}" />
                 <DataGridTextColumn Header="Paciente" Binding="{Binding PacienteID}" />
@@ -21,16 +21,23 @@
                 <DataGridTextColumn Header="Sintomas" Binding="{Binding Sintomas}" />
                 <DataGridTextColumn Header="Diagnóstico" Binding="{Binding Diagnostico}" />
                 <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" />
-                <DataGridTextColumn Header="Fecha Consulta" Binding="{Binding FechaConsulta, StringFormat=\{0:yyyy-MM-dd\}}" />
-                <DataGridTextColumn Header="Fecha Cita" Binding="{Binding FechaCita, StringFormat=\{0:yyyy-MM-dd\}}" />
-            </DataGrid.Columns>
+                            </DataGrid.Columns>
         </DataGrid>
         <Label Content="Gestión de Consultas" FontSize="18" FontFamily="Verdana" HorizontalAlignment="Left" VerticalAlignment="Top" Width="231" FontWeight="Bold" Margin="18,10,0,0"/>
         <Button x:Name="btnCancelarBuscar" Background="#FF058789" Content="Cancelar" FontSize="12" Click="btnCancelarBuscar_Click" Margin="614,247,47,165"/>
         <Label Content="Nombre del Paciente" HorizontalAlignment="Left" Margin="228,47,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtNombrePaciente" HorizontalAlignment="Left" Margin="210,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="168" Background="White" FontFamily="Verdana"/>
+        <ComboBox x:Name="cmbNombrePaciente" 
+          HorizontalAlignment="Left" 
+          Margin="210,75,0,0" 
+          VerticalAlignment="Top" 
+          Width="168" 
+          Background="White" 
+          FontFamily="Verdana" 
+          IsEditable="True" 
+          MaxDropDownHeight="100"
+          />
         <Label Content="Medico" HorizontalAlignment="Left" Margin="82,45,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbMedicoIDMedico" HorizontalAlignment="Left" Margin="34,71,0,0" VerticalAlignment="Top" Width="143" TabIndex="2" SelectionChanged="cmbMedicoIDMedico_SelectionChanged"/>
+        <ComboBox x:Name="cmbMedicoIDMedico" HorizontalAlignment="Left" Margin="34,71,0,0" VerticalAlignment="Top" Width="143" TabIndex="2"/>
         <Label Content="Altura" HorizontalAlignment="Left" Margin="448,45,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <TextBox x:Name="txtNombrePaciente_Copiar" HorizontalAlignment="Left" Margin="677,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" Background="White" FontFamily="Verdana"/>
         <Label Content="Peso" HorizontalAlignment="Left" Margin="581,46,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
@@ -42,11 +49,11 @@
         <Label Content="Diagnostico" HorizontalAlignment="Left" Margin="346,114,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <TextBox x:Name="txtNombrePaciente_Copiar4" HorizontalAlignment="Left" Margin="277,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="215" Background="White" FontFamily="Verdana" Height="30"/>
         <Label Content="Fecha de consulta" HorizontalAlignment="Left" Margin="556,114,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker HorizontalAlignment="Left" Margin="549,142,0,0" VerticalAlignment="Top" Width="150"/>
+        <DatePicker Name="FechaCita" HorizontalAlignment="Left" Margin="549,142,0,0" VerticalAlignment="Top" Width="150"/>
         <Label Content="Fecha de cita" HorizontalAlignment="Left" Margin="82,199,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker HorizontalAlignment="Left" Margin="51,227,0,0" VerticalAlignment="Top" Width="150"/>
-        <Button x:Name="btnBuscarConsulSecre" Background="#FF058789" Content="Agregar Consulta" Margin="277,247,0,165" FontSize="12" TabIndex="7" HorizontalAlignment="Left" Width="139"/>
-        <Button x:Name="btnBuscarConsulSecre_Copiar" Background="#FF058789" Content="Modificar Consulta" Margin="448,247,0,165" FontSize="12" TabIndex="7" HorizontalAlignment="Left" Width="140"/>
+        <DatePicker Name="FechaConsulta" HorizontalAlignment="Left" Margin="51,227,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="btnBuscarConsulSecre" Background="#FF058789" Content="Agregar Consulta" Margin="277,247,0,165" FontSize="12" TabIndex="7" HorizontalAlignment="Left" Width="139" Click="btnBuscarConsulSecre_Click"/>
+        <Button x:Name="btnBuscarConsulSecre_Copiar" Background="#FF058789" Content="Modificar Consulta" Margin="448,247,0,165" FontSize="12" TabIndex="7" HorizontalAlignment="Left" Width="140" Click="btnBuscarConsulSecre_Copiar_Click_1"/>
 
     </Grid>
 </Page>

@@ -25,6 +25,8 @@ namespace HospiPlus.SistemaMedico
     /// </summary>
     public partial class ExamenesMedico : Page
     {
+        private int examenSeleccionadoId = 0;
+
         public ExamenesMedico()
         {
             InitializeComponent();
@@ -42,7 +44,7 @@ namespace HospiPlus.SistemaMedico
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "MostrarExamenesMedicos"; 
+                        command.CommandText = "MostrarExamenesMedicos";
 
                         using (DbDataReader leertabla = command.ExecuteReader())
                         {
@@ -50,12 +52,12 @@ namespace HospiPlus.SistemaMedico
                             {
                                 ExamenesModel examen = new ExamenesModel()
                                 {
-                                    ID = int.Parse(leertabla["ExamenID"].ToString()),  
-                                    Pacientes = leertabla["NombreCompletoPaciente"].ToString(),  
-                                    FechaConsulta = DateTime.Parse(leertabla["FechaConsulta"].ToString()),  
-                                    TipoExamen = leertabla["TipoExamen"].ToString(),  
-                                    FechaExamen = DateTime.Parse(leertabla["FechaExamen"].ToString()),  
-                                    Resultado = leertabla["Resultado"].ToString(), 
+                                    ID = Convert.ToInt32(leertabla["ExamenID"]),
+                                    Pacientes = leertabla["NombreCompletoPaciente"].ToString(),
+                                    //FechaConsulta = DateTime.Parse(leertabla["FechaConsulta"].ToString()),
+                                    TipoExamen = leertabla["TipoExamen"].ToString(),
+                                    FechaExamen = Convert.ToDateTime(leertabla["FechaExamen"]),
+                                    Resultado = leertabla["Resultado"].ToString(),
                                     Observaciones = leertabla["Observaciones"].ToString()
                                 };
 
@@ -64,7 +66,7 @@ namespace HospiPlus.SistemaMedico
                         }
                     }
                 }
-               
+
                 gridGestorExamenMedico.ItemsSource = examenes;
             }
             catch (Exception ex)
@@ -77,37 +79,31 @@ namespace HospiPlus.SistemaMedico
         {
             try
             {
-               
-                
-               
+                int pacienteID = (int)cmbPExamenMedico.SelectedValue; ;
                 string tipoExamen = txtTExamenMedico.Text;
-                DateTime fechaExamen = dtFechaExamMedic.SelectedDate.Value;
+                DateTime fechaExamen = dtFechaExamMedic.SelectedDate ?? DateTime.Now;
                 string resultado = txtRExamMedico.Text;
-             
+                string observaciones = txtObservaciones.Text;
 
                 using (var conexion = ConexionDB.ObtenerCnx())
                 {
                     ConexionDB.AbrirConexion(conexion);
-
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
                         command.CommandText = "InsertarExamenMedico";
 
-                        
-                        
+                        command.Parameters.Add(new SqlParameter("@PacienteID", pacienteID));
                         command.Parameters.Add(new SqlParameter("@TipoExamen", tipoExamen));
                         command.Parameters.Add(new SqlParameter("@FechaExamen", fechaExamen));
                         command.Parameters.Add(new SqlParameter("@Resultado", resultado));
-                        
+                        command.Parameters.Add(new SqlParameter("@Observaciones", observaciones));
 
-                        
-                        int examenID = (int)command.ExecuteScalar(); 
+                        command.ExecuteNonQuery();
 
-                        MessageBox.Show($"Examen médico insertado con éxito. ID: {examenID}");
-
-                        
+                        MessageBox.Show("Examen médico guardado exitosamente.");
                         CargarExamenesMedicos();
+                        LimpiarCampos();
                     }
                 }
             }
@@ -117,37 +113,164 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
+
         private void CargarPacientes()
+{
+    try
+    {
+        List<KeyValuePair<int, string>> pacientes = new List<KeyValuePair<int, string>>();
+        using (var conexion = ConexionDB.ObtenerCnx())
+        {
+            ConexionDB.AbrirConexion(conexion);
+            using (var command = conexion.CreateCommand())
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT PacienteID, NombrePaciente FROM Pacientes"; // Asumiendo que PacienteID es la columna del ID del paciente
+
+                using (DbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Agregar el ID y nombre al ComboBox como un KeyValuePair
+                        pacientes.Add(new KeyValuePair<int, string>(Convert.ToInt32(reader["PacienteID"]), reader["NombrePaciente"].ToString()));
+                    }
+                }
+            }
+        }
+
+        // Configurar el ComboBox para mostrar el nombre y usar el ID como valor
+        cmbPExamenMedico.ItemsSource = pacientes;
+        cmbPExamenMedico.DisplayMemberPath = "Value";  // Mostrar el nombre del paciente
+        cmbPExamenMedico.SelectedValuePath = "Key";   // Usar el ID del paciente como valor
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error al cargar los pacientes: " + ex.Message);
+    }
+}
+
+        private void gridGestorExamenMedico_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (gridGestorExamenMedico.SelectedItem is ExamenesModel examen)
+            {
+                examenSeleccionadoId = examen.ID;
+                cmbPExamenMedico.Text = examen.Pacientes;
+                txtTExamenMedico.Text = examen.TipoExamen;
+                dtFechaExamMedic.SelectedDate = examen.FechaExamen;
+                txtRExamMedico.Text = examen.Resultado;
+                txtObservaciones.Text = examen.Observaciones;
+
+               
+                btnModificarExamMedic.IsEnabled = true;
+                btnEliminarExamMedic.IsEnabled = true;
+            }
+
+        }
+
+        private void btnGuardarExamMedic_Click(object sender, RoutedEventArgs e)
+        {
+            InsertarExamenMedico();
+        }
+
+        private void btnModificarExamMedic_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                List<string> nombresPacientes = new List<string>();
+                if (examenSeleccionadoId == 0)
+                {
+                    MessageBox.Show("Por favor, seleccione un examen para modificar.");
+                    return;
+                }
+
                 using (var conexion = ConexionDB.ObtenerCnx())
                 {
                     ConexionDB.AbrirConexion(conexion);
                     using (var command = conexion.CreateCommand())
                     {
-                        command.CommandType = System.Data.CommandType.Text;
-                        command.CommandText = "SELECT NombrePaciente FROM Pacientes";
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandText = "ActualizarExamenMedico";
 
-                        using (DbDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                nombresPacientes.Add(reader["NombrePaciente"].ToString());
-                            }
-                        }
+                        command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
+                        command.Parameters.Add(new SqlParameter("@Paciente", cmbPExamenMedico.Text));
+                        command.Parameters.Add(new SqlParameter("@TipoExamen", txtTExamenMedico.Text));
+                        command.Parameters.Add(new SqlParameter("@FechaExamen", dtFechaExamMedic.SelectedDate));
+                        command.Parameters.Add(new SqlParameter("@Resultado", txtRExamMedico.Text));
+                        command.Parameters.Add(new SqlParameter("@Observaciones", txtObservaciones.Text));
+
+                        command.ExecuteNonQuery();
+
+                        MessageBox.Show("Examen médico actualizado exitosamente.");
+                        CargarExamenesMedicos();
+                        LimpiarCampos();
                     }
                 }
-
-                
-                cmbPExamenMedico.ItemsSource = nombresPacientes;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los pacientes: " + ex.Message);
+                MessageBox.Show("Error al modificar el examen médico: " + ex.Message);
             }
         }
+
+
+        private void LimpiarCampos()
+        {
+            examenSeleccionadoId = 0;
+            cmbPExamenMedico.Text = "";
+            txtTExamenMedico.Text = "";
+            dtFechaExamMedic.SelectedDate = DateTime.Now;
+            txtRExamMedico.Text = "";
+            txtObservaciones.Text = "";
+            gridGestorExamenMedico.SelectedItem = null;
+
+            // Deshabilitar botones de modificar y eliminar
+            btnModificarExamMedic.IsEnabled = false;
+            btnEliminarExamMedic.IsEnabled = false;
+        }
+
+        private void btnEliminarExamMedic_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (examenSeleccionadoId == 0)
+                {
+                    MessageBox.Show("Por favor, seleccione un examen para eliminar.");
+                    return;
+                }
+
+                if (MessageBox.Show("¿Está seguro de que desea eliminar este examen médico?",
+                                  "Confirmar eliminación",
+                                  MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    using (var conexion = ConexionDB.ObtenerCnx())
+                    {
+                        ConexionDB.AbrirConexion(conexion);
+                        using (var command = conexion.CreateCommand())
+                        {
+                            command.CommandType = System.Data.CommandType.StoredProcedure;
+                            command.CommandText = "EliminarExamenMedico";
+
+                            command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
+
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("Examen médico eliminado exitosamente.");
+                            CargarExamenesMedicos();
+                            LimpiarCampos();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el examen médico: " + ex.Message);
+            }
+        }
+
+        private void btnCancelarExamMedic_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarCampos();
+        }
+
 
     }
 }

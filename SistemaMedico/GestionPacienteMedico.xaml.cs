@@ -65,7 +65,7 @@ namespace HospiPlus.SistemaMedico
 
         }
 
-        //METODO PARA AGREGAR PACIENTE
+       
         private void AgregarPaciente()
         {
             CargarPacientes();
@@ -361,6 +361,74 @@ namespace HospiPlus.SistemaMedico
                 }
             }
         }
+
+        private void btnModificarPacienteMedic_Click(object sender, RoutedEventArgs e)
+        {
+            ModificarPaciente();
+
+        }
+
+        private void ModificarPaciente()
+        {
+            if (!ValidarFormulario())
+            {
+                return;
+            }
+
+            
+            if (MessageBox.Show("¿Está seguro de que quiere actualizar los datos?", "Confirmación de Actualización || Hospi Plus", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                using (SqlConnection conexion = ConexionDB.ObtenerCnx())
+                {
+                    try
+                    {
+                        PacientesModel pacienteSeleccionado = (PacientesModel)gridGestorPacienteMedico.SelectedItem;
+                        if (pacienteSeleccionado == null)
+                        {
+                            MessageBox.Show("Seleccione un paciente para modificar", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+
+                        ConexionDB.AbrirConexion(conexion);
+                        using (SqlCommand command = new SqlCommand("EditarPaciente", conexion))
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+
+                            
+                            command.Parameters.AddWithValue("@PacienteID", pacienteSeleccionado.PacienteID);
+                            command.Parameters.AddWithValue("@NombrePaciente", txtNombrePacienteMedic.Text);
+                            command.Parameters.AddWithValue("@ApellidoPaciente", txtApellidoPacienteMedic.Text);
+                            command.Parameters.AddWithValue("@ApellidoDeCasada", txtApellidoCasadaPacienteMedic.Text);
+                            command.Parameters.AddWithValue("@FechaNacimientoPaciente", DateTime.Parse(dtFechaNPacienteMedic.Text));
+                            command.Parameters.AddWithValue("@SexoID", Convert.ToInt32(((ComboBoxItem)cmbSexoPacienteMedic.SelectedItem).Tag));
+                            command.Parameters.AddWithValue("@EstadoCivilID", Convert.ToInt32(((ComboBoxItem)cmbEstadoCivilPacienteMedic.SelectedItem).Tag));
+                            command.Parameters.AddWithValue("@DUIPaciente", txtDUIPacienteMedic.Text);
+                            command.Parameters.AddWithValue("@TelefonoPaciente", txTelefonoPacienteMedic.Text);
+                            command.Parameters.AddWithValue("@CorreoPaciente", txtCorreoPacienteMedic.Text);
+                            command.Parameters.AddWithValue("@DepartamentosID", Convert.ToInt32(((ComboBoxItem)cmbDepartamentoPacienteMedic.SelectedItem).Tag));
+                            command.Parameters.AddWithValue("@MunicipioID", Convert.ToInt32(((ComboBoxItem)cmbMunicipioPacienteMedic.SelectedItem).Tag));
+                            command.Parameters.AddWithValue("@EstadoID", Convert.ToInt32(((ComboBoxItem)cmbEstadoPacienteMedic.SelectedItem).Tag));
+
+                            
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("Paciente actualizado correctamente", "Éxito || HospiPlus", MessageBoxButton.OK, MessageBoxImage.Information);
+                            CargarPacientes(); 
+                            LimpiarCampos(); 
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocurrió un error al actualizar el paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    finally
+                    {
+                        ConexionDB.CerrarConexion(conexion);
+                    }
+                }
+            }
+        }
+
     }
 
 }
