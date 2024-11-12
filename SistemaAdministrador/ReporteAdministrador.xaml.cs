@@ -48,11 +48,7 @@ namespace HospiPlus.SistemaAdministrador
             reporteRec.Show();
         }
 
-        private void btnConsultasMedico_Click(object sender, RoutedEventArgs e)
-        {
-            frmReportesConsultaMedico reporteConsultas = new frmReportesConsultaMedico();
-            reporteConsultas.Show();
-        }
+
 
         private void btnExamenPaciente_Click(object sender, RoutedEventArgs e)
         {

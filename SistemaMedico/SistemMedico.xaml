@@ -36,13 +36,6 @@
 
 
 
-            <Button Width="190" Height="50" Padding="5" x:Name="btnConsultasMedico"  Margin="0,15" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnConsultasMedico_Click" MouseEnter="btnConsultasMedico_MouseEnter" MouseLeave="btnConsultasMedico_MouseLeave">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/imagenes/consultas1.png" Width="40" Height="50" Margin="0,0,55,0" VerticalAlignment="Center"/>
-                    <TextBlock FontWeight="Bold" Text="Consultas" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" />
-                </StackPanel>
-            </Button>
-
 
             <Button Width="190" Height="50" Padding="5" x:Name="btnRecetasMedico" Margin="0,15" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnRecetasMedico_Click" MouseEnter="btnRecetasMedico_MouseEnter" MouseLeave="btnRecetasMedico_MouseLeave">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">

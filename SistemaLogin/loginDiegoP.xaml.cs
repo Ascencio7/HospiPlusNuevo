@@ -1,5 +1,5 @@
 ﻿using HospiPlus.SistemaAdministrador;
-using HospiPlus.SistemaRegistro;
+
 using HospiPlus.SistemaSecretario;
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace HospiPlus.SistemaLogin
         class SQLControl
         {
             private SqlConnection connection =
-                new SqlConnection(@"Server=LDB-N5\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server=VLADIMIR\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
 
             public UsuarioInfo Login(string correo, string password)
             {

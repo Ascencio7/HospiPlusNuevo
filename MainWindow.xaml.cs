@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 
 // Habilita las ventanas guardadas en las carpetas y poder mostrarlas
-using HospiPlus.SistemaRegistro;
+
 using HospiPlus.SistemaLogin;
 using HospiPlus.SistemaSecretario;
 using HospiPlus.SistemaAdministrador;

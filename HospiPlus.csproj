@@ -90,12 +90,6 @@
     <Compile Include="ModeloPaciente\PacientesModel.cs" />
     <Compile Include="ModeloReceta\ModelReceta.cs" />
     <Compile Include="ModeloUsuario\UsuariosModel.cs" />
-    <Compile Include="Reportes\rptConsultasMedico.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptConsultasMedico.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reportes\rptExamenPaciente.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -114,9 +108,6 @@
       <DependentUpon>rptRecetaPorPacienteYFecha.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReporteVista\consultasMedico.xaml.cs">
-      <DependentUpon>consultasMedico.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ReporteVista\examenesPaciente.xaml.cs">
       <DependentUpon>examenesPaciente.xaml</DependentUpon>
     </Compile>
@@ -128,9 +119,6 @@
     </Compile>
     <Compile Include="ReporteVista\frmReporteExpedientePaciente.xaml.cs">
       <DependentUpon>frmReporteExpedientePaciente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteVista\frmReportesConsultaMedico.xaml.cs">
-      <DependentUpon>frmReportesConsultaMedico.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReporteVista\frmRporteRecetaPorPaciente.xaml.cs">
       <DependentUpon>frmRporteRecetaPorPaciente.xaml</DependentUpon>
@@ -152,9 +140,6 @@
     </Compile>
     <Compile Include="SistemaAdministrador\GestionCitasAdmin.xaml.cs">
       <DependentUpon>GestionCitasAdmin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SistemaAdministrador\GestionConsultasAdmin.xaml.cs">
-      <DependentUpon>GestionConsultasAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="SistemaAdministrador\GestionExamenesAdmin.xaml.cs">
       <DependentUpon>GestionExamenesAdmin.xaml</DependentUpon>
@@ -186,9 +171,6 @@
     <Compile Include="SistemaMedico\CitasMedico.xaml.cs">
       <DependentUpon>CitasMedico.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SistemaMedico\ConsultasMedico.xaml.cs">
-      <DependentUpon>ConsultasMedico.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SistemaMedico\ExamenesMedico.xaml.cs">
       <DependentUpon>ExamenesMedico.xaml</DependentUpon>
     </Compile>
@@ -210,14 +192,8 @@
     <Compile Include="SistemaMedico\SistemMedico.xaml.cs">
       <DependentUpon>SistemMedico.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SistemaRegistro\Registro.xaml.cs">
-      <DependentUpon>Registro.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SistemaSecretario\CitasSecretario.xaml.cs">
       <DependentUpon>CitasSecretario.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SistemaSecretario\ConsultasSecretario.xaml.cs">
-      <DependentUpon>ConsultasSecretario.xaml</DependentUpon>
     </Compile>
     <Compile Include="SistemaSecretario\ExamenesSecretario.xaml.cs">
       <DependentUpon>ExamenesSecretario.xaml</DependentUpon>
@@ -250,10 +226,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ReporteVista\consultasMedico.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ReporteVista\examenesPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,10 +242,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReporteVista\frmReportesConsultaMedico.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ReporteVista\frmRporteRecetaPorPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,10 +255,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SistemaAdministrador\GestionCitasAdmin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SistemaAdministrador\GestionConsultasAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -334,10 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SistemaMedico\ConsultasMedico.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SistemaMedico\ExamenesMedico.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -366,15 +326,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SistemaRegistro\Registro.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="SistemaSecretario\CitasSecretario.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SistemaSecretario\ConsultasSecretario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -420,10 +372,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptConsultasMedico.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptConsultasMedico.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptExamenPaciente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

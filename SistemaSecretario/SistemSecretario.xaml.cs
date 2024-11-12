@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using HospiPlus.SistemaRegistro;
+
 using HospiPlus.SistemaLogin;
 using HospiPlus.SistemaAdministrador;
 using HospiPlus.SistemaMedico;
@@ -56,26 +56,7 @@ namespace HospiPlus.SistemaSecretario
         #endregion
         //fin
 
-        //Consultas Secretaria
-        #region btnConsultasSecretario
-        private void btnConsultasSecretario_Click(object sender, RoutedEventArgs e)
-        {
-            frPrincipal.NavigationService.Navigate(new Uri("SistemaSecretario/ConsultasSecretario.xaml", UriKind.Relative));
-        }
-        private void btnConsultasSecretario_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Cambiar el color cuando el cursor entra en el área del botón
-            btnConsultasSecretario.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
-        }
 
-        private void btnConsultasSecretario_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Restaurar el color original cuando el cursor sale del área del botón
-            btnConsultasSecretario.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
-        }
-
-        #endregion
-        //fin
 
 
         //Citas Secretaria
