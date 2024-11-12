@@ -52,7 +52,7 @@ namespace HospiPlus.SistemaLogin
         {
             private SqlConnection connection =
 
-                new SqlConnection(@"Server=RUTH-VAQUERANO\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server=workstation id=HOSPIPLUS.mssql.somee.com;packet size=4096;user id=Asce_12_SQLLogin_1;pwd=fjhhqvclrl;data source=HOSPIPLUS.mssql.somee.com;persist security info=False;initial catalog=HOSPIPLUS;TrustServerCertificate=True");
 
 
             public UsuarioInfo Login(string correo, string password)
