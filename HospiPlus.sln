@@ -5,16 +5,28 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospiPlus", "HospiPlus.csproj", "{3F276195-4CF8-4C55-B69B-46C013DDAB8A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ejecutable", "..\Ejecutable\Ejecutable.vdproj", "{D6712E0D-0384-4798-BD0A-B741DE71694E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Debug|x64.ActiveCfg = Debug|x64
+		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Debug|x64.Build.0 = Debug|x64
 		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Release|x64.ActiveCfg = Release|x64
+		{3F276195-4CF8-4C55-B69B-46C013DDAB8A}.Release|x64.Build.0 = Release|x64
+		{D6712E0D-0384-4798-BD0A-B741DE71694E}.Debug|Any CPU.ActiveCfg = Debug
+		{D6712E0D-0384-4798-BD0A-B741DE71694E}.Debug|x64.ActiveCfg = Debug
+		{D6712E0D-0384-4798-BD0A-B741DE71694E}.Release|Any CPU.ActiveCfg = Release
+		{D6712E0D-0384-4798-BD0A-B741DE71694E}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -271,6 +271,17 @@ namespace HospiPlus.SistemaMedico
             LimpiarCampos();
         }
 
+        private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("¿Desea limpiar la búsqueda?", "Limpiar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                // Limpia el TextBox donde se ingresa el DUI
+                dtFechaExamMedic.Text = ""; // O puedes usar txtBuscarPacientesAdmi.Text = "";
 
+                // Llama al método para mostrar todos los pacientes
+                CargarExamenesMedicos();
+                return; // Salir del método
+            }
+        }
     }
 }
