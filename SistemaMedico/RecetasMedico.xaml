@@ -16,19 +16,19 @@
         <Label Content="Frecuencia:" HorizontalAlignment="Left" Margin="64,120,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Duración:" HorizontalAlignment="Left" Margin="215,122,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Instrucciones:" HorizontalAlignment="Left" Margin="372,122,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtMedicamRecMedic" HorizontalAlignment="Left" Margin="341,86,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
-        <TextBox x:Name="txtDosisRecMedic" HorizontalAlignment="Left" Margin="499,86,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
-        <TextBox x:Name="txtFrecRecMedic" HorizontalAlignment="Left" Margin="30,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
-        <TextBox x:Name="txtDuraRecMedic" HorizontalAlignment="Left" Margin="183,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" />
+        <TextBox x:Name="txtMedicamRecMedic" HorizontalAlignment="Left" Margin="341,86,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtMedicamRecMedic_KeyUp"/>
+        <TextBox x:Name="txtDosisRecMedic" HorizontalAlignment="Left" Margin="499,86,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtDosisRecMedic_KeyUp"/>
+        <TextBox x:Name="txtFrecRecMedic" HorizontalAlignment="Left" Margin="30,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtFrecRecMedic_KeyUp"/>
+        <TextBox x:Name="txtDuraRecMedic" HorizontalAlignment="Left" Margin="183,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" KeyUp="txtDuraRecMedic_KeyUp" />
         <ComboBox x:Name="cmbPacienteID" HorizontalAlignment="Left" Margin="30,86,0,0" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana"
-          DisplayMemberPath="NombrePaciente" SelectedValuePath="PacienteID"/>
-        <TextBox x:Name="txtInstrucRecMedic" HorizontalAlignment="Left" Margin="344,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="128" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
-        <Label Content="Médico:" HorizontalAlignment="Left" Margin="225,57,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <ComboBox Name="cmbMedicoID" HorizontalAlignment="Left" Height="24" Margin="183,86,0,0" VerticalAlignment="Top" Width="131"/>
+          DisplayMemberPath="NombrePaciente" SelectedValuePath="PacienteID" KeyUp="cmbPacienteID_KeyUp"/>
+        <TextBox x:Name="txtInstrucRecMedic" HorizontalAlignment="Left" Margin="344,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="128" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtInstrucRecMedic_KeyUp"/>
+        <Label Content="Médico:" HorizontalAlignment="Left" Margin="225,57,0,0" VerticalAlignment="Top" FontFamily="Verdana" />
+        <ComboBox Name="cmbMedicoID" HorizontalAlignment="Left" Height="24" Margin="183,86,0,0" VerticalAlignment="Top" Width="131" KeyUp="cmbMedicoID_KeyUp"/>
         <Label Content="Fecha de emisión:" HorizontalAlignment="Left" Margin="506,125,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker Name="datePickerFechaEmision" HorizontalAlignment="Left" Height="24" Margin="499,153,0,0" VerticalAlignment="Top" Width="131"/>
+        <DatePicker Name="datePickerFechaEmision" HorizontalAlignment="Left" Height="24" Margin="499,153,0,0" VerticalAlignment="Top" Width="131" KeyUp="datePickerFechaEmision_KeyUp"/>
 
-        <DataGrid x:Name="gridGestorRecetaMedico" Margin="20,250,26,28" AutoGenerateColumns="False" SelectionChanged="gridGestorRecetaMedico_SelectionChanged">
+        <DataGrid x:Name="gridGestorRecetaMedico" Margin="20,250,26,28" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="gridGestorRecetaMedico_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="RecetaID" Binding="{Binding RecetaID}" Width="*"/>
                 <DataGridTextColumn Header="Paciente" Binding="{Binding PacienteID}" Width="*"/>
