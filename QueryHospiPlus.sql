@@ -1936,3 +1936,32 @@ BEGIN
     WHERE 
         p.DUIPaciente LIKE @DUI;
 END
+GO
+CREATE PROCEDURE Editar_consulta
+    @ConsultaID INT,
+    @CitaID INT,
+    @PacienteID INT,
+    @MedicoID INT,
+    @Altura DECIMAL(5, 2),
+    @Peso DECIMAL(5, 2),
+    @Alergia VARCHAR(255),
+    @Sintomas VARCHAR(255),
+    @Diagnostico TEXT,
+    @Observaciones TEXT,
+    @FechaConsulta DATE
+AS
+BEGIN
+    UPDATE ConsultasMedicas
+    SET 
+        CitaID = @CitaID,
+        PacienteID = @PacienteID,
+        MedicoID = @MedicoID,
+        Altura = @Altura,
+        Peso = @Peso,
+        Alergia = @Alergia,
+        Sintomas = @Sintomas,
+        Diagnostico = @Diagnostico,
+        Observaciones = @Observaciones,
+        FechaConsulta = @FechaConsulta
+    WHERE ConsultaID = @ConsultaID;
+END;
