@@ -120,28 +120,6 @@ namespace HospiPlus.SistemaSecretario
         #endregion
         //fin
 
-        //Reportes Secretaria
-        #region btnReportesSecretario
-        private void btnReportesSecretario_Click(object sender, RoutedEventArgs e)
-        {
-            frPrincipal.NavigationService.Navigate(new Uri("SistemaSecretario/ReportesSecretario.xaml", UriKind.Relative));
-
-        }
-        private void btnReportesSecretario_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Cambiar el color cuando el cursor entra en el área del botón
-            btnReportesSecretario.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
-        }
-
-        private void btnReportesSecretario_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Restaurar el color original cuando el cursor sale del área del botón
-            btnReportesSecretario.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
-        }
-
-        #endregion
-        //fin 
-
         //Salir Secretaria
         #region btnSalirSecretario
         private void btnSalirSecretario_Click(object sender, RoutedEventArgs e)

@@ -28,10 +28,8 @@ namespace HospiPlus.ReporteVista
         private void btnGenerarReporte_Click(object sender, RoutedEventArgs e)
         {
             string duiMedico = txtDuiMedico.Text.Trim();
-            int especialidadID = 0;
-
-            // Validar si se ha ingresado un ID de especialidad válido
-            bool isEspecialidadIDValid = int.TryParse(txtEspecialidadID.Text.Trim(), out especialidadID);
+            int especialidadID;
+            bool isEspecialidadIDValid = int.TryParse(txtEspecialidadID.Text, out especialidadID);
 
             if (!string.IsNullOrEmpty(duiMedico) || isEspecialidadIDValid)
             {
@@ -40,14 +38,21 @@ namespace HospiPlus.ReporteVista
                     rptConsultasMedico rpt = new rptConsultasMedico();
                     consultasMedico visor = new consultasMedico();
 
-                    rpt.Load("@rptRConsultasMedico.rpt");
+                    rpt.Load("@rptConsultasMedico.rpt");
 
+                    // Establecer valores de los parámetros
+                    if (!string.IsNullOrEmpty(duiMedico))
+                    {
+                        rpt.SetParameterValue("@DUIMedico", duiMedico);
+                    }
+                    if (isEspecialidadIDValid)
+                    {
+                        rpt.SetParameterValue("@EspecialidadID", especialidadID);
+                    }
 
                     visor.crystalConsultaMedico.ViewerCore.ReportSource = rpt;
-
                     visor.Show();
 
-                    // Mostrar un mensaje de estado
                     lblStatus.Content = "Reporte generado exitosamente.";
                     lblStatus.Foreground = Brushes.Green;
                 }
@@ -65,5 +70,7 @@ namespace HospiPlus.ReporteVista
                 lblStatus.Foreground = Brushes.Orange;
             }
         }
+
+
     }
 }

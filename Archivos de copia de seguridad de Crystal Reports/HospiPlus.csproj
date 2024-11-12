@@ -231,9 +231,6 @@
     <Compile Include="SistemaSecretario\PaginaBienvenidaSecretario.xaml.cs">
       <DependentUpon>PaginaBienvenidaSecretario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SistemaSecretario\ReportesSecretario.xaml.cs">
-      <DependentUpon>ReportesSecretario.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SistemaSecretario\SistemSecretario.xaml.cs">
       <DependentUpon>SistemSecretario.xaml</DependentUpon>
     </Compile>
@@ -391,10 +388,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SistemaSecretario\PaginaBienvenidaSecretario.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SistemaSecretario\ReportesSecretario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
