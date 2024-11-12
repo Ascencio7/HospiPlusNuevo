@@ -618,26 +618,29 @@ namespace HospiPlus.SistemaSecretario
 
         private void cmbEstadoCivilPacienteS_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Verificar si la opción seleccionada es "Casado"
-            string seleccion = cmbEstadoCivilPacienteS.SelectedItem.ToString();
+            if (cmbEstadoCivilPacienteS.SelectedItem != null)
+            {
+                string seleccion = cmbEstadoCivilPacienteS.SelectedItem.ToString();
 
-            if (seleccion.Contains("Casado"))
-            {
-                txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+                if (seleccion.Contains("Casado"))
+                {
+                    txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+                }
+                else if (seleccion.Contains("Soltero") || seleccion.Contains("Divorciado"))
+                {
+                    txtApellidoCasadaPacienteS.IsEnabled = false; // Deshabilitar el TextBox
+                    txtApellidoCasadaPacienteS.Text = string.Empty; // Limpiar el contenido si se desactiva
+                }
+                else if (seleccion.Contains("Viudo"))
+                {
+                    txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+                }
             }
-            else if (seleccion.Contains("Soltero"))
+            else
             {
-                txtApellidoCasadaPacienteS.IsEnabled = false; // Deshabilitar el TextBox
-                txtApellidoCasadaPacienteS.Text = string.Empty; // Limpiar el contenido si se desactiva
-            }
-            else if (seleccion.Contains("Divorciado"))
-            {
-                txtApellidoCasadaPacienteS.IsEnabled = false; // Deshabilitar el TextBox
-                txtApellidoCasadaPacienteS.Text = string.Empty; // Limpiar el contenido si se desactiva
-            }
-            if (seleccion.Contains("Viudo"))
-            {
-                txtApellidoCasadaPacienteS.IsEnabled = true; // Habilitar el TextBox
+                // Manejo del caso donde no hay nada seleccionado
+                txtApellidoCasadaPacienteS.IsEnabled = false;
+                txtApellidoCasadaPacienteS.Text = string.Empty;
             }
 
         }

@@ -22,7 +22,7 @@
         <Button x:Name="btnExpedientePacienteReporte" Content="Expediente del Paciente" Width="250" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="103,120,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExpedientePacienteReporte_Click" />
         <Button x:Name="btnRecetaPorPacienteYFechaReporte" Content="Receta por paciente y fecha" HorizontalAlignment="Left" Height="70" Margin="103,241,0,0" VerticalAlignment="Top" Width="250" Click="btnRecetaPorPacienteYFechaReporte_Click" Cursor="Hand" FontWeight="Bold"/>
         <Button x:Name="btnExamenPaciente" Content="Examen del Paciente" Width="249" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="454,120,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnExamenPaciente_Click"/>
-        <Button x:Name="btnConsultasMedico" Content="Consultas Medico" Width="249" Height="68" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="454,243,0,0" FontFamily="Verdana" FontWeight="Bold" Click="btnConsultasMedico_Click" />
+        
 
 
         <!-- DataGrid para mostrar los reportes -->

@@ -44,15 +44,6 @@
 
 
 
-            <Button Width="190" Height="50" x:Name="btnConsultasAdmin"  Margin="0,10" Padding="5" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnConsultasAdmin_Click" MouseEnter="btnConsultasAdmin_MouseEnter" MouseLeave="btnConsultasAdmin_MouseLeave">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/imagenes/consultas1.png" Width="40" Height="50" Margin="0,0,55,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="Consultas" FontFamily="Verdana" VerticalAlignment="Center" Foreground="white" FontSize="12" FontWeight="Bold" />
-                </StackPanel>
-            </Button>
-
-
-
             <Button Width="190" Height="50" x:Name="btnRecetasAdmin" Margin="0,10" Background="#058789" FontFamily="Verdana" FontSize="14" Padding="5" Click="btnRecetasAdmin_Click" MouseEnter="btnRecetasAdmin_MouseEnter" MouseLeave="btnRecetasAdmin_MouseLeave">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="/imagenes/receta1.png" Width="40" Height="50" Margin="0,0,66,0" VerticalAlignment="Center"/>

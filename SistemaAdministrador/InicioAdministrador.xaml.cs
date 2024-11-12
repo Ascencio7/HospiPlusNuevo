@@ -88,15 +88,12 @@ namespace HospiPlus.SistemaAdministrador
         }
         private void btnConsultasAdmin_MouseEnter(object sender, MouseEventArgs e)
         {
-            // Cambiar el color cuando el cursor entra en el área del botón
-            btnConsultasAdmin.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
+
 
         }
 
         private void btnConsultasAdmin_MouseLeave(object sender, MouseEventArgs e)
         {
-            // Restaurar el color original cuando el cursor sale del área del botón
-            btnConsultasAdmin.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
 
         }
 
