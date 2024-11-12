@@ -429,6 +429,101 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
+        private void txtNombrePacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void txtApellidoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void cmbEstadoCivilPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void txtApellidoCasadaPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void cmbSexoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void dtFechaNPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void txtDUIPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void txTelefonoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void txtCorreoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void cmbDepartamentoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void cmbMunicipioPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
+
+        private void cmbEstadoPacienteMedic_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgregarPaciente();
+            }
+        }
     }
 
 }

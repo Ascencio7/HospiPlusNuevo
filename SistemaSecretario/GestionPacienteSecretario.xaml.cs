@@ -283,6 +283,8 @@ namespace HospiPlus.SistemaSecretario
         #endregion
         //Fin de la region de METODOS PERSONALIZADOS
 
+
+
         //METODOS AGREGAR Y EDITAR
         #region METODOS AGREGAR Y EDITAR PACIENTE
 
@@ -510,6 +512,7 @@ namespace HospiPlus.SistemaSecretario
             cbMunicipioPacientes.Text = paciente.MunicipioPaciente;
             //DIRECCION
             cmbEstadoPciente.Text = paciente.EstadoPaciente;
+            txtBuscarPacienteS.Text = paciente.DUIPaciente;
         }
 
         private void txtBuscarPacienteS_KeyUp(object sender, KeyEventArgs e)

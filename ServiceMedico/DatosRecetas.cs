@@ -96,7 +96,7 @@ namespace HospiPlus.ServiceMedico
                                     DuiPaciente = dr["DuiPaciente"].ToString(),
                                     NombreCompletoMedico = dr["NombreCompletoMedico"].ToString(),
                                     FechaEmision = (DateTime)dr["FechaEmision"],
-                                    ConsultaID = (int)dr["ConsultaID"],
+                                    //ConsultaID = (int)dr["ConsultaID"],
                                     Medicamento = dr["Medicamento"].ToString(),
                                     Dosis = dr["Dosis"].ToString(),
                                     Frecuencia = dr["Frecuencia"].ToString(),

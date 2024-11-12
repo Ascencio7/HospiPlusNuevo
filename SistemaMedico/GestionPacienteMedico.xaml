@@ -20,9 +20,9 @@
         <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="436,42,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="DUI:" HorizontalAlignment="Left" Margin="451,93,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
 
-        <TextBox x:Name="txtNombrePacienteMedic" HorizontalAlignment="Left" Margin="9,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana"/>
-        <TextBox x:Name="txtApellidoPacienteMedic" HorizontalAlignment="Left" Margin="199,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
-        <TextBox x:Name="txtDUIPacienteMedic" HorizontalAlignment="Left" Margin="391,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
+        <TextBox x:Name="txtNombrePacienteMedic" HorizontalAlignment="Left" Margin="9,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" KeyUp="txtNombrePacienteMedic_KeyUp"/>
+        <TextBox x:Name="txtApellidoPacienteMedic" HorizontalAlignment="Left" Margin="199,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtApellidoPacienteMedic_KeyUp"/>
+        <TextBox x:Name="txtDUIPacienteMedic" HorizontalAlignment="Left" Margin="391,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtDUIPacienteMedic_KeyUp"/>
 
 
         <DataGrid x:Name="gridGestorPacienteMedico" Margin="10,273,10,10" 
@@ -54,41 +54,41 @@
         <Button x:Name="btnCancelarPacienteMedic" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="667,210,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Background="#FF058789" Click="btnCancelarPacienteMedic_Click"/>
 
 
-        <TextBox x:Name="txTelefonoPacienteMedic" HorizontalAlignment="Left" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
+        <TextBox x:Name="txTelefonoPacienteMedic" HorizontalAlignment="Left" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txTelefonoPacienteMedic_KeyUp"/>
         <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="61,149,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Correo:" HorizontalAlignment="Left" Margin="251,151,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtCorreoPacienteMedic" HorizontalAlignment="Left" Margin="199,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
+        <TextBox x:Name="txtCorreoPacienteMedic" HorizontalAlignment="Left" Margin="199,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtCorreoPacienteMedic_KeyUp"/>
         <Label Content="Departamentos:" HorizontalAlignment="Left" Margin="425,151,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <DatePicker x:Name="dtFechaNPacienteMedic" HorizontalAlignment="Left" Height="24" Margin="199,120,0,0" VerticalAlignment="Top" Width="164" Cursor="IBeam"/>
+        <DatePicker x:Name="dtFechaNPacienteMedic" HorizontalAlignment="Left" Height="24" Margin="199,120,0,0" VerticalAlignment="Top" Width="164" Cursor="IBeam" KeyUp="dtFechaNPacienteMedic_KeyUp"/>
         <Label Content="Apellido Casada" HorizontalAlignment="Left" Margin="656,38,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
-        <TextBox x:Name="txtApellidoCasadaPacienteMedic" HorizontalAlignment="Left" Margin="636,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana"/>
+        <TextBox x:Name="txtApellidoCasadaPacienteMedic" HorizontalAlignment="Left" Margin="636,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" Background="White" FontFamily="Verdana" KeyUp="txtApellidoCasadaPacienteMedic_KeyUp"/>
 
 
         <Label Content="Municipios" HorizontalAlignment="Left" Margin="61,207,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbMunicipioPacienteMedic" HorizontalAlignment="Left" Margin="16,231,0,0" VerticalAlignment="Top" Width="157">
+        <ComboBox x:Name="cmbMunicipioPacienteMedic" HorizontalAlignment="Left" Margin="16,231,0,0" VerticalAlignment="Top" Width="157" KeyUp="cmbMunicipioPacienteMedic_KeyUp">
             <ComboBoxItem Content="Seleccione Municipio" Tag="-1" />
 
         </ComboBox>
 
         <Label Content="Estado" HorizontalAlignment="Left" Margin="256,205,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbEstadoPacienteMedic" HorizontalAlignment="Left" Margin="199,231,0,0" VerticalAlignment="Top" Width="164">
+        <ComboBox x:Name="cmbEstadoPacienteMedic" HorizontalAlignment="Left" Margin="199,231,0,0" VerticalAlignment="Top" Width="164" KeyUp="cmbEstadoPacienteMedic_KeyUp">
             <ComboBoxItem Content="Activo" Tag="1" />
             <ComboBoxItem Content="Inactivo" Tag="0" />
         </ComboBox>
 
-        <ComboBox x:Name="cmbSexoPacienteMedic" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="163">
+        <ComboBox x:Name="cmbSexoPacienteMedic" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="163" KeyUp="cmbSexoPacienteMedic_KeyUp">
             <ComboBoxItem Content="Masculino" Tag="1" />
             <ComboBoxItem Content="Femenino" Tag="2" />
         </ComboBox>
 
-        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="396,64,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="cmbEstadoCivilPacienteMedic_SelectionChanged_1">
+        <ComboBox x:Name="cmbEstadoCivilPacienteMedic" HorizontalAlignment="Left" Margin="396,64,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="cmbEstadoCivilPacienteMedic_SelectionChanged_1" KeyUp="cmbEstadoCivilPacienteMedic_KeyUp">
             <ComboBoxItem Content="Soltero" Tag="1" />
             <ComboBoxItem Content="Casado" Tag="2" />
             <ComboBoxItem Content="Viudo" Tag="3" />
             <ComboBoxItem Content="Divorciado" Tag="4" />
         </ComboBox>
 
-        <ComboBox x:Name="cmbDepartamentoPacienteMedic" HorizontalAlignment="Left" Margin="391,172,0,0" VerticalAlignment="Top" Width="140" SelectionChanged="cmbDepartamentoPacienteMedic_SelectionChanged">
+        <ComboBox x:Name="cmbDepartamentoPacienteMedic" HorizontalAlignment="Left" Margin="391,172,0,0" VerticalAlignment="Top" Width="140" SelectionChanged="cmbDepartamentoPacienteMedic_SelectionChanged" KeyUp="cmbDepartamentoPacienteMedic_KeyUp">
             <ComboBoxItem Content="Seleccione Departamento" Tag="-1" />
             <ComboBoxItem Content="Ahuachapán" Tag="1" />
             <ComboBoxItem Content="Sonsonate" Tag="2" />

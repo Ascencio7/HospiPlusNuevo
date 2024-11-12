@@ -101,7 +101,7 @@ namespace HospiPlus.SistemaAdministrador
 
 
             // Asignación de horas
-            timePickerHoraFnicio.Text = medicos.HoraInicio.ToString(@"hh\:mm");
+            timePickerHoraInicio.Text = medicos.HoraInicio.ToString(@"hh\:mm");
             timePickerHoraFnicio.Text = medicos.HoraFin.ToString(@"hh\:mm");
 
             // Asignación de días

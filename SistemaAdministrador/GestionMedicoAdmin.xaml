@@ -50,7 +50,7 @@
             <ComboBoxItem Content="Masculino" Tag="1"/>
             <ComboBoxItem Content="Femenino" Tag="2"/>
         </ComboBox>
-        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="512,30,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="511,35,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <ComboBox x:Name="cmbEstadoCivilMedic" HorizontalAlignment="Left" Height="23" Margin="490,62,0,0" VerticalAlignment="Top" Width="126" KeyUp="cmbEstadoCivilMedic_KeyUp" SelectionChanged="cmbEstadoCivilMedic_SelectionChanged">
             <ComboBoxItem Content="Soltero" Tag="1"/>
             <ComboBoxItem Content="Casado" Tag="2"/>
@@ -61,7 +61,7 @@
         <Label Content="Días Laborales:" HorizontalAlignment="Left" Margin="503,134,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
 
 
-        <ComboBox x:Name="cmbDiasMedic" HorizontalAlignment="Left" Height="22" Margin="490,157,0,0" VerticalAlignment="Top" Width="126">
+        <ComboBox x:Name="cmbDiasMedic" HorizontalAlignment="Left" Height="25" Margin="490,157,0,0" VerticalAlignment="Top" Width="126">
             <ComboBoxItem Content="Lunes" Tag="1"/>
             <ComboBoxItem Content="Martes" Tag="2"/>
             <ComboBoxItem Content="Miércoles" Tag="3"/>
@@ -114,14 +114,14 @@
         <Label Content="Departamento:" HorizontalAlignment="Left" Margin="185,134,0,0" VerticalAlignment="Top" FontFamily="Verdana" Width="104"/>
         <Label Content="DUI:" HorizontalAlignment="Left" Margin="65,132,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
         <Label Content="Especialidad:" HorizontalAlignment="Left" Margin="194,88,0,0" VerticalAlignment="Top" FontFamily="Verdana" Height="23"/>
-        <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="654,30,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
+        <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="654,35,0,0" VerticalAlignment="Top" FontFamily="Verdana"/>
 
         <TextBox x:Name="txtNombreMedico" HorizontalAlignment="Left" Margin="15,61,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="129" Background="White" FontFamily="Verdana" KeyUp="txtNombreMedico_KeyUp"/>
         <TextBox x:Name="txtApellidoMedico" HorizontalAlignment="Left" Margin="171,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtApellidoMedico_KeyUp"/>
         <TextBox x:Name="txtTelefonoMedico" HorizontalAlignment="Left" Margin="490,107,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="126" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtTelefonoMedico_KeyUp"/>
         <TextBox x:Name="txtDUIMedico" HorizontalAlignment="Left" Margin="16,157,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="129" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtDUIMedico_KeyUp" TextChanged="txtDUIMedico_TextChanged"/>
 
-        <TextBox x:Name="txtCorreoMedico" HorizontalAlignment="Left" Margin="327,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtCorreoMedico_KeyUp"/>
+        <TextBox x:Name="txtCorreoMedico" HorizontalAlignment="Left" Margin="319,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Background="White" FontFamily="Verdana" Cursor="IBeam" KeyUp="txtCorreoMedico_KeyUp"/>
         <TextBox x:Name="txtApellidoCasadaMedico" HorizontalAlignment="Left" Margin="327,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
         <DatePicker x:Name="dtFechaNaciMedico" HorizontalAlignment="Left" Margin="654,61,0,0" VerticalAlignment="Top" Width="120" Height="25" KeyUp="dtFechaNaciMedico_KeyUp"/>
 

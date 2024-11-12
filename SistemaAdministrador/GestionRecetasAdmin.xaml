@@ -11,7 +11,7 @@
     <Grid Height="444" Margin="0,3,0,3">
 
 
-        <ScrollViewer VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" Cursor="Hand">
             <DataGrid x:Name="gridGestorRecetasAdmin" ItemsSource="{Binding Recetas}" AutoGenerateColumns="False" IsReadOnly="True" Margin="20,108,26,28" SelectionChanged="gridGestorRecetasAdmin_SelectionChanged" KeyUp="gridGestorRecetasAdmin_KeyUp">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding RecetaID}"/>
