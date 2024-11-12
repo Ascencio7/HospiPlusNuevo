@@ -131,7 +131,7 @@ namespace HospiPlus.SistemaMedico
                 {
                     while (reader.Read())
                     {
-                        // Agregar el ID y nombre al ComboBox como un KeyValuePair
+                        
                         pacientes.Add(new KeyValuePair<int, string>(Convert.ToInt32(reader["PacienteID"]), reader["NombrePaciente"].ToString()));
                     }
                 }
@@ -187,10 +187,10 @@ namespace HospiPlus.SistemaMedico
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "ActualizarExamenMedico";
+                        command.CommandText = "EditarExamenMedico";
 
                         command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
-                        command.Parameters.Add(new SqlParameter("@Paciente", cmbPExamenMedico.Text));
+                        command.Parameters.Add(new SqlParameter("@Paciente", cmbPExamenMedico.SelectedValuePath));
                         command.Parameters.Add(new SqlParameter("@TipoExamen", txtTExamenMedico.Text));
                         command.Parameters.Add(new SqlParameter("@FechaExamen", dtFechaExamMedic.SelectedDate));
                         command.Parameters.Add(new SqlParameter("@Resultado", txtRExamMedico.Text));

@@ -23,8 +23,14 @@
         <DatePicker x:Name="dtFechaExamMedic" HorizontalAlignment="Left" Margin="420,80,0,0" VerticalAlignment="Top" Width="166"/>
 
         <!-- DataGrid para mostrar los exámenes -->
-        <DataGrid x:Name="gridGestorExamenMedico" Margin="10,222,10,10" IsReadOnly="True" SelectionChanged="gridGestorExamenMedico_SelectionChanged">
-            
+        <DataGrid x:Name="gridGestorExamenMedico" Margin="20,222,26,28" SelectionChanged="gridGestorExamenMedico_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Paciente" Binding="{Binding Pacientes}" Width="*" />
+                <DataGridTextColumn Header="Tipo de Examen" Binding="{Binding TipoExamen}" Width="*" />
+                <DataGridTextColumn Header="Fecha del Examen" Binding="{Binding FechaExamen, StringFormat=\{0:dd/MM/yyyy\}}" Width="*" />
+                <DataGridTextColumn Header="Resultado" Binding="{Binding Resultado}" Width="*" />
+                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" Width="*" />
+            </DataGrid.Columns>
         </DataGrid>
 
         <!-- Botones de acción -->

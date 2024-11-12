@@ -331,7 +331,10 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-        
+        private void cmbPacienteID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }

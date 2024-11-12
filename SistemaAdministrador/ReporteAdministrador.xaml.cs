@@ -55,5 +55,10 @@ namespace HospiPlus.SistemaAdministrador
             frmExamenesPaciente frmExa = new frmExamenesPaciente();
             frmExa.Show();
         }
+
+        private void btnConsultasMedico_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
