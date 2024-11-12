@@ -41,6 +41,10 @@ namespace HospiPlus.ReporteVista
 
                     rpt.Load("@rptRecetaPorPacienteYFecha.rpt");
 
+                    rpt.SetParameterValue("@PacienteID",pacienteID);
+                    rpt.SetParameterValue("@FechaInicio",fechaInicio);
+                    rpt.SetParameterValue("@FechaFin",fechaFin);
+
 
                     visor.crystalRecetaPorPacienteYFecha.ViewerCore.ReportSource = rpt;
 

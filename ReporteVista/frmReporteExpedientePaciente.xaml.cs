@@ -29,6 +29,7 @@ namespace HospiPlus.ReporteVista
 
         private void btnGenerarReporte_Click(object sender, RoutedEventArgs e)
         {
+            
             if (int.TryParse(txtPacienteID.Text, out int pacienteID))
             {
                 try
@@ -36,10 +37,11 @@ namespace HospiPlus.ReporteVista
                     // Crear y configurar el reporte
                     rptExamenPaciente rpt = new rptExamenPaciente();
                     expedientePaciente visor = new expedientePaciente();
-                    rpt.Load("@rptExpedientePaciente.rpt");
 
                     // Configurar el parámetro de PacienteID
-                    rpt.SetParameterValue("PacienteID", pacienteID);
+                    rpt.SetParameterValue("@PacienteID", pacienteID);
+
+                    rpt.Load("@rptExpedientePaciente");
 
                     // Mostrar el reporte en un visor o exportarlo
                     visor.crystalExpedientePacienteReport.ViewerCore.ReportSource = rpt;

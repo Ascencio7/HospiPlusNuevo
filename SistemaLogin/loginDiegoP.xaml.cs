@@ -51,7 +51,15 @@ namespace HospiPlus.SistemaLogin
         class SQLControl
         {
             private SqlConnection connection =
+<<<<<<< HEAD
                 new SqlConnection(@"Server=VLADIMIR\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+=======
+<<<<<<< HEAD
+                new SqlConnection(@"Server=LDB-N5\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+=======
+                new SqlConnection(@"Server=RUTH-VAQUERANO\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+>>>>>>> reportes
+>>>>>>> b8b4ba752a16a561b251ea07917cc79bbb011857
 
             public UsuarioInfo Login(string correo, string password)
             {

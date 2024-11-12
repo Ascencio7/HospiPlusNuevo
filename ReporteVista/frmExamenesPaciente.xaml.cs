@@ -41,6 +41,8 @@ namespace HospiPlus.ReporteVista
 
                     rpt.Load("@rptExamenPaciente.rpt");
 
+                    rpt.SetParameterValue("@DuiPaciente", duiPaciente);
+
 
                     visor.crystalExamenesPaciente.ViewerCore.ReportSource = rpt;
 

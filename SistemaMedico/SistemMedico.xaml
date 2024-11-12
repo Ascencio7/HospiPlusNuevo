@@ -63,15 +63,6 @@
 
 
 
-            <Button Width="190" Height="50" Padding="5" x:Name="btnReportesMedico" Margin="0,15" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnReportesMedico_Click" MouseEnter="btnReportesMedico_MouseEnter" MouseLeave="btnReportesMedico_MouseLeave">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Image Source="/imagenes/reporte1.png" Width="40" Height="50" Margin="0,0,69,0" VerticalAlignment="Center"/>
-                    <TextBlock FontWeight="Bold" Text="Reporte" FontFamily="Verdana" FontSize="12" Foreground="White" VerticalAlignment="Center" />
-                </StackPanel>
-            </Button>
-
-
-
             <Button Width="190" Height="50" Padding="5" x:Name="btnSalirMedico"  Margin="0,15" Background="#058789" FontFamily="Verdana" FontSize="14" Click="btnSalirMedico_Click" MouseEnter="btnSalirMedico_MouseEnter" MouseLeave="btnSalirMedico_MouseLeave">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="/imagenes/salir1.png" Width="40" Height="50" Margin="0,0,95,0" VerticalAlignment="Center"/>

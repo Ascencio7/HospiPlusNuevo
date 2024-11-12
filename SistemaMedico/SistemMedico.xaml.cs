@@ -117,25 +117,6 @@ namespace HospiPlus.SistemaMedico
         #endregion
         //fin
 
-        //Reportes Medico
-        #region btnReportesMedico
-        private void btnReportesMedico_Click(object sender, RoutedEventArgs e)
-        {
-            frPrincipal.NavigationService.Navigate(new Uri("SistemaMedico/ReportesMedico.xaml", UriKind.Relative));
-        }
-        private void btnReportesMedico_MouseEnter(object sender, MouseEventArgs e)
-        {
-            // Cambiar el color cuando el cursor entra en el área del botón
-            btnReportesMedico.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
-        }
-
-        private void btnReportesMedico_MouseLeave(object sender, MouseEventArgs e)
-        {
-            // Restaurar el color original cuando el cursor sale del área del botón
-            btnReportesMedico.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
-        }
-        #endregion
-        //fin
 
         //Salir Medico
         #region btnSalirMedico
