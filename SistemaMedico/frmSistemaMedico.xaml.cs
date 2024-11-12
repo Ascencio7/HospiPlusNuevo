@@ -37,7 +37,11 @@ namespace HospiPlus.SistemaMedico
 
             // Aqui se puede definir la pagina por defecto
             frPrincipal.NavigationService.Navigate(sistemMedico);
+
+
         }
+
+
 
         private void frPrincipal_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {

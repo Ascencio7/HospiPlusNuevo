@@ -31,9 +31,12 @@ namespace HospiPlus.SistemaAdministrador
         {
             InitializeComponent();
 
+
             // Aqui se puede definir la pagina por defecto
             frPrincipal.NavigationService.Navigate(inicioAdministrador);
         }
+
+
 
         private void frPrincipal_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {

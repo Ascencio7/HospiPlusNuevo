@@ -36,57 +36,28 @@ namespace HospiPlus.SistemaAdministrador
         // Primer reporte
         private void btnExpedientePacienteReporte_Click(object sender, RoutedEventArgs e)
         {
-            rptExpedientePaciente rpt = new rptExpedientePaciente();
-            expedientePaciente visor = new expedientePaciente();
-
-            rpt.Load("@rptExpedientePaciente.rpt");
-
-            rpt.SetParameterValue("@PacienteID", pacienteid);
-
-            visor.crystalExpedientePacienteReport.ViewerCore.ReportSource = rpt;
-
-            visor.Show();
+            frmReporteExpedientePaciente reporteExp = new frmReporteExpedientePaciente();
+            reporteExp.Show();
         }
 
 
         // Segundo reporte
         private void btnRecetaPorPacienteYFechaReporte_Click(object sender, RoutedEventArgs e)
         {
-            rptRecetaPorPacienteYFecha rpt = new rptRecetaPorPacienteYFecha();
-            recetaPorPacienteYFecha visor = new recetaPorPacienteYFecha();
-
-            rpt.Load("@rptRecetaPorPacienteYFecha.rpt");
-
-
-            visor.crystalRecetaPorPacienteYFecha.ViewerCore.ReportSource = rpt;
-
-            visor.Show();
+            frmRporteRecetaPorPaciente reporteRec = new frmRporteRecetaPorPaciente();
+            reporteRec.Show();
         }
 
         private void btnConsultasMedico_Click(object sender, RoutedEventArgs e)
         {
-            rptConsultasMedico rpt = new rptConsultasMedico();
-            consultasMedico visor = new consultasMedico();
-
-            rpt.Load("@rptRConsultasMedico.rpt");
-
-
-            visor.crystalConsultaMedico.ViewerCore.ReportSource = rpt;
-
-            visor.Show();
+            frmReportesConsultaMedico reporteConsultas = new frmReportesConsultaMedico();
+            reporteConsultas.Show();
         }
 
         private void btnExamenPaciente_Click(object sender, RoutedEventArgs e)
         {
-            rptExamenPaciente rpt = new rptExamenPaciente();
-            examenesPaciente visor = new examenesPaciente();
-
-            rpt.Load("@rptExamenPaciente.rpt");
-
-
-            visor.crystalExamenesPaciente.ViewerCore.ReportSource = rpt;
-
-            visor.Show();
+            frmExamenesPaciente frmExa = new frmExamenesPaciente();
+            frmExa.Show();
         }
     }
 }

@@ -1,0 +1,51 @@
+﻿<Window x:Class="HospiPlus.ReporteVista.frmExamenesPaciente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospiPlus.ReporteVista"
+        mc:Ignorable="d"
+        Title="HOSPI PLUS | Reporte" Height="350" Width="500"  WindowStartupLocation="CenterScreen" Icon="/hospi plus.png">
+    <Grid>
+        <Grid Margin="15">
+            <Label Content="Generar Reporte de Exámenes por DUI" 
+               FontSize="18" FontWeight="Bold" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top" 
+               Margin="0,10,0,0"/>
+
+            <!-- Campo para ingresar DUI del Paciente -->
+            <Label Content="DUI del Paciente:" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Margin="10,60,0,0"/>
+            
+            <TextBox x:Name="txtDuiPaciente" 
+                 Width="250" Height="30" 
+                 Margin="150,60,0,0" 
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Left"/>
+
+            <!-- Botón para generar el reporte -->
+            <Button x:Name="btnGenerarReporte" 
+                Content="Generar Reporte" 
+                Width="200" Height="40" 
+                Margin="0,120,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center" 
+                Background="#4CAF50" 
+                Foreground="White" 
+                FontSize="14" 
+                Click="btnGenerarReporte_Click"/>
+
+            <!-- Etiqueta de estado -->
+            <Label x:Name="lblStatus" 
+               Content="" 
+               Margin="0,180,0,0" 
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Center" 
+               FontSize="12" 
+               Foreground="Green"/>
+        </Grid>
+    </Grid>
+</Window>

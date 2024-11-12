@@ -123,6 +123,18 @@
     <Compile Include="ReporteVista\expedientePaciente.xaml.cs">
       <DependentUpon>expedientePaciente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReporteVista\frmExamenesPaciente.xaml.cs">
+      <DependentUpon>frmExamenesPaciente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVista\frmReporteExpedientePaciente.xaml.cs">
+      <DependentUpon>frmReporteExpedientePaciente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVista\frmReportesConsultaMedico.xaml.cs">
+      <DependentUpon>frmReportesConsultaMedico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVista\frmRporteRecetaPorPaciente.xaml.cs">
+      <DependentUpon>frmRporteRecetaPorPaciente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReporteVista\recetaPorPacienteYFecha.xaml.cs">
       <DependentUpon>recetaPorPacienteYFecha.xaml</DependentUpon>
     </Compile>
@@ -247,6 +259,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReporteVista\expedientePaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReporteVista\frmExamenesPaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReporteVista\frmReporteExpedientePaciente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReporteVista\frmReportesConsultaMedico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReporteVista\frmRporteRecetaPorPaciente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

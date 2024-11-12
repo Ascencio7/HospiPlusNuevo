@@ -35,9 +35,12 @@ namespace HospiPlus.SistemaSecretario
         public frmSistemaSecretario()
         {
             InitializeComponent();
+
             // Aqui se puede definir la pagina por defecto
             frPrincipal.NavigationService.Navigate(sistemSecretario);
         }
+
+
 
         private void frPrincipal_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
