@@ -95,7 +95,7 @@ namespace HospiPlus.SistemaAdministrador
                 catch(Exception ex)
                 {
                     MessageBox.Show("Error al mostrar los Examenes: "
-                        + ex.Message, "Error de Conexion", MessageBoxButton.OK, MessageBoxImage.Error);
+                        + ex.Message, "HOSPI PLUS | Error de Conexion", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {

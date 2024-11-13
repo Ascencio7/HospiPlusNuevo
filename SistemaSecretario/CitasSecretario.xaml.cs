@@ -93,7 +93,7 @@ namespace HospiPlus.SistemaSecretario
              if (!estado)
              {
                  MessageBox.Show("Debe completar o cumplir estos campos:\n" + mensaje,
-                 "Validación de Formulario",
+                 "HOSPI PLUS | Validación de Formulario",
                  MessageBoxButton.OK,
                  MessageBoxImage.Error);
              }
@@ -127,7 +127,7 @@ namespace HospiPlus.SistemaSecretario
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ocurrió un error al obtener los médicos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Ocurrió un error al obtener los médicos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -198,7 +198,7 @@ namespace HospiPlus.SistemaSecretario
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar datos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al cargar datos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -211,19 +211,19 @@ namespace HospiPlus.SistemaSecretario
         {
             ValidarFormulario();
 
-            if (MessageBox.Show("Esta seguro de que quiere agendar la cita?", "Validacion || Hospi Plus", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Esta seguro de que quiere agendar la cita?", "HOSPI PLUS | Validacion", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
                     if (cmbMedicoID.SelectedItem == null || cmbEstadoCitaID.SelectedItem == null || cmbEspecialidadID.SelectedItem == null)
                     {
-                        MessageBox.Show("Por favor, seleccione un valor en todos los campos desplegables.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor, seleccione un valor en todos los campos desplegables.", "HOSPI PLUS | Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
                     if (dtFechaCitasS.SelectedDate == null || timePickerHoraCita.SelectedTime == null)
                     {
-                        MessageBox.Show("Por favor, seleccione una fecha y hora válidas.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor, seleccione una fecha y hora válidas.", "HOSPI PLUS | Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
@@ -252,25 +252,23 @@ namespace HospiPlus.SistemaSecretario
                             }
                             else
                             {
-                                MessageBox.Show("No se pudo agendar la cita. Verifique los datos e intente nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("No se pudo agendar la cita. Verifique los datos e intente nuevamente.", "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ocurrió un error al agendar la cita: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Ocurrió un error al agendar la cita: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("La cita no sera agendada!", "Validacion || Hospi Plus", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("La cita no sera agendada!", "HOSPI PLUS | Validacion", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
           
         }
-
-
 
 
         #endregion
@@ -305,7 +303,7 @@ namespace HospiPlus.SistemaSecretario
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocurrió un error al filtrar los datos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Ocurrió un error al filtrar los datos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     finally
                     {
@@ -315,7 +313,7 @@ namespace HospiPlus.SistemaSecretario
             }
             else
             {
-                MessageBox.Show("Seleccione una especialidad para buscar", "Advertencia || HospiPlus", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione una especialidad para buscar", "HOSPI PLUS | Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -323,16 +321,61 @@ namespace HospiPlus.SistemaSecretario
         {
             if (txtDuiPaciente.Text.Length != 10)
             {
-                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo '-'.", "DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo el '-'.", "HOSPI PLUS | DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             AgendarCita();
             LimpiarCampos();
         }
 
-
-
         #endregion
 
+        private void txtDuiPaciente_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
+
+        private void cmbMedicoID_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
+
+        private void cmbEstadoCitaID_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
+
+        private void dtFechaCitasS_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
+
+        private void timePickerHoraCita_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
+
+        private void cmbEspecialidadID_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AgendarCita();
+            }
+        }
     }
 }

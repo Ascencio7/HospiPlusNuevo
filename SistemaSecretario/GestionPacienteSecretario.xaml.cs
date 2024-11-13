@@ -114,7 +114,7 @@ namespace HospiPlus.SistemaSecretario
             if (!estado)
             {
                 MessageBox.Show("Debe completar o cumplir estos campos:\n" + mensaje,
-                "Validación de Formulario",
+                "HOSPI PLUS | Validación de Formulario",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             }
@@ -177,7 +177,7 @@ namespace HospiPlus.SistemaSecretario
 
             if (dui.Length != 10)
             {
-                MessageBox.Show("El DUI debe contener exactamente 10 dígitos incluyendo '-'.", "Error ||Hospi Plus", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El DUI debe contener exactamente 10 dígitos incluyendo el '-'.", "Error ||Hospi Plus", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtBuscarPacienteS.Clear();
                 return;
             }
@@ -197,13 +197,13 @@ namespace HospiPlus.SistemaSecretario
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró ningún paciente con ese DUI.", "Informacion ||HospiPlus", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("No se encontró ningún paciente con ese DUI.", "HOSPI PLUS | Informacion", MessageBoxButton.OK, MessageBoxImage.Information);
                         txtBuscarPacienteS.Clear();
                         MostrarPaciente();
                     }
                 } catch (Exception ex)
                 {
-                    MessageBox.Show("Error al buscar el paciente: " + ex.Message, "Error de Conexión ||HospiPlus", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error al buscar el paciente: " + ex.Message, "HOSPI PLUS | Error de Conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                     txtBuscarPacienteS.Clear(); // O puedes usar txtBuscarPacientesAdmi.Text = "";
                     MostrarPaciente();
                     return;
@@ -236,7 +236,7 @@ namespace HospiPlus.SistemaSecretario
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar departamentos: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error al cargar departamentos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -271,7 +271,7 @@ namespace HospiPlus.SistemaSecretario
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar municipios: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error al cargar municipios: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -292,7 +292,7 @@ namespace HospiPlus.SistemaSecretario
         private void AgregarPaciente()
         {
             ValidarFormulario();
-            if (MessageBox.Show("Esta seguro de que quiere insertar los datos?", "Validacion || Hospi Plus", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Esta seguro de que quiere insertar los datos?", "HOSPI PLUS | Validacion", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 using (SqlConnection conexion = ConexionDB.ObtenerCnx())
                 {
@@ -317,14 +317,14 @@ namespace HospiPlus.SistemaSecretario
                             command.Parameters.AddWithValue("@EstadoID", Convert.ToInt32(((ComboBoxItem)cmbEstadoPciente.SelectedItem).Tag));
 
                             var result = command.ExecuteScalar();
-                            MessageBox.Show("Paciente con ID: " + result + " insertado correctamente", "Exito || HospiPlus", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Paciente con ID: " + result + " insertado correctamente", "HOSPI PLUS | Paciente ingresado", MessageBoxButton.OK, MessageBoxImage.Information);
                             MostrarPaciente();
                             LimpiarCampos();
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocurrió un error al insertar el paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Ocurrió un error al insertar el paciente: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     finally
                     {
@@ -356,7 +356,7 @@ namespace HospiPlus.SistemaSecretario
                             DateTime fechaNacimiento;
                             if (!DateTime.TryParse(dpFNPacienteS.Text, out fechaNacimiento) || fechaNacimiento < new DateTime(1753, 1, 1))
                             {
-                                MessageBox.Show("La fecha de nacimiento no es válida o está fuera del rango permitido.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show("La fecha de nacimiento no es válida o está fuera del rango permitido.", "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 return; // Salir si la fecha es inválida
                             }
                             command.Parameters.AddWithValue("@FechaNacimientoPaciente", fechaNacimiento);
@@ -372,14 +372,14 @@ namespace HospiPlus.SistemaSecretario
                             command.Parameters.AddWithValue("@EstadoID", Convert.ToInt32(((ComboBoxItem)cmbEstadoPciente.SelectedItem).Tag));
 
                             var result = command.ExecuteScalar();
-                            MessageBox.Show("Paciente " + result + " editado exitosamente", "Exito || HospiPlus", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Paciente " + result + " editado exitosamente", "HOSPI PLUS | Paciente editado con exito", MessageBoxButton.OK, MessageBoxImage.Information);
                             MostrarPaciente();
                             LimpiarCampos();
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocurrió un error al editar el paciente: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Ocurrió un error al editar el paciente: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         MostrarPaciente();
                         LimpiarCampos();
                     }
@@ -405,7 +405,7 @@ namespace HospiPlus.SistemaSecretario
             //CONDICION PARA LA VALIDACION DEL DUI
             if (txtDUIPacienteS.Text.Length != 10)
             {
-                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo '-'.", "DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo el '-'.", "HOSPI PLUS | DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             AgregarPaciente();
@@ -422,14 +422,14 @@ namespace HospiPlus.SistemaSecretario
             // Condicion para validar que el DUI tenga 10 caracteres
             if (txtDUIPacienteS.Text.Length != 10)
             {
-                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo '-'.",
-                    "DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El DUI debe tener 10 caracteres, incluyendo el '-'.",
+                    "HOSPI PLUS | DUI Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (gridGestorPacienteSecretaria.SelectedItem == null)
             {
-                MessageBox.Show("Por favor, selecciona un paciente de la lista.", "Paciente no seleccionado ||HospiPlus", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, selecciona un paciente de la lista.", "HOSPI PLUS | Paciente no seleccionado", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -462,7 +462,7 @@ namespace HospiPlus.SistemaSecretario
         //CancelarPacienteS
         private void btnCancelarPacienteS_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿Desea cancelar el proceso?", "Cancelar ||HosiPlus", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("¿Desea cancelar el proceso?", "HOSPI PLUS | Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 LimpiarCampos(); // Limpiar los campos 
                 MostrarPaciente(); // Y actualiza el grid de los Médicos

@@ -44,7 +44,7 @@ namespace HospiPlus.SistemaMedico
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "MostrarExamenesMedicos";
+                        command.CommandText = "EditarExamenMedico";
 
                         using (DbDataReader leertabla = command.ExecuteReader())
                         {
