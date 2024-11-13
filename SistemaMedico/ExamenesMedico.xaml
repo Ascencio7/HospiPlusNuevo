@@ -36,7 +36,6 @@
         <!-- Botones de acción -->
         <Button x:Name="btnGuardarExamMedic" Background="#FF058789" Content="Guardar" HorizontalAlignment="Left" Height="28" Margin="632,41,0,0" VerticalAlignment="Top" Width="142" FontSize="12" Click="btnGuardarExamMedic_Click"/>
         <Button x:Name="btnModificarExamMedic" Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="632,81,0,0" VerticalAlignment="Top" Width="142" FontSize="12" Click="btnModificarExamMedic_Click"/>
-        <Button x:Name="btnEliminarExamMedic" Background="#FF058789" Content="Eliminar" HorizontalAlignment="Left" Height="28" Margin="632,123,0,0" VerticalAlignment="Top" Width="142" FontSize="12"/>
         <ComboBox x:Name="cmbPExamenMedico" HorizontalAlignment="Left" Margin="32,81,0,0" VerticalAlignment="Top" Width="164" Background="White" FontFamily="Verdana" IsEditable="True"/>
         <Button x:Name="btnCancelarExamMedic" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="632,168,0,0" VerticalAlignment="Top" Width="142" FontSize="12" Click="btnCancelarExamMedic_Click_1"/>
     </Grid>
