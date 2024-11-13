@@ -4,7 +4,6 @@ GO
 USE HOSPIPLUS2
 GO
 
-
 -- Tabla Estados
 CREATE TABLE Estados(
     EstadoID int PRIMARY KEY IDENTITY(1,1),
@@ -14,50 +13,63 @@ CREATE TABLE Estados(
 -- Insert Estados
 INSERT INTO Estados (Estado) VALUES ('Activo'), ('Inactivo');
 
--- Nueva Tabla
+
 CREATE TABLE RolesUsuarios(
 	RolID int primary key identity(1,1),
 	Roles varchar(20) unique NOT NULL CHECK (Roles IN('Administrador','Secretario','Medico'))
 );
 
+-- Insertar datos
 INSERT INTO RolesUsuarios(Roles) VALUES ('Administrador'),('Secretario'),('Medico');
-select * from RolesUsuarios
+
+-- Consulta
+SELECT * FROM RolesUsuarios
 
 
 -- Tabla Usuarios
 CREATE TABLE Usuarios(
-    UsuarioID int PRIMARY KEY IDENTITY(1,1),
-    Correo varchar(100) UNIQUE NOT NULL,
-    NombreUsuario varchar(80) NOT NULL,
-    Contrasena varbinary(1000) NOT NULL,
-    Rol varchar(20) CHECK (Rol IN ('Administrador', 'Secretario', 'Medico')) NOT NULL
+    UsuarioID INT PRIMARY KEY IDENTITY(1,1),
+    Correo VARCHAR(100) UNIQUE NOT NULL,
+    NombreUsuario VARCHAR(80) NOT NULL,
+    Contrasena VARBINARY(1000) NOT NULL,
+    Rol VARCHAR(20) CHECK (Rol IN ('Administrador', 'Secretario', 'Medico')) NOT NULL
 );
 
-select * from Usuarios
 
+
+-- Se insertan datos de prueba
 insert into Usuarios(NombreUsuario,Correo,Contrasena,Rol)
 values('Ruth Vaquerano','ruthv@hospiplus.com',
 ENCRYPTBYPASSPHRASE('hospiplus24','hospitca'),'Administrador')
 
 insert into Usuarios(NombreUsuario,Correo,Contrasena,Rol)
-values('Carlos Jimenez','carlosj@hospiplus.com',
-ENCRYPTBYPASSPHRASE('hospiplus24','2'),'Secretario')
+values('Bryan Campos','carlosj@hospiplus.com',
+ENCRYPTBYPASSPHRASE('hospiplus24','2'),'Medico')
 
 insert into Usuarios(NombreUsuario,Correo,Contrasena,Rol)
 values('Diego Mejia','diegom@hospiplus.com',
-ENCRYPTBYPASSPHRASE('hospiplus24','hospitca'),'Medico')
+ENCRYPTBYPASSPHRASE('hospiplus24','hospitca'),'Secretario')
 
+insert into Usuarios(NombreUsuario,Correo,Contrasena,Rol)
+values('Vladimir Ascencio','vladi@hospiplus.com',
+ENCRYPTBYPASSPHRASE('hospiplus24','hospitca'),'Administrador')
+
+
+
+-- Consulta
+SELECT * FROM Usuarios
 
 
 -- Tabla Sexos
 CREATE TABLE Sexos(
-    SexoID int PRIMARY KEY IDENTITY(1,1),
-    DescripcionSexo varchar(10) UNIQUE NOT NULL CHECK (DescripcionSexo IN ('Masculino', 'Femenino'))
+    SexoID INT PRIMARY KEY IDENTITY(1,1),
+    DescripcionSexo VARCHAR(10) UNIQUE NOT NULL CHECK (DescripcionSexo IN ('Masculino', 'Femenino'))
 );
 
 -- Insert Sexos
 INSERT INTO Sexos (DescripcionSexo) VALUES ('Masculino'), ('Femenino');
 
+-- Consulta
 SELECT * FROM Sexos
 
 
@@ -70,12 +82,14 @@ CREATE TABLE EstadosCiviles(
 -- Insert EstadosCiviles
 INSERT INTO EstadosCiviles (DescripcionEstadoCivil) VALUES ('Soltero'), ('Casado'), ('Viudo'), ('Divorciado');
 
+-- Consulta
+SELECT * FROM EstadosCiviles
 
 
 -- Tabla Departamentos
 CREATE TABLE Departamentos(
-    DepartamentosID int PRIMARY KEY IDENTITY(1,1),
-    Depar varchar(20) UNIQUE NOT NULL CHECK(Depar IN 
+    DepartamentosID INT PRIMARY KEY IDENTITY(1,1),
+    Depar VARCHAR(20) UNIQUE NOT NULL CHECK(Depar IN 
         ('Ahuachapán','Sonsonate','Santa Ana',
          'La Libertad','Chalatenango','San Salvador',
          'Cuscatlán','La Paz','San Vicente','Cabañas',
@@ -90,7 +104,11 @@ INSERT INTO Departamentos (Depar) VALUES
 ('Cabañas'), ('Usulután'), ('San Miguel'), 
 ('Morazán'), ('La Unión');
 
+
+-- Consulta
 SELECT * FROM Departamentos
+
+
 
 -- Tabla Municipios
 CREATE TABLE Municipios(
@@ -218,21 +236,22 @@ INSERT INTO Municipios (NombreMunicipio, DepartamentosID) VALUES
 ('San José', 14), ('Santa Rosa de Lima', 14), ('Yayantique', 14), ('Yucuaiquín', 14);
 
 
+
 -- Tabla Pacientes
 CREATE TABLE Pacientes(
-    PacienteID int PRIMARY KEY IDENTITY(1,1),
-    NombrePaciente varchar(50) NOT NULL,
-    ApellidoPaciente varchar(60) NOT NULL,
-    ApellidoDeCasada varchar(60) NULL,
-    FechaNacimientoPaciente date NOT NULL,
-    SexoID int NOT NULL,
-    EstadoCivilID int NOT NULL,
-    DUIPaciente varchar(10) UNIQUE NOT NULL,
-    TelefonoPaciente varchar(15) NOT NULL,
-    CorreoPaciente varchar(100) UNIQUE NOT NULL,
-    DepartamentosID int NOT NULL,
-    MunicipioID int NOT NULL,
-    EstadoID int NOT NULL,
+    PacienteID INT PRIMARY KEY IDENTITY(1,1),
+    NombrePaciente VARCHAR(50) NOT NULL,
+    ApellidoPaciente VARCHAR(60) NOT NULL,
+    ApellidoDeCasada VARCHAR(60) NULL,
+    FechaNacimientoPaciente DATE NOT NULL,
+    SexoID INT NOT NULL,
+    EstadoCivilID INT NOT NULL,
+    DUIPaciente VARCHAR(10) UNIQUE NOT NULL,
+    TelefonoPaciente VARCHAR(15) NOT NULL,
+    CorreoPaciente VARCHAR(100) UNIQUE NOT NULL,
+    DepartamentosID INT NOT NULL,
+    MunicipioID INT NOT NULL,
+    EstadoID INT NOT NULL,
     FOREIGN KEY (SexoID) REFERENCES Sexos(SexoID),
     FOREIGN KEY (EstadoCivilID) REFERENCES EstadosCiviles(EstadoCivilID),
     FOREIGN KEY (DepartamentosID) REFERENCES Departamentos(DepartamentosID),
@@ -246,12 +265,10 @@ INSERT INTO Pacientes
 VALUES 
 ('Jonathan Vladimir', 'Ascencio Ramos', '-', '2003-09-24', 1, 1, '69874512-3', '6107-8146', 'ascencio3.1417@gmail.com', 6, 1, 1);
 
-
 INSERT INTO Pacientes 
 (NombrePaciente, ApellidoPaciente, ApellidoDeCasada, FechaNacimientoPaciente, SexoID, EstadoCivilID, DUIPaciente, TelefonoPaciente, CorreoPaciente, DepartamentosID, MunicipioID, EstadoID) 
 VALUES 
 ('Alexander Eduardo', 'De Leon', '', '2004-06-12', 1, 1, '69874500-0', '6074-0646', 'alexdeleon@gmail.com', 7, 120, 1);
-
 
 INSERT INTO Pacientes 
 (NombrePaciente, ApellidoPaciente, ApellidoDeCasada, FechaNacimientoPaciente, SexoID, EstadoCivilID, DUIPaciente, TelefonoPaciente, CorreoPaciente, DepartamentosID, MunicipioID, EstadoID) 
@@ -259,16 +276,23 @@ VALUES
 ('Armando Jose', 'Palacios Vivas', '', '2003-10-17', 1, 1, '45004589-7', '7741-6078', 'armandojose@gmail.com', 4, 45, 1);
 
 
+-- Consulta
+SELECT * FROM Pacientes
+
+
 -- Tabla Especialidades
 CREATE TABLE Especialidades (
-    EspecialidadID int PRIMARY KEY IDENTITY(1,1),
-    NombreEspecialidad varchar(50) NOT NULL
+    EspecialidadID INT PRIMARY KEY IDENTITY(1,1),
+    NombreEspecialidad VARCHAR(50) NOT NULL
 );
 
 
 -- Insert Especialidades
 INSERT INTO Especialidades (NombreEspecialidad) VALUES
 ('Cardiologo'), ('Pediatra'), ('General');
+
+
+SELECT * FROM Especialidades
 
 
 -- Tabla de Horario Médico
@@ -280,19 +304,26 @@ CREATE TABLE HorarioMedico (
 
 
 INSERT INTO HorarioMedico (HoraInicio, HoraFin) VALUES ('8:00','12:35');
+INSERT INTO HorarioMedico (HoraInicio, HoraFin) VALUES ('10:00','15:45');
+INSERT INTO HorarioMedico (HoraInicio, HoraFin) VALUES ('11:00','21:00');
+
+-- Consulta
+SELECT * FROM HorarioMedico
 
 
-	-- Tabla de Días de la Semana
+-- Tabla de Días de la Semana
 CREATE TABLE DiasSemana (
     DiaID INT PRIMARY KEY IDENTITY(1,1),
     NombreDia VARCHAR(10) NOT NULL
 );
 
+
 -- Insertar los días de la semana
 INSERT INTO DiasSemana (NombreDia) VALUES 
 ('Lunes'), ('Martes'), ('Miércoles'), ('Jueves'), ('Viernes'), ('Sábado'), ('Domingo');
 
-select * from DiasSemana
+-- Consulta
+SELECT * FROM DiasSemana
 
 
 -- Tabla de Relación entre Horario y Días
@@ -304,24 +335,28 @@ CREATE TABLE HorarioDias (
     PRIMARY KEY (HorarioID, DiaID)
 );
 
+-- Consulta
+SELECT * FROM HorarioDias
+
+
 -- Tabla Medicos
 CREATE TABLE Medicos (
-    MedicoID int PRIMARY KEY IDENTITY(1,1),
-    NombreMedico varchar(50) NOT NULL,
-    ApellidoMedico varchar(50) NOT NULL,
-    ApellidoMedicoCasada varchar(60) NULL,
-    FechaNacimientoMedico date NOT NULL,
-    TelefonoMedico varchar(15) NOT NULL,
-    DepartamentosID int NOT NULL,
-    MunicipioID int NOT NULL,
-    CorreoMedico varchar(100) UNIQUE NOT NULL,
-    DUIMedico varchar(10) UNIQUE NOT NULL,
-    SexoID int NOT NULL,
-    EstadoCivilID int NOT NULL,
-    EspecialidadID int NOT NULL,
-    HorarioID int NOT NULL,
-	DiaID int NOT NULL,
-    EstadoID int NOT NULL,
+    MedicoID INT PRIMARY KEY IDENTITY(1,1),
+    NombreMedico VARCHAR(50) NOT NULL,
+    ApellidoMedico VARCHAR(50) NOT NULL,
+    ApellidoMedicoCasada VARCHAR(60) NULL,
+    FechaNacimientoMedico DATE NOT NULL,
+    TelefonoMedico VARCHAR(15) NOT NULL,
+    DepartamentosID INT NOT NULL,
+    MunicipioID INT NOT NULL,
+    CorreoMedico VARCHAR(100) UNIQUE NOT NULL,
+    DUIMedico VARCHAR(10) UNIQUE NOT NULL,
+    SexoID INT NOT NULL,
+    EstadoCivilID INT NOT NULL,
+    EspecialidadID INT NOT NULL,
+    HorarioID INT NOT NULL,
+	DiaID INT NOT NULL,
+    EstadoID INT NOT NULL,
     FOREIGN KEY (SexoID) REFERENCES Sexos(SexoID),
     FOREIGN KEY (EstadoCivilID) REFERENCES EstadosCiviles(EstadoCivilID),
     FOREIGN KEY (EspecialidadID) REFERENCES Especialidades(EspecialidadID),
@@ -332,106 +367,145 @@ CREATE TABLE Medicos (
 	FOREIGN KEY (DiaID) REFERENCES DiasSemana(DiaID),
 );
 
-select * from Medicos
-
-
-select * from Especialidades
 
 -- Insert Medicos
 INSERT INTO Medicos (NombreMedico, ApellidoMedico, ApellidoMedicoCasada, FechaNacimientoMedico, TelefonoMedico, DepartamentosID, MunicipioID,CorreoMedico, DUIMedico, SexoID, EstadoCivilID, EspecialidadID, HorarioID, DiaID ,EstadoID)
 VALUES
-('Jonathan Vladimir', 'Ascencio Ramos', '', '1981-05-14', '6107-8146', 6, 45,'jonathan@hospital.com', '06582560-1', 1, 1, 1, 1, 1, 1);
+('Bryan Gustavo', 'Campos Gutierrez', '', '1981-05-14', '6107-8146', 6, 45,'bryan@hospital.com', '06582560-1', 1, 1, 1, 1, 1, 1);
 
 INSERT INTO Medicos (NombreMedico, ApellidoMedico, ApellidoMedicoCasada, FechaNacimientoMedico, TelefonoMedico, DepartamentosID, MunicipioID,CorreoMedico, DUIMedico, SexoID, EstadoCivilID, EspecialidadID, HorarioID, DiaID ,EstadoID)
 VALUES
-('Ruth Abigail', 'Vaquerano Melara', '', '2000-05-12', '7012-8146', 12, 212,'ruthabi@hospital.com', '78945127-2', 2, 1, 2, 1, 2, 1);
+('Ruth Abigail', 'Vaquerano Melara', '', '2000-05-12', '7012-8146', 12, 212,'ruthabi@hospital.com', '78945127-2', 2, 1, 2, 2, 2, 1);
 
+INSERT INTO Medicos (NombreMedico, ApellidoMedico, ApellidoMedicoCasada, FechaNacimientoMedico, TelefonoMedico, DepartamentosID, MunicipioID,CorreoMedico, DUIMedico, SexoID, EstadoCivilID, EspecialidadID, HorarioID, DiaID ,EstadoID)
+VALUES
+('Allison Andrea', 'Servano Pacheco', '', '2005-04-12', '7217-8706', 12, 212,'alli@hospital.com', '78945787-2', 2, 1, 3, 2, 7, 1);
 
+-- Consulta
 SELECT * FROM Medicos
 
 
 -- Tabla para los Estados de las Citas
 CREATE TABLE EstadoCita(
-	EstadoCitaID int primary key identity(1,1),
-	CitaEstado varchar(10) unique not null check (CitaEstado in ('Agendada', 'Cancelada'))
+	EstadoCitaID INT PRIMARY KEY IDENTITY(1,1),
+	CitaEstado VARCHAR(10) UNIQUE NOT NULL CHECK(CitaEstado IN ('Agendada', 'Cancelada'))
 );
 
+-- Insertar los estados de la cita
 INSERT INTO EstadoCita (CitaEstado) VALUES ('Agendada'), ('Cancelada');
 
+-- Consulta
 SELECT * FROM EstadoCita
+
 
 -- Tabla de Citas
 CREATE TABLE Citas(
-	CitaID int primary key identity(1,1),
-	PacienteID int not null,
-	MedicoID int not null,
-	EstadoCitaID int not null,
-	FechaCita date not null,
-	HoraCita time not null,
-	EspecialidadID int not null,
-	Foreign key (PacienteID) references Pacientes(PacienteID),
-	Foreign key (MedicoID) references Medicos(MedicoID),
-	Foreign key (EspecialidadID) references Especialidades(EspecialidadID),
-	foreign key (EstadoCitaID) references EstadoCita(EstadoCitaID)
+	CitaID INT PRIMARY KEY IDENTITY(1,1),
+	PacienteID INT NOT NULL,
+	MedicoID INT NOT NULL,
+	EstadoCitaID INT NOT NULL,
+	FechaCita DATE NOT NULL,
+	HoraCita TIME NOT NULL,
+	EspecialidadID INT NOT NULL,
+	FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID),
+	FOREIGN KEY (MedicoID) REFERENCES Medicos(MedicoID),
+	FOREIGN KEY (EspecialidadID) REFERENCES Especialidades(EspecialidadID),
+	FOREIGN KEY (EstadoCitaID) REFERENCES EstadoCita(EstadoCitaID)
 );
 
+-- Insertar las citas con los pacientes
 INSERT INTO Citas (PacienteID, MedicoID, EstadoCitaID, FechaCita, HoraCita, EspecialidadID)
 VALUES 
 (1, 1, 1, '2024-10-01', '09:00', 1);
 
+INSERT INTO Citas (PacienteID, MedicoID, EstadoCitaID, FechaCita, HoraCita, EspecialidadID)
+VALUES 
+(2, 2, 1, '2024-10-15', '10:40', 2);
+
+INSERT INTO Citas (PacienteID, MedicoID, EstadoCitaID, FechaCita, HoraCita, EspecialidadID)
+VALUES 
+(3, 3, 1, '2024-10-15', '10:40', 3);
+
+-- Consultar
+SELECT * FROM Citas
+
+
 -- Tabla de Consultas Medicas
 CREATE TABLE ConsultasMedicas(
-	ConsultaID int primary key identity(1,1),
-	CitaID int not null,
-	PacienteID int not null,
-	MedicoID int not null,
-	Altura decimal(5,2) not null,
-	Peso decimal(5,2) not null,
-	Alergia varchar(255) not null,
-	Sintomas varchar(255) not null,
-	Diagnostico text not null,
-	Observaciones text not null,
-	FechaConsulta date not null,
-	Foreign key (CitaID) references Citas(CitaID),
-	Foreign key (PacienteID) references Pacientes(PacienteID),
-	foreign key (MedicoID) references Medicos(MedicoID)
+	ConsultaID INT PRIMARY KEY IDENTITY(1,1),
+	CitaID INT NOT NULL,
+	PacienteID INT NOT NULL,
+	MedicoID INT NOT NULL,
+	Altura DECIMAL(5,2) NOT NULL,
+	Peso DECIMAL(5,2) NOT NULL,
+	Alergia VARCHAR(255) NOT NULL,
+	Sintomas VARCHAR(255) NOT NULL,
+	Diagnostico TEXT NOT NULL,
+	Observaciones TEXT NOT NULL,
+	FechaConsulta DATE NOT NULL,
+	FOREIGN KEY (CitaID) REFERENCES Citas(CitaID),
+	FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID),
+	FOREIGN KEY (MedicoID) REFERENCES Medicos(MedicoID)
 );
 
+-- Insertar las consultas
 INSERT INTO ConsultasMedicas (CitaID, PacienteID, MedicoID, Altura, Peso, Alergia, Sintomas, Diagnostico, Observaciones, FechaConsulta)
 VALUES 
 (1, 1, 1, 1.75, 70.5, 'Ninguna', 'Dolor de cabeza, fiebre', 'Gripe común', 'Recomendar reposo y mucha hidratación', '2024-10-01');
 
 INSERT INTO ConsultasMedicas (CitaID, PacienteID, MedicoID, Altura, Peso, Alergia, Sintomas, Diagnostico, Observaciones, FechaConsulta)
 VALUES 
-(3, 4, 2, 1.75, 65.6, 'A las put*s', 'Dolor de cabeza, fiebre y estar hot las 24/7', 'Necesita ser deslechado', 'Recomendar reposo, mucha hidratación, un hielerazo del bunnnys',
+(2, 1, 2, 1.75, 65.6, 'Ninguna', 'Dolor de cabeza y fiebre alta', 'Necesita reposo', 'Recomendar reposo por 30 dias, mucha hidratación',
 '2024-11-08');
 
+INSERT INTO ConsultasMedicas (CitaID, PacienteID, MedicoID, Altura, Peso, Alergia, Sintomas, Diagnostico, Observaciones, FechaConsulta)
+VALUES 
+(3, 3, 3, 1.75, 65.6, 'Ninguna', 'Dolor de cabeza y fiebre alta', 'Necesita reposo', 'Recomendar reposo por 30 dias, mucha hidratación',
+'2024-12-24');
+
+-- Consultar
 SELECT * FROM Citas
 SELECT * FROM ConsultasMedicas
 
+
 -- Tabla de Recetas Médicas
 CREATE TABLE Recetas(
-	RecetaID int primary key identity(1,1),
-	PacienteID int not null,
-	MedicoID int not null,
-	FechaEmision datetime not null,
-	ConsultaID int not null,
-	Medicamento varchar(100) not null,
-	Dosis varchar(50) not null, 
-	Frecuencia text not null,
-	Duracion text not null,
-	Instrucciones text not null,
-	foreign key (ConsultaID) references ConsultasMedicas(ConsultaID),
-	foreign key (PacienteID) references Pacientes(PacienteID),
-	foreign key (MedicoID) references Medicos(MedicoID)
+	RecetaID INT PRIMARY KEY IDENTITY(1,1),
+	PacienteID INT NOT NULL,
+	MedicoID INT NOT NULL,
+	FechaEmision DATETIME NOT NULL,
+	ConsultaID INT NULL,
+	Medicamento VARCHAR(100) NOT NULL,
+	Dosis VARCHAR(50) NOT NULL, 
+	Frecuencia TEXT NOT NULL,
+	Duracion TEXT NOT NULL,
+	Instrucciones TEXT NOT NULL,
+	FOREIGN KEY (ConsultaID) REFERENCES ConsultasMedicas(ConsultaID),
+	FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID),
+	FOREIGN KEY (MedicoID) REFERENCES Medicos(MedicoID)
 );
 
+-- Insertar las recetas al paciente
 INSERT INTO Recetas (PacienteID, MedicoID, FechaEmision, ConsultaID, Medicamento, Dosis, Frecuencia, Duracion, Instrucciones)
 VALUES 
 (1, 1, '2024-11-02', 1, 'Inyeccion', '50 mg', 'Cada 2 dias', '3 meses', 'Aplicar despues de almuerzo.');
 
+INSERT INTO Recetas (PacienteID, MedicoID, FechaEmision, ConsultaID, Medicamento, Dosis, Frecuencia, Duracion, Instrucciones)
+VALUES 
+(2, 2, '2024-11-08', 2, 'Inyeccion', '50 mg', 'Cada 2 dias', '3 meses', 'Aplicar despues de almuerzo.');
+
+INSERT INTO Recetas (PacienteID, MedicoID, FechaEmision, ConsultaID, Medicamento, Dosis, Frecuencia, Duracion, Instrucciones)
+VALUES 
+(3, 2, '2024-12-24', 3, 'Inyeccion', '50 mg', 'Cada 2 dias', '3 meses', 'Aplicar despues de almuerzo.');
+
+
+-- Consultar
+SELECT * FROM Recetas
 SELECT * FROM ConsultasMedicas
 SELECT * FROM Medicos
+SELECT * FROM Pacientes
+
+
 
 -- Tabla de Detalle de Recetas
 CREATE TABLE DetalleReceta (
@@ -439,6 +513,15 @@ CREATE TABLE DetalleReceta (
     RecetaID INT NOT NULL,
     FOREIGN KEY (RecetaID) REFERENCES Recetas(RecetaID)
 );
+
+-- Insertar los detalles de la receta
+INSERT INTO DetalleReceta (RecetaID) VALUES (1);
+INSERT INTO DetalleReceta (RecetaID) VALUES (2);
+INSERT INTO DetalleReceta (RecetaID) VALUES (3);
+
+SELECT * FROM DetalleReceta
+SELECT * FROM Usuarios
+
 
 -- Tabla de Exámenes Médicos
 CREATE TABLE ExamenesMedicos(
@@ -453,12 +536,184 @@ CREATE TABLE ExamenesMedicos(
 	Foreign key (ConsultaID) references ConsultasMedicas(ConsultaID) on delete set null
 );
 
+-- Insertar los examenes médicos
+INSERT INTO ExamenesMedicos (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
+VALUES (1, 1, 'Examen de Sangre', '2024-10-01','Sin anomalias en los flujos sanguineos','Se observo falta de vitamina C');
+
+INSERT INTO ExamenesMedicos (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
+VALUES (2,2,'Examen de Orina','2024-11-08','Infeccion de vias orinarias','Se necesita tratamiento urgente');
+
+INSERT INTO ExamenesMedicos (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
+VALUES (3,3,'Examen dental','2024-12-24','Caries avanzado','Se necesita cirujia dental');
+
+-- Consulta
+SELECT * FROM ExamenesMedicos
 
 
+
+
+
+
+
+-------------------------------------------------------- PROCEDIMIENTO ALMACENADO PARA USUARIOS / LOGIN ----------------------------------------------------------------
+
+-- 1. PROCEDIMIENTO PARA VERIFICAR CORREO Y CONTRA
+CREATE PROCEDURE spLogin1
+@correo VARCHAR(80),
+@pass VARCHAR(60)  -- Contraseña en texto
+AS
+BEGIN
+    SELECT TOP 1 UsuarioID,Rol  -- Devuelve el ID del usuario
+    FROM Usuarios
+    WHERE Correo = @correo 
+    AND CONVERT(VARCHAR(1000), DECRYPTBYPASSPHRASE('hospiplus24', Contrasena)) = @pass;
+END
 GO
----PROCEDIMIENTOS ALMACENADOS CRUD PACIENTE---
 
----MOSTRAR PACIENTE
+
+
+-- 2. MOSTRAR LOS USUARIOS
+CREATE PROCEDURE MostrarUsuarios
+AS
+BEGIN
+    SELECT 
+        u.UsuarioID,
+        u.NombreUsuario,
+        u.Correo,
+        u.Rol,
+        u.Contrasena
+    FROM Usuarios u
+END;
+
+
+exec MostrarUsuarios
+
+
+
+-- 3. INSERTAR UN NUEVO USUARIO
+CREATE PROCEDURE InsertarUsuario
+    @NombreUsuario VARCHAR(80),
+    @Correo VARCHAR(100),
+    @ContrasenaTexto VARCHAR(100),
+    @Rol NVARCHAR(20)
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;  -- Iniciar transacción
+
+        -- Verificar si el correo ya existe
+        IF EXISTS (SELECT 1 FROM Usuarios WHERE Correo = @Correo)
+        BEGIN
+            -- Si el correo existe, devolver 2 (correo duplicado)
+            ROLLBACK TRANSACTION;  -- Deshacer la transacción
+            RETURN 2;
+        END
+
+        -- Convertir la contraseña de texto plano a varbinary (si la columna Contraseña está como varbinary)
+        DECLARE @Contrasena VARBINARY(1000);
+        SET @Contrasena = ENCRYPTBYPASSPHRASE('hospiplus24', @ContrasenaTexto);  -- Encriptar la contraseña
+
+        -- Insertar el nuevo usuario si el correo no existe
+        INSERT INTO Usuarios (NombreUsuario, Correo, Contrasena, Rol)
+        VALUES (@NombreUsuario, @Correo, @Contrasena, @Rol);
+
+        -- Confirmar la transacción si todo fue exitoso
+        COMMIT TRANSACTION;
+
+        -- Retornar 1 si la inserción fue exitosa
+        RETURN 1;
+
+    END TRY
+    BEGIN CATCH
+        -- Capturar el error y retornar 0
+        IF XACT_STATE() <> 0
+        BEGIN
+            ROLLBACK TRANSACTION;  -- Deshacer la transacción si hubo un error
+        END
+
+        -- Mostrar el mensaje de error para depuración
+        DECLARE @ErrorMessage NVARCHAR(4000);
+        SET @ErrorMessage = ERROR_MESSAGE();
+        PRINT @ErrorMessage;  -- Esto imprime el error en el log para depuración
+        RETURN 0;
+    END CATCH
+END;
+
+
+
+
+-- 4. EDITAR USUARIOS
+CREATE PROCEDURE EditarUsuario
+    @UsuarioID INT,
+    @NombreUsuario VARCHAR(80),
+    @Correo VARCHAR(100),
+    @ContrasenaTexto VARCHAR(100),
+    @Rol VARCHAR(20)
+AS
+BEGIN
+    BEGIN TRY
+        -- Verificar si el correo ya existe para otro usuario
+        IF EXISTS (SELECT 1 FROM Usuarios WHERE Correo = @Correo AND UsuarioID != @UsuarioID)
+        BEGIN
+            RETURN 2; -- Retorna 2 si el correo ya está registrado
+        END
+
+        -- Cifrar la nueva contraseña
+        DECLARE @Contrasena VARBINARY(1000);
+        SET @Contrasena = ENCRYPTBYPASSPHRASE('hospiplus24', @ContrasenaTexto);
+
+        -- Editar el usuario
+        UPDATE Usuarios
+        SET 
+            NombreUsuario = @NombreUsuario,
+            Correo = @Correo,
+            Contrasena = @Contrasena,
+            Rol = @Rol
+        WHERE UsuarioID = @UsuarioID;
+
+        RETURN 1; -- Retorna 1 si todo es exitoso
+    END TRY
+    BEGIN CATCH
+        RETURN 0; -- Retorna 0 si ocurre un error
+    END CATCH
+END;
+
+
+-- Ejemplo
+
+EXEC EditarUsuario
+    @UsuarioID = 1,          
+    @NombreUsuario = 'Ruth Abigail',  
+    @Correo = 'rutha@hospiplus.com',    
+    @ContrasenaTexto = 'hospitca', 
+    @Rol = 'Administrador';         
+
+
+SELECT * FROM Usuarios
+
+
+-- 5. MÉTODO PARA OBTENER LA CONTRASEÑA DEL USUARIO
+CREATE PROCEDURE spObtenerUsuarioContrasenaDesencriptada
+    @UsuarioID INT
+AS
+BEGIN
+    SELECT 
+        UsuarioID,
+        NombreUsuario,
+        Correo,
+        CONVERT(VARCHAR(1000), DECRYPTBYPASSPHRASE('hospiplus24', Contrasena)) AS ContrasenaDesencriptada
+    FROM Usuarios
+    WHERE UsuarioID = @UsuarioID;
+END;
+GO
+
+
+
+
+
+-------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DEL PACIENTE ------------------------------------------------
+
+--- 1. MOSTRAR PACIENTE
 CREATE PROCEDURE MostrarPacientes
 AS
 BEGIN
@@ -486,8 +741,8 @@ BEGIN
 END;
 
 
-GO
----INSERTAR PACIENTE
+
+--- 2. INSERTAR PACIENTE
 CREATE PROCEDURE InsertarPaciente
     @NombrePaciente VARCHAR(50),
     @ApellidoPaciente VARCHAR(60),
@@ -510,8 +765,9 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS NuevoPacienteID;
 END;
 
-GO
----EDITAR PACIENTE
+
+
+--- 3. EDITAR PACIENTE
 CREATE PROCEDURE EditarPaciente
     @PacienteID INT,
     @NombrePaciente VARCHAR(50),
@@ -547,8 +803,9 @@ BEGIN
     SELECT 'Paciente actualizado exitosamente.' AS Mensaje;
 END;
 
-GO
----ELIMINAR PACIENTE (OCULTARLO)
+
+
+---4. ELIMINAR PACIENTE (OCULTARLO)
 CREATE PROCEDURE EliminarPaciente
     @PacienteID INT
 AS
@@ -559,8 +816,9 @@ BEGIN
     SELECT 'Paciente desactivado exitosamente.' AS Mensaje;
 END;
 
-GO
----BUSCAR PACIENTE POR DUI
+
+
+--- 5. BUSCAR PACIENTE POR DUI
 CREATE PROCEDURE BuscarPacientePorDUI
     @DUI VARCHAR(10)
 AS
@@ -592,10 +850,12 @@ END;
 
 
 
----PROCEDIMIENTOS ALMACENADOS CRUD MEDICO---
 
-GO
----MOSTRAR MEDICO
+
+
+---------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DEL MÉDICO -------------------------------------------
+
+--- 1. MOSTRAR MÉDICO
 CREATE PROCEDURE MostrarMedicos
 AS
 BEGIN
@@ -629,13 +889,12 @@ BEGIN
 		LEFT JOIN DiasSemana DS ON M.DiaID = DS.DiaID
         LEFT JOIN Especialidades ES ON M.EspecialidadID = ES.EspecialidadID;
 END;
+
+
 EXEC MostrarMedicos
 
 
-GO
-
-GO
----INSERTAR MEDICO
+---2. INSERTAR MÉDICO
 CREATE PROCEDURE InsertarMedico
     @NombreMedico VARCHAR(50),
     @ApellidoMedico VARCHAR(50),
@@ -650,7 +909,7 @@ CREATE PROCEDURE InsertarMedico
     @EstadoCivilID INT,
     @HoraInicio TIME,
     @HoraFin TIME,
-    @DiaID INT, -- El día ahora puede ser NULL
+    @DiaID INT, 
     @EspecialidadID INT,
     @EstadoID INT
 AS
@@ -718,11 +977,10 @@ EXEC InsertarMedico
     @EstadoID = 1;
 
 
-select * from Medicos
+SELECT * FROM Medicos
 
 
-GO
----EDITAR MEDICO
+---3. EDITAR MÉDICO
 CREATE PROCEDURE EditarMedico
     @MedicoID INT,
     @NombreMedico VARCHAR(50),
@@ -738,7 +996,7 @@ CREATE PROCEDURE EditarMedico
     @EstadoCivilID INT,
     @HoraInicio TIME,
     @HoraFin TIME,
-    @DiaID INT, -- ID del día a agregar
+    @DiaID INT, 
     @EspecialidadID INT,
     @EstadoID INT
 AS
@@ -795,10 +1053,7 @@ END;
 
 
 
-GO
-
-GO
----ELIMINAR MEDICO(OCULTARLO)
+---4. ELIMINAR MÉDICO(OCULTARLO)
 CREATE PROCEDURE EliminarMedico
     @MedicoID INT
 AS
@@ -809,51 +1064,10 @@ BEGIN
     PRINT 'El médico ha sido eliminado correctamente.';
 END;
 
-GO
 
-GO
----PROCEDIMIENTOS PARA MOSTRAR MEDICOS CON SUS HORARIOS
+
+--- 5. PROCEDIMIENTO PARA MOSTRAR MÉDICOS CON SUS HORARIOS
 CREATE PROCEDURE MostrarMedicosConHorarios
-AS
-BEGIN
-    SELECT 
-        M.MedicoID,
-        M.NombreMedico,
-        M.ApellidoMedico,
-        M.ApellidoMedicoCasada,
-        M.FechaNacimientoMedico,
-        M.TelefonoMedico,
-        D.Depar AS Departamento,
-        MN.NombreMunicipio AS Municipio,
-        M.CorreoMedico,
-        M.DUIMedico,
-        S.DescripcionSexo AS Sexo,
-        EC.DescripcionEstadoCivil AS EstadoCivil,
-        ES.NombreEspecialidad AS Especialidad,
-        E.Estado AS Estado,
-        HM.HoraInicio,
-        HM.HoraFin,
-        STUFF(
-            (SELECT ', ' + DS.NombreDia
-             FROM HorarioDias HD
-             JOIN DiasSemana DS ON HD.DiaID = DS.DiaID
-             WHERE HD.HorarioID = M.HorarioID
-             FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, ''
-        ) AS DiasSemana
-    FROM
-        Medicos M
-    LEFT JOIN Sexos S ON M.SexoID = S.SexoID
-    LEFT JOIN Departamentos D ON M.DepartamentosID = D.DepartamentosID
-    LEFT JOIN Municipios MN ON M.MunicipioID = MN.MunicipioID
-    LEFT JOIN EstadosCiviles EC ON M.EstadoCivilID = EC.EstadoCivilID
-    LEFT JOIN HorarioMedico HM ON M.HorarioID = HM.HorarioID
-    LEFT JOIN Estados E ON M.EstadoID = E.EstadoID
-    LEFT JOIN Especialidades ES ON M.EspecialidadID = ES.EspecialidadID;
-END;
-
-GO
----alterando el procedimiento
-ALTER PROCEDURE MostrarMedicosConHorarios
 AS
 BEGIN
     SELECT 
@@ -875,37 +1089,11 @@ BEGIN
 END;
 
 
-
-
 EXEC MostrarMedicosConHorarios;
-GO
----PROCEDIMIENTO PARA MOSTRAR MEDICOS POR ESPECIALIDAD
-CREATE PROCEDURE MostrarMedicosPorEspecialidad
-    @EspecialidadID INT
-AS
-BEGIN
-    SELECT 
-        M.MedicoID,
-        M.NombreMedico,
-        M.ApellidoMedico,
-        M.ApellidoMedicoCasada,
-        M.TelefonoMedico,
-        M.CorreoMedico,
-        E.NombreEspecialidad AS Especialidad,
-        EST.Estado AS Estado
-    FROM 
-        Medicos M
-    JOIN 
-        Especialidades E ON M.EspecialidadID = E.EspecialidadID
-    JOIN 
-        Estados EST ON M.EstadoID = EST.EstadoID
-    WHERE 
-        M.EspecialidadID = @EspecialidadID;
-END;
 
-GO
----ALTERANDO EL PROCEDIMIENTO DE MOSTRAR MEDICOS POR ESPECIALIDAD
-ALTER PROCEDURE MostrarMedicosPorEspecialidad
+
+--- 6. PROCEDIMIENTO PARA MOSTRAR MÉDICOS POR ESPECIALIDAD
+CREATE PROCEDURE MostrarMedicosPorEspecialidad
     @EspecialidadID INT
 AS
 BEGIN
@@ -932,10 +1120,12 @@ END;
 
 EXEC MostrarMedicosPorEspecialidad @EspecialidadID = 2;
 
----PROCEDIMIENTOS ALMACENADOS CRUD CITAS---
 
-GO
----MOSTRAR CITAS
+
+
+-------------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DE CITAS ------------------------------------------------
+
+---1. MOSTRAR CITAS
 CREATE PROCEDURE MostrarCitas
     @PacienteID INT = NULL,
     @MedicoID INT = NULL,
@@ -967,8 +1157,9 @@ BEGIN
         (@FechaCita IS NULL OR C.FechaCita = @FechaCita);
 END;
 
-GO
----BUSCAR CITA POR DUI
+
+
+---2. BUSCAR CITA POR DUI
 CREATE PROCEDURE BuscarCitasPorDUI
     @DuiPaciente NVARCHAR(10)
 AS
@@ -992,12 +1183,8 @@ BEGIN
         P.DUIPaciente = @DuiPaciente;
 END;
 
-select * from Citas	
-SELECT * FROM EstadoCita
-SELECT * FROM Especialidades
 
-GO
---AGENDAR NUEVA CITA
+--2. AGENDAR NUEVA CITA
 CREATE PROCEDURE AgendarNuevaCita
     @DuiPaciente NVARCHAR(10),
     @MedicoID INT,
@@ -1039,9 +1226,8 @@ BEGIN
 END;
 
 
-GO
-GO
----AGENDAR CITA
+
+---3. AGENDAR CITA
 CREATE PROCEDURE AgendarCita
     @PacienteID INT,
     @MedicoID INT,
@@ -1068,8 +1254,8 @@ BEGIN
     PRINT 'La cita ha sido agendada correctamente.';
 END;
 
-GO
----EDITAR CITA
+
+---4. EDITAR CITA
 CREATE PROCEDURE EditarCita
     @CitaID INT,
     @MedicoID INT,
@@ -1083,8 +1269,9 @@ BEGIN
     PRINT 'La cita ha sido actualizada correctamente.';
 END;
 
-GO
----MODIFICAR CITA
+
+
+---5. MODIFICAR CITA
 CREATE PROCEDURE ModificarCita
     @CitaID INT,
     @FechaCita DATE = NULL,
@@ -1103,8 +1290,9 @@ BEGIN
     PRINT 'La cita ha sido actualizada correctamente.';
 END;
 
-GO
----ELIMINAR CITA (CANCELAR)
+
+
+---6. ELIMINAR CITA (CANCELAR)
 CREATE PROCEDURE EliminarCita
     @CitaID INT
 AS
@@ -1115,16 +1303,19 @@ BEGIN
     PRINT 'La cita ha sido cancelada correctamente.';
 END;
 
----PROCEDIMIENTOS ALMACENADOS CRUD CONSULTAS MEDICAS---
 
-GO
----MOSTRAR CONSULTA MEDICA
+
+
+--------------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DE CONSULTAS MÉDICAS ----------------------------------------------------------
+
+--- 1. MOSTRAR CONSULTA MÉDICA
 CREATE PROCEDURE MostrarConsultas
 AS
 BEGIN
     SELECT 
         c.ConsultaID,
         c.CitaID,
+		p.PacienteID, 
         CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
         CONCAT(m.NombreMedico, ' ', m.ApellidoMedico) AS NombreCompletoMedico,
         e.NombreEspecialidad AS EspecialidadMedico,
@@ -1146,73 +1337,12 @@ BEGIN
         JOIN EstadoCita est ON cit.EstadoCitaID = est.EstadoCitaID;
 END;
 
-GO
---------------------ALTERANDO MOSTRAR CONSULTAS--------------------------------------------------------------------------
-ALTER PROCEDURE MostrarConsultas
-AS
-BEGIN
-    SELECT 
-        c.ConsultaID,
-        c.CitaID,
-		p.PacienteID, -- Añadido el ID del paciente
-        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
-        CONCAT(m.NombreMedico, ' ', m.ApellidoMedico) AS NombreCompletoMedico,
-        e.NombreEspecialidad AS EspecialidadMedico,
-        c.Altura,
-        c.Peso,
-        c.Alergia,
-        c.Sintomas,
-        c.Diagnostico,
-        c.Observaciones,
-        c.FechaConsulta,
-        cit.FechaCita,
-        est.CitaEstado AS EstadoCita
-    FROM 
-        ConsultasMedicas c
-        JOIN Pacientes p ON c.PacienteID = p.PacienteID
-        JOIN Medicos m ON c.MedicoID = m.MedicoID
-        JOIN Especialidades e ON m.EspecialidadID = e.EspecialidadID
-        JOIN Citas cit ON c.CitaID = cit.CitaID
-        JOIN EstadoCita est ON cit.EstadoCitaID = est.EstadoCitaID;
-END;
 
 EXEC MostrarConsultas;
-select * from Citas
-select * from ConsultasMedicas
-GO
----BUSCAR CONSULTA POR FECHA
-CREATE PROCEDURE BuscarConsultasPorFecha
-    @FechaConsulta DATE
-AS
-BEGIN
-    SELECT 
-        c.ConsultaID,
-        c.CitaID,
-        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
-        CONCAT(m.NombreMedico, ' ', m.ApellidoMedico) AS NombreCompletoMedico,
-        e.NombreEspecialidad AS EspecialidadMedico,
-        c.Altura,
-        c.Peso,
-        c.Alergia,
-        c.Sintomas,
-        c.Diagnostico,
-        c.Observaciones,
-        c.FechaConsulta,
-        cit.FechaCita,
-        est.CitaEstado AS EstadoCita
-    FROM 
-        ConsultasMedicas c
-        JOIN Pacientes p ON c.PacienteID = p.PacienteID
-        JOIN Medicos m ON c.MedicoID = m.MedicoID
-        JOIN Especialidades e ON m.EspecialidadID = e.EspecialidadID
-        JOIN Citas cit ON c.CitaID = cit.CitaID
-        JOIN EstadoCita est ON cit.EstadoCitaID = est.EstadoCitaID
-    WHERE c.FechaConsulta = @FechaConsulta;
-END;
 
-GO
---------------------ALTERANDO BUSCAR CONSULTAS POR FECHA--------------------------------------------------------------------------
-ALTER PROCEDURE BuscarConsultasPorFecha
+
+--- 2. BUSCAR CONSULTA POR FECHA
+CREATE PROCEDURE BuscarConsultasPorFecha
     @FechaConsulta DATE
 AS
 BEGIN
@@ -1242,9 +1372,9 @@ BEGIN
     WHERE c.FechaConsulta = @FechaConsulta;
 END;
 
-SELECT * From Medicos
-GO
----INGRESAR CONSULTA MEDICA
+
+
+--- 3. INGRESAR CONSULTA MÉDICA
 CREATE PROCEDURE Ingresar_consulta
     @CitaID INT,
     @PacienteID INT,
@@ -1265,10 +1395,12 @@ BEGIN
     SELECT SCOPE_IDENTITY() AS ConsultaID;
 END;
 
----PROCEDIMIENTOS ALMACENADOS CRUD RECETAS---
 
-GO
----MOSTRAR RECETAS
+
+
+------------------------------------------------       PROCEDIMIENTOS ALMACENADOS DE RECETAS       ------------------------------------------------------------
+
+-- 1. MOSTRAR RECETAS
 CREATE PROCEDURE MostrarRecetas
 AS
 BEGIN
@@ -1292,10 +1424,101 @@ BEGIN
         JOIN Medicos m ON r.MedicoID = m.MedicoID;
 END;
 
-GO
+exec MostrarRecetas
 
-GO
----BUSCAR RECETAS POR DUI
+
+-- 2. PROCEDIMIENTO PARA INSERTAR UNA NUEVA RECETA
+CREATE PROCEDURE InsertarReceta
+    @PacienteID INT,
+    @MedicoID INT,
+    @FechaEmision DATETIME,
+    @ConsultaID INT,
+    @Medicamento VARCHAR(100),
+    @Dosis VARCHAR(50),
+    @Frecuencia TEXT,
+    @Duracion TEXT,
+    @Instrucciones TEXT
+AS
+BEGIN
+    INSERT INTO Recetas (PacienteID, MedicoID, FechaEmision, ConsultaID, Medicamento, Dosis, Frecuencia, Duracion, Instrucciones)
+    VALUES (@PacienteID, @MedicoID, @FechaEmision, @ConsultaID, @Medicamento, @Dosis, @Frecuencia, @Duracion, @Instrucciones);
+
+    -- Devuelve el ID de la receta recién insertada
+    SELECT SCOPE_IDENTITY() AS RecetaID;
+END;
+
+
+-- Ejemplo de ejecución del procedimiento
+EXEC InsertarReceta 
+    @PacienteID = 1,
+    @MedicoID = 1,
+    @FechaEmision = '2024-11-10',
+    @ConsultaID = 1,
+    @Medicamento = 'Antibiótico',
+    @Dosis = '100 mg',
+    @Frecuencia = 'Cada 8 horas',
+    @Duracion = '7 días',
+    @Instrucciones = 'Tomar después de las comidas.';
+
+
+
+-- 3. PROCEDIMIENTO PARA EDITAR LA RECETA
+CREATE PROCEDURE EditarReceta
+    @RecetaID INT,
+    @PacienteID INT,
+    @MedicoID INT,
+    @FechaEmision DATETIME,
+    @ConsultaID INT,
+    @Medicamento VARCHAR(100),
+    @Dosis VARCHAR(50),
+    @Frecuencia TEXT,
+    @Duracion TEXT,
+    @Instrucciones TEXT
+AS
+BEGIN
+    UPDATE Recetas
+    SET 
+        PacienteID = @PacienteID,
+        MedicoID = @MedicoID,
+        FechaEmision = @FechaEmision,
+        ConsultaID = @ConsultaID,
+        Medicamento = @Medicamento,
+        Dosis = @Dosis,
+        Frecuencia = @Frecuencia,
+        Duracion = @Duracion,
+        Instrucciones = @Instrucciones
+    WHERE RecetaID = @RecetaID;
+
+    -- Verificar si se ha actualizado algún registro
+    IF @@ROWCOUNT > 0
+    BEGIN
+        SELECT 'Receta actualizada correctamente' AS Resultado;
+    END
+    ELSE
+    BEGIN
+        SELECT 'No se encontró la receta con el ID especificado' AS Resultado;
+    END
+END;
+
+
+
+-- Ejemplo de ejecución del procedimiento
+EXEC EditarReceta
+    @RecetaID = 1,
+    @PacienteID = 1,
+    @MedicoID = 1,
+    @FechaEmision = '2024-11-15',
+    @ConsultaID = 1,
+    @Medicamento = 'Antiinflamatorio',
+    @Dosis = '75 mg',
+    @Frecuencia = 'Cada 12 horas',
+    @Duracion = '5 días',
+    @Instrucciones = 'Tomar con agua después de las comidas.';
+
+
+
+
+---4. BUSCAR RECETAS POR DUI
 CREATE PROCEDURE BuscarRecetasPorDUI
     @DuiPaciente VARCHAR(10)
 AS
@@ -1322,324 +1545,25 @@ BEGIN
 END;
 
 
----PROCEDIMIENTOS DE REPORTES---
 
-GO
------PROCEDIMIENTO ALMACENADO PARA CONSULTAS MEDICAS-------------------
 
-CREATE PROCEDURE GenerarReporteConsultasMedicas
-    @FechaInicio DATE = NULL,
-    @FechaFin DATE = NULL
+
+------------------------------------------- PROCEDIMIENTO ALMACENADO CRUD DE LOS EXAMENES MÉDICOS ---------------------------------------------
+-- aqui pon tus procedimientos
+-----------------------------------------------
+
+
+
+-- 5. BUSCAR EL EXÁMEN POR FECHA DE EXAMEN
+CREATE PROCEDURE BuscarExamenPorFecha
+    @FechaExamen DATE
 AS
 BEGIN
-    -- Si no se proporcionan fechas de inicio o fin, se establece la fecha actual como predeterminada
-    IF @FechaInicio IS NULL AND @FechaFin IS NULL
-    BEGIN
-        SET @FechaInicio = CAST(GETDATE() AS DATE);
-        SET @FechaFin = CAST(GETDATE() AS DATE);
-    END
+    SET NOCOUNT ON;
 
     SELECT 
-        CONCAT(m.NombreMedico, ' ', m.ApellidoMedico) AS NombreCompletoMedico,
-        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
-        p.DUIPaciente,
-        cm.FechaConsulta,
-        c.FechaCita
-    FROM 
-        ConsultasMedicas cm
-        JOIN Medicos m ON cm.MedicoID = m.MedicoID
-        JOIN Pacientes p ON cm.PacienteID = p.PacienteID
-        JOIN Citas c ON cm.CitaID = c.CitaID
-    WHERE 
-        cm.FechaConsulta BETWEEN @FechaInicio AND @FechaFin
-    ORDER BY 
-        cm.FechaConsulta, m.NombreMedico, p.NombrePaciente;
-END;
-
-EXEC GenerarReporteConsultasMedicas '2024-11-08', '2024-11-08';
-EXEC GenerarReporteConsultasMedicas '2024-10-13', '2024-11-05';
-EXEC GenerarReporteConsultasMedicas;
-
-GO
-
-GO
----OBTENER EXPEDIENTE DEL PACIENTE
-CREATE PROCEDURE ObtenerExpedientePaciente 
-    @PacienteID INT
-AS 
-BEGIN 
-    -- Datos Personales del Paciente
-    SELECT 
-        P.NombrePaciente,
-        P.ApellidoPaciente,
-        P.ApellidoDeCasada,
-        P.FechaNacimientoPaciente,
-        S.DescripcionSexo AS Sexo,
-        EC.DescripcionEstadoCivil AS EstadoCivil,
-        P.DUIPaciente,
-        P.TelefonoPaciente,
-        P.CorreoPaciente,
-        D.Depar AS Departamento,
-        M.NombreMunicipio AS Municipio
-    FROM 
-        Pacientes P
-    LEFT JOIN 
-        Sexos S ON P.SexoID = S.SexoID
-    LEFT JOIN 
-        Departamentos D ON P.DepartamentosID = D.DepartamentosID
-    LEFT JOIN 
-        Municipios M ON P.MunicipioID = M.MunicipioID
-    LEFT JOIN 
-        EstadosCiviles EC ON P.EstadoCivilID = EC.EstadoCivilID
-    WHERE 
-        P.PacienteID = @PacienteID;
-
-    -- Historial de Consultas Médicas del Paciente
-    SELECT
-        CM.Altura,
-        CM.Peso,
-        CM.Alergia,
-        CM.Sintomas,
-        CM.Diagnostico,
-        CM.Observaciones,
-        C.FechaCita,
-        C.HoraCita
-    FROM 
-        ConsultasMedicas CM
-    JOIN 
-        Citas C ON CM.CitaID = C.CitaID
-    WHERE 
-        C.PacienteID = @PacienteID;
-
-    -- Exámenes Médicos del Paciente
-    SELECT 
-        EM.TipoExamen,
-        EM.FechaExamen,
-        EM.Resultado,
-        EM.Observaciones
-    FROM 
-        ExamenesMedicos EM
-    WHERE 
-        EM.PacienteID = @PacienteID;
-END;
-
-GO
----OBTENER RECETAS POR PACIENTE Y FECHA
-CREATE PROCEDURE ObtenerRecetasPorPacienteYFecha
-    @PacienteID INT,
-    @FechaInicio DATE,
-    @FechaFin DATE
-AS
-BEGIN
-    SELECT 
-        R.Medicamento,
-        R.Dosis,
-        R.Frecuencia,
-        R.Duracion,
-        R.Instrucciones,
-        C.FechaCita
-    FROM Recetas R 
-    JOIN ConsultasMedicas CM ON R.ConsultaID = CM.ConsultaID
-    JOIN Citas C ON CM.CitaID = C.CitaID
-    WHERE CM.PacienteID = @PacienteID
-      AND C.FechaCita BETWEEN @FechaInicio AND @FechaFin;
-END;
-
-GO
----PROCEDIMIENTO PARA OBTENER LOS DEPARTAMENTOS Y MUNICIPIOS---
-CREATE PROCEDURE ObtenerDepartamentos
-AS
-BEGIN
-    SELECT 
-        DepartamentosID, 
-        Depar AS NombreDepartamento 
-    FROM 
-        Departamentos;
-END;
-
-GO
----OBTENER MUNICIPIO SEGUN EL DEPARTAMENTO SELECCIONADO
-CREATE PROCEDURE ObtenerMunicipiosPorDepartamento
-    @DepartamentosID INT
-AS
-BEGIN
-    SELECT 
-        MunicipioID, 
-        NombreMunicipio 
-    FROM 
-        Municipios 
-    WHERE 
-        DepartamentosID = @DepartamentosID;
-END;
-
-
-
-
---------PROCEDIMIENTO ALMACENADO PARA USUARIOS / LOGIN / RUTH
----PROCEDIMIENTO PARA VERIFICAR CORREO Y CONTRA---
-GO
-CREATE PROCEDURE spLogin1
-@correo VARCHAR(80),
-@pass VARCHAR(60)  -- Contraseña en texto
-AS
-BEGIN
-    SELECT TOP 1 UsuarioID,Rol  -- Devuelve el ID del usuario
-    FROM Usuarios
-    WHERE Correo = @correo 
-    AND CONVERT(VARCHAR(1000), DECRYPTBYPASSPHRASE('hospiplus24', Contrasena)) = @pass;
-END
-GO
-
-
--- Mostrar los usuarios
-CREATE PROCEDURE MostrarUsuarios
-AS
-BEGIN
-    SELECT 
-        u.UsuarioID,
-        u.NombreUsuario,
-        u.Correo,
-        u.Rol,
-        u.Contrasena
-    FROM Usuarios u
-END;
-
-
-
-exec MostrarUsuarios
-select * from Usuarios
-
-
-GO
--- Insertar Usuario
-CREATE PROCEDURE InsertarUsuario
-    @NombreUsuario VARCHAR(80),
-    @Correo VARCHAR(100),
-    @ContrasenaTexto VARCHAR(100),
-    @Rol NVARCHAR(20)
-AS
-BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;  -- Iniciar transacción
-
-        -- Verificar si el correo ya existe
-        IF EXISTS (SELECT 1 FROM Usuarios WHERE Correo = @Correo)
-        BEGIN
-            -- Si el correo existe, devolver 2 (correo duplicado)
-            ROLLBACK TRANSACTION;  -- Deshacer la transacción
-            RETURN 2;
-        END
-
-        -- Convertir la contraseña de texto plano a varbinary (si la columna Contraseña está como varbinary)
-        DECLARE @Contrasena VARBINARY(1000);
-        SET @Contrasena = ENCRYPTBYPASSPHRASE('hospiplus24', @ContrasenaTexto);  -- Encriptar la contraseña
-
-        -- Insertar el nuevo usuario si el correo no existe
-        INSERT INTO Usuarios (NombreUsuario, Correo, Contrasena, Rol)
-        VALUES (@NombreUsuario, @Correo, @Contrasena, @Rol);
-
-        -- Confirmar la transacción si todo fue exitoso
-        COMMIT TRANSACTION;
-
-        -- Retornar 1 si la inserción fue exitosa
-        RETURN 1;
-
-    END TRY
-    BEGIN CATCH
-        -- Capturar el error y retornar 0
-        IF XACT_STATE() <> 0
-        BEGIN
-            ROLLBACK TRANSACTION;  -- Deshacer la transacción si hubo un error
-        END
-
-        -- Mostrar el mensaje de error para depuración
-        DECLARE @ErrorMessage NVARCHAR(4000);
-        SET @ErrorMessage = ERROR_MESSAGE();
-        PRINT @ErrorMessage;  -- Esto imprime el error en el log para depuración
-        RETURN 0;
-    END CATCH
-END;
-
-
-
-GO
--- Editar los Usuarios
-CREATE PROCEDURE EditarUsuario
-    @UsuarioID INT,
-    @NombreUsuario VARCHAR(80),
-    @Correo VARCHAR(100),
-    @ContrasenaTexto VARCHAR(100),
-    @Rol VARCHAR(20)
-AS
-BEGIN
-    BEGIN TRY
-        -- Verificar si el correo ya existe para otro usuario
-        IF EXISTS (SELECT 1 FROM Usuarios WHERE Correo = @Correo AND UsuarioID != @UsuarioID)
-        BEGIN
-            RETURN 2; -- Retorna 2 si el correo ya está registrado
-        END
-
-        -- Cifrar la nueva contraseña
-        DECLARE @Contrasena VARBINARY(1000);
-        SET @Contrasena = ENCRYPTBYPASSPHRASE('hospiplus24', @ContrasenaTexto);
-
-        -- Editar el usuario
-        UPDATE Usuarios
-        SET 
-            NombreUsuario = @NombreUsuario,
-            Correo = @Correo,
-            Contrasena = @Contrasena,
-            Rol = @Rol
-        WHERE UsuarioID = @UsuarioID;
-
-        RETURN 1; -- Retorna 1 si todo es exitoso
-    END TRY
-    BEGIN CATCH
-        RETURN 0; -- Retorna 0 si ocurre un error
-    END CATCH
-END;
-
-
--- Ejemplo
-
-EXEC EditarUsuario
-    @UsuarioID = 1,          
-    @NombreUsuario = 'Ruth Abigail',  
-    @Correo = 'rutha@hospiplus.com',    
-    @ContrasenaTexto = 'hospitca', 
-    @Rol = 'Administrador';         
-
-
-
-select * from Usuarios
-
-
-GO
---Método para obtener la contra del usuario
-CREATE PROCEDURE spObtenerUsuarioContrasenaDesencriptada
-    @UsuarioID INT
-AS
-BEGIN
-    SELECT 
-        UsuarioID,
-        NombreUsuario,
-        Correo,
-        CONVERT(VARCHAR(1000), DECRYPTBYPASSPHRASE('hospiplus24', Contrasena)) AS ContrasenaDesencriptada
-    FROM Usuarios
-    WHERE UsuarioID = @UsuarioID;
-END;
-GO
-
-
----Nuevos metodos 
-CREATE PROCEDURE MostrarExamenesMedicos
-AS
-BEGIN
-    SELECT 
-        e.ExamenID,
-        p.PacienteID,
-        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
-        e.ConsultaID,
+        e.ExamenID AS ID,
+        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS Pacientes,
         c.FechaConsulta,
         e.TipoExamen,
         e.FechaExamen,
@@ -1651,131 +1575,19 @@ BEGIN
         Pacientes p ON e.PacienteID = p.PacienteID
     LEFT JOIN 
         ConsultasMedicas c ON e.ConsultaID = c.ConsultaID
+    WHERE 
+        e.FechaExamen = @FechaExamen
     ORDER BY 
         e.ExamenID ASC; -- Ordenar por el ID del examen en orden ascendente
 END;
 
 
-exec MostrarExamenesMedicos
-select * from Usuarios
-
-GO
-CREATE PROCEDURE InsertarExamenMedico
-    @PacienteID INT,
-    @ConsultaID INT = NULL, -- Puede ser NULL
-    @TipoExamen VARCHAR(100),
-    @FechaExamen DATE,
-    @Resultado VARCHAR(255),
-    @Observaciones VARCHAR(255)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    BEGIN TRANSACTION;
-    BEGIN TRY
-        -- Insertar el examen médico
-        INSERT INTO ExamenesMedicos 
-        (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
-        VALUES 
-        (@PacienteID, @ConsultaID, @TipoExamen, @FechaExamen, @Resultado, @Observaciones);
-        
-        -- Confirmar la transacción
-        COMMIT TRANSACTION;
-        
-        -- Devolver el ID del examen recién insertado
-        SELECT SCOPE_IDENTITY() AS ExamenID;
-    END TRY
-    BEGIN CATCH
-        -- Revertir transacción en caso de error
-        ROLLBACK TRANSACTION;
-        THROW; -- Lanza el error para manejarlo en la aplicación
-    END CATCH;
-END;
 
 
+----------------------------------------------------            PROCEDIMIENTOS PARA REALIZAR LOS REPORTES            ---------------------------------------------
 
-GO
-
-CREATE PROCEDURE EditarExamenMedico
-    @ExamenID INT,
-    @PacienteID INT,
-    @ConsultaID INT = NULL, -- Puede ser NULL
-    @TipoExamen VARCHAR(100),
-    @FechaExamen DATE,
-    @Resultado VARCHAR(255),
-    @Observaciones VARCHAR(255)
-AS
-BEGIN
-    BEGIN TRANSACTION;
-    BEGIN TRY
-        -- Actualizar los datos del examen médico
-        UPDATE ExamenesMedicos
-        SET 
-            PacienteID = @PacienteID,
-            ConsultaID = @ConsultaID, -- Si es NULL, se establecerá en NULL
-            TipoExamen = @TipoExamen,
-            FechaExamen = @FechaExamen,
-            Resultado = @Resultado,
-            Observaciones = @Observaciones
-        WHERE ExamenID = @ExamenID;
-
-        -- Confirmar la transacción
-        COMMIT TRANSACTION;
-
-        -- Retornar el ID del examen actualizado
-        SELECT @ExamenID AS ExamenID;
-    END TRY
-    BEGIN CATCH
-        -- Revertir la transacción en caso de error
-        ROLLBACK TRANSACTION;
-
-        -- Manejo de errores
-        PRINT 'Error al actualizar el examen médico: ' + ERROR_MESSAGE();
-    END CATCH;
-END;
-
-GO
-
-CREATE PROCEDURE EliminarExamenMedico
-    @ExamenID INT
-AS
-BEGIN
-    -- Actualizar el estado del examen para ocultarlo en lugar de eliminarlo permanentemente
-    UPDATE ExamenesMedicos
-    SET Observaciones = 'Este examen ha sido eliminado' -- Marcamos con una observación de eliminación
-    WHERE ExamenID = @ExamenID;
-
-    PRINT 'El examen médico ha sido eliminado correctamente.';
-END;
-
-
-
-
-EXEC InsertarExamenMedico
-    @PacienteID = 1,          -- ID del paciente
-    @ConsultaID = 2,          -- ID de la consulta (puede ser NULL si no se tiene)
-    @TipoExamen = 'Radiografía',
-    @FechaExamen = '2024-11-09',
-    @Resultado = 'Normal',
-    @Observaciones = 'Sin observaciones adicionales';
-
-
-select * from ExamenesMedicos
-
-	EXEC EditarExamenMedico
-    @ExamenID = 1,           -- ID del examen a editar
-    @PacienteID = 1,         -- Nuevo ID de paciente
-    @ConsultaID = 2,         -- Nuevo ID de consulta (puede ser NULL)
-    @TipoExamen = 'Tomografía',
-    @FechaExamen = '2024-11-10',
-    @Resultado = 'Anómalo',
-    @Observaciones = 'Requiere análisis adicional';
-
-
-
-    GO
--- EXPEDIENTE DEL PACIENTE
-CREATE PROCEDURE ObtenerExpedientePaciente 
+-- 1. Obtener el expediente del paciente
+CREATE PROCEDURE ObtenerExpedientePaciente
     @PacienteID INT
 AS 
 BEGIN 
@@ -1849,12 +1661,77 @@ BEGIN
 END;
 
 
-exec ObtenerExpedientePaciente @PacienteID = 1;
+
+-- 2. OBTENER EL REPORTE DE RECETAS POR PACIENTE Y FECHA
+CREATE PROCEDURE ObtenerRecetasPorPacienteYFecha
+    @PacienteID INT,
+    @FechaInicio DATE,
+    @FechaFin DATE
+AS
+BEGIN
+    SELECT 
+        R.Medicamento,
+        R.Dosis,
+        R.Frecuencia,
+        R.Duracion,
+        R.Instrucciones,
+        C.FechaCita
+    FROM Recetas R 
+    JOIN ConsultasMedicas CM ON R.ConsultaID = CM.ConsultaID
+    JOIN Citas C ON CM.CitaID = C.CitaID
+    WHERE CM.PacienteID = @PacienteID
+      AND C.FechaCita BETWEEN @FechaInicio AND @FechaFin;
+END;
 
 
 
--- Procedimiento para el segundo reporte
-GO
+-- 3. OBTENER EL REPORTE DE LAS CONSULTAS POR MÉDICO CON LA ESPECIALIDAD Y DUI
+CREATE PROCEDURE ObtenerReporteConsultasPorMedicoODUIEspecialidad
+    @DUIMedico VARCHAR(10) = NULL,
+    @EspecialidadID INT = NULL
+AS 
+BEGIN 
+    SET NOCOUNT ON;
+
+    SELECT 
+        -- Datos del médico
+        Med.MedicoID,
+        CONCAT(Med.NombreMedico, ' ', Med.ApellidoMedico) AS NombreCompletoMedico,
+        Med.DUIMedico,
+        E.NombreEspecialidad AS Especialidad,
+        
+        -- Datos del paciente
+        P.PacienteID,
+        CONCAT(P.NombrePaciente, ' ', P.ApellidoPaciente) AS NombreCompletoPaciente,
+        P.DUIPaciente,
+        
+        -- Detalles de la consulta
+        C.FechaConsulta,
+        C.Altura,
+        C.Peso,
+        C.Alergia,
+        C.Sintomas,
+        C.Diagnostico,
+        C.Observaciones
+    FROM 
+        ConsultasMedicas C
+    INNER JOIN 
+        Medicos Med ON C.MedicoID = Med.MedicoID
+    INNER JOIN 
+        Especialidades E ON Med.EspecialidadID = E.EspecialidadID
+    INNER JOIN 
+        Pacientes P ON C.PacienteID = P.PacienteID
+    WHERE 
+        (@DUIMedico IS NULL OR Med.DUIMedico = @DUIMedico)
+        AND (@EspecialidadID IS NULL OR E.EspecialidadID = @EspecialidadID)
+    ORDER BY 
+        C.FechaConsulta DESC;
+END;
+
+
+
+
+-- 4. OBTENER EL REPORTE DE LAS RECETAS POR PACIENTE Y FECHA
 CREATE PROCEDURE ObtenerReporteRecetasPorPacienteYFecha
     @PacienteID INT,
     @FechaInicio DATE,
@@ -1897,71 +1774,35 @@ BEGIN
         R.FechaEmision DESC;
 END;
 
+select * from Usuarios
 
 
 
 
-EXEC ObtenerReporteRecetasPorPacienteYFecha 
-    @PacienteID = 1, 
-    @FechaInicio = '2024-01-01', 
-    @FechaFin = '2024-12-31';
-
-
-    GO
-    --Ultimo procedimiento agregado
-    CREATE PROCEDURE BuscarConsultasPorDUI
-    @DUI nvarchar(15)
+--------------------------------       PROCEDIMIENTOS PARA OBTENER EL DEPARTAMENTO Y LOS MUNICIPIOS CORRESPONDIENTES A CADA UNO DE ELLOS         -------------------------------------
+-- 1. PROCEDIMIENTO PARA OBTENER LOS DEPARTAMENTOS
+CREATE PROCEDURE ObtenerDepartamentos
 AS
 BEGIN
     SELECT 
-        c.ConsultaID,
-        p.PacienteID,
-        m.MedicoID,
-        e.NombreEspecialidad AS EspecialidaMedico,
-        c.Altura,
-        c.Peso,
-        c.Alergia,
-        c.Sintomas,
-        c.Diagnostico,
-        c.Observaciones,
-        c.FechaConsulta
+        DepartamentosID, 
+        Depar AS NombreDepartamento 
     FROM 
-        ConsultasMedicas c
-    INNER JOIN 
-        Pacientes p ON c.PacienteID = p.PacienteID
-    INNER JOIN 
-        Medicos m ON c.MedicoID = m.MedicoID
-    INNER JOIN 
-        Especialidades e ON m.EspecialidadID = e.EspecialidadID
-    WHERE 
-        p.DUIPaciente LIKE @DUI;
-END
-GO
-CREATE PROCEDURE Editar_consulta
-    @ConsultaID INT,
-    @CitaID INT,
-    @PacienteID INT,
-    @MedicoID INT,
-    @Altura DECIMAL(5, 2),
-    @Peso DECIMAL(5, 2),
-    @Alergia VARCHAR(255),
-    @Sintomas VARCHAR(255),
-    @Diagnostico TEXT,
-    @Observaciones TEXT,
-    @FechaConsulta DATE
+        Departamentos;
+END;
+
+
+
+---2. PROCEDIMIENTO PARA OBTENER MUNICIPIO SEGUN EL DEPARTAMENTO SELECCIONADO
+CREATE PROCEDURE ObtenerMunicipiosPorDepartamento
+    @DepartamentosID INT
 AS
 BEGIN
-    UPDATE ConsultasMedicas
-    SET 
-        CitaID = @CitaID,
-        PacienteID = @PacienteID,
-        MedicoID = @MedicoID,
-        Altura = @Altura,
-        Peso = @Peso,
-        Alergia = @Alergia,
-        Sintomas = @Sintomas,
-        Diagnostico = @Diagnostico,
-        Observaciones = @Observaciones,
-        FechaConsulta = @FechaConsulta
-    WHERE ConsultaID = @ConsultaID;
+    SELECT 
+        MunicipioID, 
+        NombreMunicipio 
+    FROM 
+        Municipios 
+    WHERE 
+        DepartamentosID = @DepartamentosID;
 END;
