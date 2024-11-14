@@ -135,7 +135,7 @@ namespace HospiPlus.SistemaMedico
                             command.Parameters.AddWithValue("@Duracion", txtDuraRecMedic.Text);
                             command.Parameters.AddWithValue("@Instrucciones", txtInstrucRecMedic.Text);
 
-
+                            
                             command.ExecuteNonQuery();
                             limpiarcampos();
                         }
@@ -188,9 +188,8 @@ namespace HospiPlus.SistemaMedico
 
             }
         }
-
-
-        void EditarReceta()
+        
+        private void btnModificarRecetMedic_Click(object sender, RoutedEventArgs e)
         {
             if (ValidarCampos())
             {
@@ -210,64 +209,40 @@ namespace HospiPlus.SistemaMedico
                                 command.CommandType = System.Data.CommandType.StoredProcedure;
                                 command.CommandText = "EditarReceta";
 
-                                // Validar y obtener valores de los campos
-                                if (cmbPacienteID.SelectedValue != null && cmbMedicoID.SelectedValue != null)
-                                {
-                                    int pacienteID = (int)cmbPacienteID.SelectedValue;
-                                    int medicoID = (int)cmbMedicoID.SelectedValue;
+                                // Obteniendo valores de los campos de texto y ComboBox
+                                int pacienteID = (int)cmbPacienteID.SelectedValue;
+                                int medicoID = (int)cmbMedicoID.SelectedValue;
+                                DateTime fechaEmision = DateTime.Parse(datePickerFechaEmision.Text);
+                                int consultaID = recetaSeleccionada.ConsultaID;
 
-                                    // Validar la fecha
-                                    if (DateTime.TryParse(datePickerFechaEmision.Text, out DateTime fechaEmision))
-                                    {
-                                        // Añadir los parámetros al comando
-                                        command.Parameters.AddWithValue("@RecetaID", recetaID);
-                                        command.Parameters.AddWithValue("@PacienteID", pacienteID);
-                                        command.Parameters.AddWithValue("@MedicoID", medicoID);
-                                        command.Parameters.AddWithValue("@FechaEmision", fechaEmision);
+                                // Añadiendo los parámetros
+                                command.Parameters.AddWithValue("@RecetaID", recetaID);
+                                command.Parameters.AddWithValue("@PacienteID", pacienteID);
+                                command.Parameters.AddWithValue("@MedicoID", medicoID);
+                                command.Parameters.AddWithValue("@FechaEmision", fechaEmision);
+                                command.Parameters.AddWithValue("@ConsultaID", consultaID);
+                                command.Parameters.AddWithValue("@Medicamento", txtMedicamRecMedic.Text);
+                                command.Parameters.AddWithValue("@Dosis", txtDosisRecMedic.Text);
+                                command.Parameters.AddWithValue("@Frecuencia", txtFrecRecMedic.Text);
+                                command.Parameters.AddWithValue("@Duracion", txtDuraRecMedic.Text);
+                                command.Parameters.AddWithValue("@Instrucciones", txtInstrucRecMedic.Text);
 
-
-                                        command.Parameters.AddWithValue("@Medicamento", txtMedicamRecMedic.Text);
-                                        command.Parameters.AddWithValue("@Dosis", txtDosisRecMedic.Text);
-                                        command.Parameters.AddWithValue("@Frecuencia", txtFrecRecMedic.Text);
-                                        command.Parameters.AddWithValue("@Duracion", txtDuraRecMedic.Text);
-                                        command.Parameters.AddWithValue("@Instrucciones", txtInstrucRecMedic.Text);
-
-                                        // Ejecutar el comando
-                                        command.ExecuteNonQuery();
-
-                                        // Limpiar los campos después de la modificación
-                                        limpiarcampos();
-
-                                        MessageBox.Show("Receta modificada exitosamente.", "Ingreso de Receta", MessageBoxButton.OK, MessageBoxImage.Information);
-                                        CargarRecetas(); // Recargar las recetas después de la modificación
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Fecha de emisión no válida. Verifique el formato de fecha.", "Fecha Incorrecta", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Por favor, seleccione un médico y un paciente.", "Datos vacios", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
+                                command.ExecuteNonQuery();
                             }
                         }
+                        MessageBox.Show("Receta modificada exitosamente.");
+                        CargarRecetas(); // Recargar la lista de recetas después de la modificación
                     }
                     else
                     {
-                        MessageBox.Show("Por favor, seleccione una receta para modificar.", "Modificación de receta", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Por favor, seleccione una receta para modificar.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al modificar la receta: " + ex.Message, "Error de modificación", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error al modificar la receta: " + ex.Message);
                 }
             }
-        }
-
-        private void btnModificarRecetMedic_Click(object sender, RoutedEventArgs e)
-        {
-            EditarReceta();
         }
 
 
@@ -324,6 +299,26 @@ namespace HospiPlus.SistemaMedico
             MessageBoxResult respuesta = MessageBox.Show("¿Seguro que desea cancelar la acción?", "Cancelar operación", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
             if (respuesta == MessageBoxResult.OK)
+            {
+                limpiarcampos();
+                CargarRecetas();
+
+            }
+        }
+
+        private void limpiarcampos() 
+        {
+            txtDosisRecMedic.Clear();
+            txtDuraRecMedic.Clear();
+            txtFrecRecMedic.Clear();
+            txtInstrucRecMedic.Clear();
+        }
+
+        private void btnCancelarRecetMedic_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult respuesta = MessageBox.Show("Seguro que desea cancelar la acción?.","??", MessageBoxButton.OKCancel);
+
+            if (respuesta == MessageBoxResult.OK) 
             {
                 limpiarcampos();
                 CargarRecetas();

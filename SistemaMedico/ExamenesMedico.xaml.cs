@@ -77,9 +77,10 @@ namespace HospiPlus.SistemaMedico
 
         private void InsertarExamenMedico()
         {
+            
             try
             {
-                int pacienteID = (int)cmbPExamenMedico.SelectedValue; ;
+                int pacienteID = (int)cmbPExamenMedico.SelectedValue;
                 string tipoExamen = txtTExamenMedico.Text;
                 DateTime fechaExamen = dtFechaExamMedic.SelectedDate ?? DateTime.Now;
                 string resultado = txtRExamMedico.Text;
@@ -175,6 +176,9 @@ namespace HospiPlus.SistemaMedico
         {
             try
             {
+                int pacienteID = (int)cmbPExamenMedico.SelectedValue;
+
+
                 if (examenSeleccionadoId == 0)
                 {
                     MessageBox.Show("Por favor, seleccione un examen para modificar.", "HOSPI PLUS | Editar Examen", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -190,7 +194,7 @@ namespace HospiPlus.SistemaMedico
                         command.CommandText = "EditarExamenMedico";
 
                         command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
-                        command.Parameters.Add(new SqlParameter("@Paciente", cmbPExamenMedico.SelectedValuePath));
+                        command.Parameters.Add(new SqlParameter("@PacienteID", pacienteID));
                         command.Parameters.Add(new SqlParameter("@TipoExamen", txtTExamenMedico.Text));
                         command.Parameters.Add(new SqlParameter("@FechaExamen", dtFechaExamMedic.SelectedDate));
                         command.Parameters.Add(new SqlParameter("@Resultado", txtRExamMedico.Text));
@@ -225,9 +229,9 @@ namespace HospiPlus.SistemaMedico
             btnModificarExamMedic.IsEnabled = false;
         }
 
-       
+        
 
-        private void btnCancelarExamMedic_Click(object sender, RoutedEventArgs e)
+        private void btnEliminarExamMedic_Click_1(object sender, RoutedEventArgs e)
         {
             LimpiarCampos();
         }
@@ -239,10 +243,25 @@ namespace HospiPlus.SistemaMedico
                 // Limpia el TextBox donde se ingresa el DUI
                 dtFechaExamMedic.Text = ""; 
 
-                // Llama al método para mostrar todos los pacientes
-                CargarExamenesMedicos();
-                return; 
+                            MessageBox.Show("Examen médico eliminado exitosamente.");
+                            CargarExamenesMedicos();
+                            LimpiarCampos();
+                        }
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el examen médico: " + ex.Message);
+            }
+
+        }
+
+        private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        {
+            LimpiarCampos();
+            CargarExamenesMedicos();
+
         }
     }
 }

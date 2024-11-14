@@ -22,8 +22,6 @@
         <TextBox x:Name="txtDuraRecMedic" HorizontalAlignment="Left" Margin="183,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana" />
         <ComboBox x:Name="cmbPacienteID" HorizontalAlignment="Left" Margin="30,86,0,0" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana"
           DisplayMemberPath="NombrePaciente" SelectedValuePath="PacienteID"/>
-        <ComboBox x:Name="cmbPacienteID" HorizontalAlignment="Left" Margin="30,86,0,0" VerticalAlignment="Top" Width="131" Background="White" FontFamily="Verdana"
-          DisplayMemberPath="NombrePaciente" SelectedValuePath="PacienteID" SelectionChanged="cmbPacienteID_SelectionChanged" />
         <TextBox x:Name="txtInstrucRecMedic" HorizontalAlignment="Left" Margin="344,150,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="128" Background="White" FontFamily="Verdana" Cursor="IBeam"/>
         <Label Content="Médico:" HorizontalAlignment="Left" Margin="225,57,0,0" VerticalAlignment="Top" FontFamily="Verdana" />
         <ComboBox Name="cmbMedicoID" HorizontalAlignment="Left" Height="24" Margin="183,86,0,0" VerticalAlignment="Top" Width="131"/>
@@ -45,11 +43,6 @@
         </DataGrid>
 
         <Button x:Name="btnGuardarRecetMedic" Background="#FF058789" Content="Guardar" HorizontalAlignment="Left" Height="28" Margin="670,75,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnGuardarRecetMedic_Click"/>
-        <Button x:Name="btnModificarRecetMedic" Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="670,113,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnModificarRecetMedic_Click"/>
-        <Button x:Name="btnCancelarRecetMedic" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="670,155,0,0" VerticalAlignment="Top" Width="109" FontSize="12"/>
-        <Button x:Name="btnBuscarRecetMedic" Background="#FF058789" Content="Buscar" HorizontalAlignment="Left" Margin="627,201,0,211" Width="109" FontSize="12"/>
-        <TextBox x:Name="txtBuscarRecetMedic" HorizontalAlignment="Left" Height="34" Margin="455,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Cursor="Hand"/>
-        <Label Content="Buscar por DUI:" HorizontalAlignment="Left" Margin="344,0,0,0" VerticalAlignment="Center" FontFamily="Verdana"/>
         <Button x:Name="btnModificarRecetMedic" Background="#FF058789" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="670,113,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnModificarRecetMedic_Click"/>
         <Button x:Name="btnCancelarRecetMedic" Background="#FF058789" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="670,155,0,0" VerticalAlignment="Top" Width="109" FontSize="12" Click="btnCancelarRecetMedic_Click"/>
     </Grid>
