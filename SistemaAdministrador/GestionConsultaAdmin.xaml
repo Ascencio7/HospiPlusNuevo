@@ -1,0 +1,32 @@
+﻿<Page x:Class="HospiPlus.SistemaAdministrador.GestionConsultaAdmin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HospiPlus.SistemaAdministrador"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Consultas Médicas" Background="#aed6f1">
+
+
+    <Grid>
+
+
+
+        <DataGrid x:Name="gridConsultasAdmin" IsReadOnly="True" Margin="11,215,11,10" Cursor="Hand"/>
+
+
+
+        <Label Content="Gestión de Consultas Médicas" 
+            FontSize="24" 
+            FontFamily="Verdana" 
+            FontWeight="Bold" Margin="10,10,383,399"/>
+
+
+        <Button x:Name="btnAgregarConsultaAdmin" Content="Agregar" HorizontalAlignment="Left" Height="38" Margin="27,126,0,0" VerticalAlignment="Top" Width="141" Click="btnAgregarConsultaAdmin_Click"/>
+        <DatePicker x:Name="dtFechaConsultaAdmin" HorizontalAlignment="Left" Margin="236,126,0,0" VerticalAlignment="Top" Width="206" Height="38"/>
+        <Button x:Name="btnBuscarConsultaPorFechaAdmin" Content="Buscar" HorizontalAlignment="Left" Margin="485,126,0,0" VerticalAlignment="Top" Width="141" Height="38"/>
+        <Button x:Name="btnCancelarBusquedaAdmin" Content="Cancelar" HorizontalAlignment="Left" Margin="640,126,0,0" VerticalAlignment="Top" Width="140" Height="38" Click="btnCancelarBusquedaAdmin_Click"/>
+
+    </Grid>
+</Page>

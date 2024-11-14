@@ -37,17 +37,17 @@
             <!-- Column 1 -->
             <StackPanel Grid.Column="0" Margin="0,0,10,0">
                 <Label Content="Cita ID" FontFamily="Verdana"/>
-                <ComboBox x:Name="cmbCitaID" 
+                <ComboBox Background="White" x:Name="cmbCitaID" 
                          Margin="0,0,0,10"
                          IsEditable="True"/>
 
                 <Label Content="Paciente" FontFamily="Verdana"/>
-                <ComboBox x:Name="cmbPaciente" 
+                <ComboBox Background="White" x:Name="cmbPaciente" 
                          Margin="0,0,0,10"
                          IsEditable="True"/>
 
                 <Label Content="Médico" FontFamily="Verdana"/>
-                <ComboBox x:Name="cmbMedico" 
+                <ComboBox Background="White" x:Name="cmbMedico" 
                          Margin="0,0,0,10"/>
 
                 <Label Content="Fecha Consulta" FontFamily="Verdana"/>
@@ -58,19 +58,19 @@
             <!-- Column 2 -->
             <StackPanel Grid.Column="1" Margin="10,0,10,0">
                 <Label Content="Altura (m)" FontFamily="Verdana"/>
-                <TextBox x:Name="txtAltura" 
+                <TextBox Background="White" x:Name="txtAltura" 
                         Margin="0,0,0,10"/>
 
                 <Label Content="Peso (kg)" FontFamily="Verdana"/>
-                <TextBox x:Name="txtPeso" 
+                <TextBox Background="White" x:Name="txtPeso" 
                         Margin="0,0,0,10"/>
 
                 <Label Content="Alergias" FontFamily="Verdana"/>
-                <TextBox x:Name="txtAlergias" 
+                <TextBox Background="White" x:Name="txtAlergias" 
                         Margin="0,0,0,10"/>
 
                 <Label Content="Síntomas" FontFamily="Verdana"/>
-                <TextBox x:Name="txtSintomas" 
+                <TextBox Background="White" x:Name="txtSintomas" 
                         Height="60"
                         TextWrapping="Wrap"
                         AcceptsReturn="True"
@@ -81,7 +81,7 @@
             <!-- Column 3 -->
             <StackPanel Grid.Column="2" Margin="10,0,0,0">
                 <Label Content="Diagnóstico" FontFamily="Verdana"/>
-                <TextBox x:Name="txtDiagnostico" 
+                <TextBox Background="White" x:Name="txtDiagnostico" 
                         Height="60"
                         TextWrapping="Wrap"
                         AcceptsReturn="True"
@@ -89,7 +89,7 @@
                         Margin="0,0,0,10"/>
 
                 <Label Content="Observaciones" FontFamily="Verdana"/>
-                <TextBox x:Name="txtObservaciones" 
+                <TextBox Background="White" x:Name="txtObservaciones" 
                         Height="60"
                         TextWrapping="Wrap"
                         AcceptsReturn="True"

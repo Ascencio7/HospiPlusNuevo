@@ -223,7 +223,7 @@ namespace HospiPlus.SistemaMedico
             examenSeleccionadoId = 0;
             cmbPExamenMedico.Text = "";
             txtTExamenMedico.Text = "";
-            dtFechaExamMedic.SelectedDate = DateTime.Now;
+            dtFechaExamMedic.Text = "";
             txtRExamMedico.Text = "";
             txtObservaciones.Text = "";
             gridGestorExamenMedico.SelectedItem = null;
@@ -237,11 +237,6 @@ namespace HospiPlus.SistemaMedico
             InsertarExamenMedico();
         }
 
-        private void btnEliminarExamMedic_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("¿Desea cancelar la operación?", "HOSPI PLUS | Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -252,8 +247,3 @@ namespace HospiPlus.SistemaMedico
         }
     }
 }
-
-
-
-
-

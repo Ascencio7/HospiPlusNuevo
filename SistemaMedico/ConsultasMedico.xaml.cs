@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using HospiPlus.ModeloPaciente;
 using HospiPlus.ModeloMedico;
+using System.Windows.Input;
+
 
 namespace HospiPlus.SistemaMedico
 {
@@ -60,7 +62,7 @@ namespace HospiPlus.SistemaMedico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar médicos: " + ex.Message);
+                MessageBox.Show("Error al cargar médicos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -94,7 +96,7 @@ namespace HospiPlus.SistemaMedico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las citas: " + ex.Message);
+                MessageBox.Show("Error al cargar las citas: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -143,7 +145,7 @@ namespace HospiPlus.SistemaMedico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las consultas: " + ex.Message);
+                MessageBox.Show("Error al cargar las consultas: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -163,7 +165,7 @@ namespace HospiPlus.SistemaMedico
                 string.IsNullOrWhiteSpace(txtSintomas.Text) ||
                 string.IsNullOrWhiteSpace(txtPeso.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos.");
+                MessageBox.Show("Por favor, complete todos los campos.", "HOSPI PLUS | Campos vacios", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             return true;
@@ -173,7 +175,7 @@ namespace HospiPlus.SistemaMedico
         {
             txtPeso.Clear();
 
-
+            cmbPaciente.Text = "";
             cmbMedico.SelectedIndex = -1;
             txtAlergias.Clear();
             txtDiagnostico.Clear();
@@ -189,7 +191,7 @@ namespace HospiPlus.SistemaMedico
             if (gridConsultas.SelectedItem is ModeloConsultaPaciente consulta)
             {
                 cmbPaciente.Text = consulta.PacienteID;
-
+                cmbMedico.Text = consulta.MedicoID;
                 txtAltura.Text = consulta.Altura.ToString();
                 txtPeso.Text = consulta.Peso.ToString();
                 txtAlergias.Text = consulta.Alergia;
@@ -208,7 +210,7 @@ namespace HospiPlus.SistemaMedico
                     // Asegúrate de que los valores seleccionados de los ComboBox son válidos
                     if (cmbPaciente.SelectedValue == null || cmbMedico.SelectedValue == null)
                     {
-                        MessageBox.Show("Seleccione un paciente y un médico.");
+                        MessageBox.Show("Seleccione un paciente y un médico.", "HOSPI PLUS | Valor vacio", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return;
                     }
 
@@ -241,12 +243,12 @@ namespace HospiPlus.SistemaMedico
                         }
                     }
 
-                    MessageBox.Show("Consulta agregada exitosamente.");
+                    MessageBox.Show("Consulta agregada exitosamente.", "HOSPI PLUS | Consulta agregada", MessageBoxButton.OK, MessageBoxImage.Information);
                     CargarConsultas();  // Recarga la lista de consultas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al agregar la consulta: " + ex.Message);
+                    MessageBox.Show("Error al agregar la consulta: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -287,7 +289,7 @@ namespace HospiPlus.SistemaMedico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los pacientes: " + ex.Message);
+                MessageBox.Show("Error al cargar los pacientes: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -317,7 +319,7 @@ namespace HospiPlus.SistemaMedico
                     // Asegúrate de que los valores seleccionados de los ComboBox son válidos
                     if (cmbPaciente.SelectedValue == null || cmbMedico.SelectedValue == null || cmbCitaID == null)
                     {
-                        MessageBox.Show("Seleccione un paciente y un médico.");
+                        MessageBox.Show("Seleccione un paciente y un médico.", "HOSPI PLUS | Campos vacios");
                         return;
                     }
 
@@ -351,12 +353,12 @@ namespace HospiPlus.SistemaMedico
                         }
                     }
 
-                    MessageBox.Show("Consulta agregada exitosamente.");
+                    MessageBox.Show("Consulta agregada exitosamente.", "HOSPI PLUS | Consulta agregada", MessageBoxButton.OK, MessageBoxImage.Information);
                     CargarConsultas();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al agregar la consulta: " + ex.Message);
+                    MessageBox.Show("Error al agregar la consulta: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
@@ -389,19 +391,23 @@ namespace HospiPlus.SistemaMedico
                             command.ExecuteNonQuery();
                         }
                     }
-                    MessageBox.Show("Consulta modificada exitosamente.");
+                    MessageBox.Show("Consulta modificada exitosamente.", "HOSPI PLUS | Consulta modificada", MessageBoxButton.OK, MessageBoxImage.Information);
                     CargarConsultas();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al modificar la consulta: " + ex.Message);
+                    MessageBox.Show("Error al modificar la consulta: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
 
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCampos();
+            if(MessageBox.Show("¿Desea limpiar los campos?", "HOSPI PLUS | Limpiar campos", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                LimpiarCampos();
+            }
         }
+
     }
 }

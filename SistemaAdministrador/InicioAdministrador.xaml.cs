@@ -258,6 +258,24 @@ namespace HospiPlus.SistemaAdministrador
         {
             frPrincipal.NavigationService.Navigate(new Uri("SistemaAdministrador/PaginaBienvenidaAdministrador.xaml", UriKind.Relative));
         }
+
+
+        // Boton de Consultas
+        private void btnConsultasAdmin_Click_1(object sender, RoutedEventArgs e)
+        {
+            frPrincipal.NavigationService.Navigate(new Uri("SistemaAdministrador/GestionConsultaAdmin.xaml", UriKind.Relative));
+
+        }
+
+        private void btnConsultasAdmin_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            btnConsultasAdmin.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
+        }
+
+        private void btnConsultasAdmin_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            btnConsultasAdmin.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137));
+        }
         #endregion
         //fin Bienvenida
 

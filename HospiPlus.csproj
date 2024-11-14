@@ -161,6 +161,9 @@
     <Compile Include="SistemaAdministrador\GestionCitasAdmin.xaml.cs">
       <DependentUpon>GestionCitasAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SistemaAdministrador\GestionConsultaAdmin.xaml.cs">
+      <DependentUpon>GestionConsultaAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SistemaAdministrador\GestionExamenesAdmin.xaml.cs">
       <DependentUpon>GestionExamenesAdmin.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
     <Page Include="SistemaAdministrador\GestionCitasAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaAdministrador\GestionConsultaAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SistemaAdministrador\GestionExamenesAdmin.xaml">
       <Generator>MSBuild:Compile</Generator>
