@@ -556,7 +556,7 @@ SELECT * FROM ExamenesMedicos
 
 
 -------------------------------------------------------- PROCEDIMIENTO ALMACENADO PARA USUARIOS / LOGIN ----------------------------------------------------------------
-
+GO
 -- 1. PROCEDIMIENTO PARA VERIFICAR CORREO Y CONTRA
 CREATE PROCEDURE spLogin1
 @correo VARCHAR(80),
@@ -591,6 +591,7 @@ exec MostrarUsuarios
 
 
 -- 3. INSERTAR UN NUEVO USUARIO
+GO
 CREATE PROCEDURE InsertarUsuario
     @NombreUsuario VARCHAR(80),
     @Correo VARCHAR(100),
@@ -643,6 +644,7 @@ END;
 
 
 -- 4. EDITAR USUARIOS
+GO
 CREATE PROCEDURE EditarUsuario
     @UsuarioID INT,
     @NombreUsuario VARCHAR(80),
@@ -693,6 +695,7 @@ SELECT * FROM Usuarios
 
 
 -- 5. MÉTODO PARA OBTENER LA CONTRASEÑA DEL USUARIO
+GO
 CREATE PROCEDURE spObtenerUsuarioContrasenaDesencriptada
     @UsuarioID INT
 AS
@@ -743,6 +746,7 @@ END;
 
 
 --- 2. INSERTAR PACIENTE
+GO
 CREATE PROCEDURE InsertarPaciente
     @NombrePaciente VARCHAR(50),
     @ApellidoPaciente VARCHAR(60),
@@ -768,6 +772,7 @@ END;
 
 
 --- 3. EDITAR PACIENTE
+GO
 CREATE PROCEDURE EditarPaciente
     @PacienteID INT,
     @NombrePaciente VARCHAR(50),
@@ -806,6 +811,7 @@ END;
 
 
 ---4. ELIMINAR PACIENTE (OCULTARLO)
+GO
 CREATE PROCEDURE EliminarPaciente
     @PacienteID INT
 AS
@@ -819,6 +825,7 @@ END;
 
 
 --- 5. BUSCAR PACIENTE POR DUI
+GO
 CREATE PROCEDURE BuscarPacientePorDUI
     @DUI VARCHAR(10)
 AS
@@ -856,6 +863,7 @@ END;
 ---------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DEL MÉDICO -------------------------------------------
 
 --- 1. MOSTRAR MÉDICO
+GO
 CREATE PROCEDURE MostrarMedicos
 AS
 BEGIN
@@ -895,6 +903,7 @@ EXEC MostrarMedicos
 
 
 ---2. INSERTAR MÉDICO
+GO
 CREATE PROCEDURE InsertarMedico
     @NombreMedico VARCHAR(50),
     @ApellidoMedico VARCHAR(50),
@@ -981,6 +990,7 @@ SELECT * FROM Medicos
 
 
 ---3. EDITAR MÉDICO
+GO
 CREATE PROCEDURE EditarMedico
     @MedicoID INT,
     @NombreMedico VARCHAR(50),
@@ -1054,6 +1064,7 @@ END;
 
 
 ---4. ELIMINAR MÉDICO(OCULTARLO)
+GO
 CREATE PROCEDURE EliminarMedico
     @MedicoID INT
 AS
@@ -1067,6 +1078,7 @@ END;
 
 
 --- 5. PROCEDIMIENTO PARA MOSTRAR MÉDICOS CON SUS HORARIOS
+GO
 CREATE PROCEDURE MostrarMedicosConHorarios
 AS
 BEGIN
@@ -1093,6 +1105,7 @@ EXEC MostrarMedicosConHorarios;
 
 
 --- 6. PROCEDIMIENTO PARA MOSTRAR MÉDICOS POR ESPECIALIDAD
+GO
 CREATE PROCEDURE MostrarMedicosPorEspecialidad
     @EspecialidadID INT
 AS
@@ -1126,6 +1139,7 @@ EXEC MostrarMedicosPorEspecialidad @EspecialidadID = 2;
 -------------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DE CITAS ------------------------------------------------
 
 ---1. MOSTRAR CITAS
+GO
 CREATE PROCEDURE MostrarCitas
     @PacienteID INT = NULL,
     @MedicoID INT = NULL,
@@ -1160,6 +1174,7 @@ END;
 
 
 ---2. BUSCAR CITA POR DUI
+GO
 CREATE PROCEDURE BuscarCitasPorDUI
     @DuiPaciente NVARCHAR(10)
 AS
@@ -1185,6 +1200,7 @@ END;
 
 
 --2. AGENDAR NUEVA CITA
+GO
 CREATE PROCEDURE AgendarNuevaCita
     @DuiPaciente NVARCHAR(10),
     @MedicoID INT,
@@ -1228,6 +1244,7 @@ END;
 
 
 ---3. AGENDAR CITA
+GO
 CREATE PROCEDURE AgendarCita
     @PacienteID INT,
     @MedicoID INT,
@@ -1256,6 +1273,7 @@ END;
 
 
 ---4. EDITAR CITA
+GO
 CREATE PROCEDURE EditarCita
     @CitaID INT,
     @MedicoID INT,
@@ -1272,6 +1290,7 @@ END;
 
 
 ---5. MODIFICAR CITA
+GO
 CREATE PROCEDURE ModificarCita
     @CitaID INT,
     @FechaCita DATE = NULL,
@@ -1293,6 +1312,7 @@ END;
 
 
 ---6. ELIMINAR CITA (CANCELAR)
+GO
 CREATE PROCEDURE EliminarCita
     @CitaID INT
 AS
@@ -1309,6 +1329,7 @@ END;
 --------------------------------------------------------- PROCEDIMIENTOS ALMACENADOS DE CONSULTAS MÉDICAS ----------------------------------------------------------
 
 --- 1. MOSTRAR CONSULTA MÉDICA
+GO
 CREATE PROCEDURE MostrarConsultas
 AS
 BEGIN
@@ -1342,6 +1363,7 @@ EXEC MostrarConsultas;
 
 
 --- 2. BUSCAR CONSULTA POR FECHA
+GO
 CREATE PROCEDURE BuscarConsultasPorFecha
     @FechaConsulta DATE
 AS
@@ -1375,6 +1397,7 @@ END;
 
 
 --- 3. INGRESAR CONSULTA MÉDICA
+GO
 CREATE PROCEDURE Ingresar_consulta
     @CitaID INT,
     @PacienteID INT,
@@ -1401,6 +1424,7 @@ END;
 ------------------------------------------------       PROCEDIMIENTOS ALMACENADOS DE RECETAS       ------------------------------------------------------------
 
 -- 1. MOSTRAR RECETAS
+GO
 CREATE PROCEDURE MostrarRecetas
 AS
 BEGIN
@@ -1428,6 +1452,7 @@ exec MostrarRecetas
 
 
 -- 2. PROCEDIMIENTO PARA INSERTAR UNA NUEVA RECETA
+GO
 CREATE PROCEDURE InsertarReceta
     @PacienteID INT,
     @MedicoID INT,
@@ -1463,6 +1488,7 @@ EXEC InsertarReceta
 
 
 -- 3. PROCEDIMIENTO PARA EDITAR LA RECETA
+GO
 CREATE PROCEDURE EditarReceta
     @RecetaID INT,
     @PacienteID INT,
@@ -1519,6 +1545,7 @@ EXEC EditarReceta
 
 
 ---4. BUSCAR RECETAS POR DUI
+GO
 CREATE PROCEDURE BuscarRecetasPorDUI
     @DuiPaciente VARCHAR(10)
 AS
@@ -1555,6 +1582,7 @@ END;
 
 
 -- 5. BUSCAR EL EXÁMEN POR FECHA DE EXAMEN
+GO
 CREATE PROCEDURE BuscarExamenPorFecha
     @FechaExamen DATE
 AS
@@ -1587,6 +1615,7 @@ END;
 ----------------------------------------------------            PROCEDIMIENTOS PARA REALIZAR LOS REPORTES            ---------------------------------------------
 
 -- 1. Obtener el expediente del paciente
+GO
 CREATE PROCEDURE ObtenerExpedientePaciente
     @PacienteID INT
 AS 
@@ -1663,6 +1692,7 @@ END;
 
 
 -- 2. OBTENER EL REPORTE DE RECETAS POR PACIENTE Y FECHA
+GO
 CREATE PROCEDURE ObtenerRecetasPorPacienteYFecha
     @PacienteID INT,
     @FechaInicio DATE,
@@ -1686,6 +1716,7 @@ END;
 
 
 -- 3. OBTENER EL REPORTE DE LAS CONSULTAS POR MÉDICO CON LA ESPECIALIDAD Y DUI
+GO
 CREATE PROCEDURE ObtenerReporteConsultasPorMedicoODUIEspecialidad
     @DUIMedico VARCHAR(10) = NULL,
     @EspecialidadID INT = NULL
@@ -1732,6 +1763,7 @@ END;
 
 
 -- 4. OBTENER EL REPORTE DE LAS RECETAS POR PACIENTE Y FECHA
+GO
 CREATE PROCEDURE ObtenerReporteRecetasPorPacienteYFecha
     @PacienteID INT,
     @FechaInicio DATE,
@@ -1781,6 +1813,7 @@ select * from Usuarios
 
 --------------------------------       PROCEDIMIENTOS PARA OBTENER EL DEPARTAMENTO Y LOS MUNICIPIOS CORRESPONDIENTES A CADA UNO DE ELLOS         -------------------------------------
 -- 1. PROCEDIMIENTO PARA OBTENER LOS DEPARTAMENTOS
+GO
 CREATE PROCEDURE ObtenerDepartamentos
 AS
 BEGIN
@@ -1792,7 +1825,7 @@ BEGIN
 END;
 
 
-
+GO
 ---2. PROCEDIMIENTO PARA OBTENER MUNICIPIO SEGUN EL DEPARTAMENTO SELECCIONADO
 CREATE PROCEDURE ObtenerMunicipiosPorDepartamento
     @DepartamentosID INT

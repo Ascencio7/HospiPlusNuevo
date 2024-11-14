@@ -5,18 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HospiPlus.SistemaMedico
 {
@@ -33,6 +23,8 @@ namespace HospiPlus.SistemaMedico
             CargarExamenesMedicos();
             CargarPacientes();
         }
+
+        // Método para cargar exámenes médicos desde la base de datos
         private void CargarExamenesMedicos()
         {
             try
@@ -44,7 +36,7 @@ namespace HospiPlus.SistemaMedico
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "EditarExamenMedico";
+                        command.CommandText = "MostrarExamenesMedicos";
 
                         using (DbDataReader leertabla = command.ExecuteReader())
                         {
@@ -54,7 +46,6 @@ namespace HospiPlus.SistemaMedico
                                 {
                                     ID = Convert.ToInt32(leertabla["ExamenID"]),
                                     Pacientes = leertabla["NombreCompletoPaciente"].ToString(),
-                                    //FechaConsulta = DateTime.Parse(leertabla["FechaConsulta"].ToString()),
                                     TipoExamen = leertabla["TipoExamen"].ToString(),
                                     FechaExamen = Convert.ToDateTime(leertabla["FechaExamen"]),
                                     Resultado = leertabla["Resultado"].ToString(),
@@ -75,9 +66,9 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
+        // Método para insertar un nuevo examen médico
         private void InsertarExamenMedico()
         {
-            
             try
             {
                 int pacienteID = (int)cmbPExamenMedico.SelectedValue;
@@ -114,42 +105,41 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-
+        // Método para cargar la lista de pacientes en el ComboBox
         private void CargarPacientes()
-{
-    try
-    {
-        List<KeyValuePair<int, string>> pacientes = new List<KeyValuePair<int, string>>();
-        using (var conexion = ConexionDB.ObtenerCnx())
         {
-            ConexionDB.AbrirConexion(conexion);
-            using (var command = conexion.CreateCommand())
+            try
             {
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT PacienteID, NombrePaciente FROM Pacientes"; 
-
-                using (DbDataReader reader = command.ExecuteReader())
+                List<KeyValuePair<int, string>> pacientes = new List<KeyValuePair<int, string>>();
+                using (var conexion = ConexionDB.ObtenerCnx())
                 {
-                    while (reader.Read())
+                    ConexionDB.AbrirConexion(conexion);
+                    using (var command = conexion.CreateCommand())
                     {
-                        
-                        pacientes.Add(new KeyValuePair<int, string>(Convert.ToInt32(reader["PacienteID"]), reader["NombrePaciente"].ToString()));
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.CommandText = "SELECT PacienteID, NombrePaciente FROM Pacientes";
+
+                        using (DbDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                pacientes.Add(new KeyValuePair<int, string>(Convert.ToInt32(reader["PacienteID"]), reader["NombrePaciente"].ToString()));
+                            }
+                        }
                     }
                 }
+
+                cmbPExamenMedico.ItemsSource = pacientes;
+                cmbPExamenMedico.DisplayMemberPath = "Value";
+                cmbPExamenMedico.SelectedValuePath = "Key";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los pacientes: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        // Configurar el ComboBox para mostrar el nombre y usar el ID como valor
-        cmbPExamenMedico.ItemsSource = pacientes;
-        cmbPExamenMedico.DisplayMemberPath = "Value";  // Mostrar el nombre del paciente
-        cmbPExamenMedico.SelectedValuePath = "Key";   // Usar el ID del paciente como valor
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error al cargar los pacientes: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-}
-
+        // Evento para manejar la selección de exámenes médicos
         private void gridGestorExamenMedico_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (gridGestorExamenMedico.SelectedItem is ExamenesModel examen)
@@ -161,30 +151,22 @@ namespace HospiPlus.SistemaMedico
                 txtRExamMedico.Text = examen.Resultado;
                 txtObservaciones.Text = examen.Observaciones;
 
-               
                 btnModificarExamMedic.IsEnabled = true;
             }
-
         }
 
-        private void btnGuardarExamMedic_Click(object sender, RoutedEventArgs e)
-        {
-            InsertarExamenMedico();
-        }
-
+        // Método para modificar un examen médico
         private void btnModificarExamMedic_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int pacienteID = (int)cmbPExamenMedico.SelectedValue;
-
-
                 if (examenSeleccionadoId == 0)
                 {
                     MessageBox.Show("Por favor, seleccione un examen para modificar.", "HOSPI PLUS | Editar Examen", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
 
+                int pacienteID = (int)cmbPExamenMedico.SelectedValue;
                 using (var conexion = ConexionDB.ObtenerCnx())
                 {
                     ConexionDB.AbrirConexion(conexion);
@@ -214,7 +196,7 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-
+        // Método para limpiar los campos del formulario
         private void LimpiarCampos()
         {
             examenSeleccionadoId = 0;
@@ -224,44 +206,34 @@ namespace HospiPlus.SistemaMedico
             txtRExamMedico.Text = "";
             txtObservaciones.Text = "";
             gridGestorExamenMedico.SelectedItem = null;
-
-            // Deshabilitar botones de modificar y eliminar
             btnModificarExamMedic.IsEnabled = false;
         }
 
-        
-
-        private void btnEliminarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        // Evento para el botón de eliminar (limpia los campos)
+        private void btnEliminarExamMedic_Click(object sender, RoutedEventArgs e)
         {
             LimpiarCampos();
         }
 
-        private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        // Evento para el botón de cancelar
+        private void btnCancelarExamMedic_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("¿Desea cancelar la operación?", "HOSPI PLUS | Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                // Limpia el TextBox donde se ingresa el DUI
-                dtFechaExamMedic.Text = ""; 
-
-                            MessageBox.Show("Examen médico eliminado exitosamente.");
-                            CargarExamenesMedicos();
-                            LimpiarCampos();
-                        }
-                    }
-                }
+                LimpiarCampos();
+                CargarExamenesMedicos();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al eliminar el examen médico: " + ex.Message);
-            }
-
         }
 
-        private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        // Evento para el botón de guardar
+        private void btnGuardarExamMedic_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCampos();
-            CargarExamenesMedicos();
-
+            InsertarExamenMedico();
         }
     }
 }
+
+
+
+
+
