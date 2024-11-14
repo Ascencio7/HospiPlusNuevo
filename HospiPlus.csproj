@@ -191,6 +191,9 @@
     <Compile Include="SistemaMedico\CitasMedico.xaml.cs">
       <DependentUpon>CitasMedico.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SistemaMedico\ConsultasMedico.xaml.cs">
+      <DependentUpon>ConsultasMedico.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SistemaMedico\ExamenesMedico.xaml.cs">
       <DependentUpon>ExamenesMedico.xaml</DependentUpon>
     </Compile>
@@ -314,6 +317,10 @@
     <Page Include="SistemaMedico\CitasMedico.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SistemaMedico\ConsultasMedico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SistemaMedico\ExamenesMedico.xaml">
       <SubType>Designer</SubType>

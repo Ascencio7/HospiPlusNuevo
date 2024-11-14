@@ -7,6 +7,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using HospiPlus.SistemaMedico;
 
 namespace HospiPlus.SistemaMedico
 {
@@ -22,6 +23,8 @@ namespace HospiPlus.SistemaMedico
             InitializeComponent();
             CargarExamenesMedicos();
             CargarPacientes();
+            
+
         }
 
         // Método para cargar exámenes médicos desde la base de datos
@@ -160,13 +163,31 @@ namespace HospiPlus.SistemaMedico
         {
             try
             {
+                if (cmbPExamenMedico.SelectedValue == null)
+                {
+                    MessageBox.Show("Por favor, seleccione un paciente.", "HOSPI PLUS | Selección de paciente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
+                if (!int.TryParse(cmbPExamenMedico.SelectedValue.ToString(), out int pacienteID))
+                {
+                    MessageBox.Show("El valor seleccionado no es un número válido.", "HOSPI PLUS | Error de selección", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
                 if (examenSeleccionadoId == 0)
                 {
                     MessageBox.Show("Por favor, seleccione un examen para modificar.", "HOSPI PLUS | Editar Examen", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
 
-                int pacienteID = (int)cmbPExamenMedico.SelectedValue;
+                DateTime? fechaExamen = dtFechaExamMedic.SelectedDate;
+                if (!fechaExamen.HasValue)
+                {
+                    MessageBox.Show("Por favor, seleccione una fecha para el examen.", "HOSPI PLUS | Selección de fecha", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+
                 using (var conexion = ConexionDB.ObtenerCnx())
                 {
                     ConexionDB.AbrirConexion(conexion);
@@ -178,7 +199,7 @@ namespace HospiPlus.SistemaMedico
                         command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
                         command.Parameters.Add(new SqlParameter("@PacienteID", pacienteID));
                         command.Parameters.Add(new SqlParameter("@TipoExamen", txtTExamenMedico.Text));
-                        command.Parameters.Add(new SqlParameter("@FechaExamen", dtFechaExamMedic.SelectedDate));
+                        command.Parameters.Add(new SqlParameter("@FechaExamen", fechaExamen.Value));
                         command.Parameters.Add(new SqlParameter("@Resultado", txtRExamMedico.Text));
                         command.Parameters.Add(new SqlParameter("@Observaciones", txtObservaciones.Text));
 
@@ -192,11 +213,11 @@ namespace HospiPlus.SistemaMedico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar el examen médico: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al modificar el examen médico: " + ex.Message + "\n" + ex.StackTrace, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        // Método para limpiar los campos del formulario
+        
         private void LimpiarCampos()
         {
             examenSeleccionadoId = 0;
@@ -209,26 +230,25 @@ namespace HospiPlus.SistemaMedico
             btnModificarExamMedic.IsEnabled = false;
         }
 
-        // Evento para el botón de eliminar (limpia los campos)
-        private void btnEliminarExamMedic_Click(object sender, RoutedEventArgs e)
+
+       
+        private void btnGuardarExamMedic_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarCampos();
+            InsertarExamenMedico();
         }
 
-        // Evento para el botón de cancelar
-        private void btnCancelarExamMedic_Click(object sender, RoutedEventArgs e)
+        private void btnEliminarExamMedic_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("¿Desea cancelar la operación?", "HOSPI PLUS | Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 LimpiarCampos();
-                CargarExamenesMedicos();
+                
             }
-        }
-
-        // Evento para el botón de guardar
-        private void btnGuardarExamMedic_Click(object sender, RoutedEventArgs e)
-        {
-            InsertarExamenMedico();
         }
     }
 }

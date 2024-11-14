@@ -1398,24 +1398,92 @@ END;
 
 --- 3. INGRESAR CONSULTA MÉDICA
 GO
-CREATE PROCEDURE Ingresar_consulta
+CREATE PROCEDURE InsertarConsulta
     @CitaID INT,
     @PacienteID INT,
     @MedicoID INT,
-    @Altura DECIMAL(5, 2),
-    @Peso DECIMAL(5, 2),
+    @Altura DECIMAL(5,2),
+    @Peso DECIMAL(5,2),
     @Alergia VARCHAR(255),
     @Sintomas VARCHAR(255),
-    @Diagnostico TEXT,
-    @Observaciones TEXT,
+    @Diagnostico VARCHAR(255),
+    @Observaciones VARCHAR(255),
     @FechaConsulta DATE
 AS
 BEGIN
-    INSERT INTO ConsultasMedicas 
-    (CitaID, PacienteID, MedicoID, Altura, Peso, Alergia, Sintomas, Diagnostico, Observaciones, FechaConsulta)
-    VALUES 
-    (@CitaID, @PacienteID, @MedicoID, @Altura, @Peso, @Alergia, @Sintomas, @Diagnostico, @Observaciones, @FechaConsulta);
-    SELECT SCOPE_IDENTITY() AS ConsultaID;
+    SET NOCOUNT ON;
+
+    INSERT INTO ConsultasMedicas (CitaID, PacienteID, MedicoID, Altura, Peso, Alergia, Sintomas, Diagnostico, Observaciones, FechaConsulta)
+    VALUES (@CitaID, @PacienteID, @MedicoID, @Altura, @Peso, @Alergia, @Sintomas, @Diagnostico, @Observaciones, @FechaConsulta);
+
+    SELECT SCOPE_IDENTITY() AS NewConsultaID; -- Devuelve el ID de la nueva consulta insertada
+END;
+
+--SP para editar la consulta
+Go
+CREATE PROCEDURE EditarConsulta
+    @ConsultaID INT,
+    @CitaID INT,
+    @PacienteID INT,
+    @MedicoID INT,
+    @Altura DECIMAL(5,2),
+    @Peso DECIMAL(5,2),
+    @Alergia VARCHAR(255),
+    @Sintomas VARCHAR(255),
+    @Diagnostico VARCHAR(255),
+    @Observaciones VARCHAR(255),
+    @FechaConsulta DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE ConsultasMedicas
+    SET CitaID = @CitaID,
+        PacienteID = @PacienteID,
+        MedicoID = @MedicoID,
+        Altura = @Altura,
+        Peso = @Peso,
+        Alergia = @Alergia,
+        Sintomas = @Sintomas,
+        Diagnostico = @Diagnostico,
+        Observaciones = @Observaciones,
+        FechaConsulta = @FechaConsulta
+    WHERE ConsultaID = @ConsultaID;
+
+    SELECT @ConsultaID AS UpdatedConsultaID; -- Devuelve el ID de la consulta actualizada
+END;
+
+
+
+--SP CancelarConsulta
+GO
+CREATE PROCEDURE CancelarConsulta
+    @ConsultaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @EstadoCanceladaID INT;
+
+    -- Obtener el EstadoCitaID correspondiente a "Cancelada"
+    SELECT @EstadoCanceladaID = EstadoCitaID 
+    FROM EstadoCita 
+    WHERE CitaEstado = 'Cancelada';
+
+    -- Verificar que se encontró el estado "Cancelada"
+    IF @EstadoCanceladaID IS NOT NULL
+    BEGIN
+        -- Actualizar el estado de la cita asociada a la consulta
+        UPDATE Citas
+        SET EstadoCitaID = @EstadoCanceladaID
+        WHERE CitaID = (SELECT CitaID FROM ConsultasMedicas WHERE ConsultaID = @ConsultaID);
+
+        SELECT @ConsultaID AS CancelledConsultaID; -- Devuelve el ID de la consulta cancelada
+    END
+    ELSE
+    BEGIN
+        RAISERROR('El estado "Cancelada" no existe en la tabla EstadoCita.', 16, 1);
+    END
 END;
 
 
@@ -1576,7 +1644,150 @@ END;
 
 
 ------------------------------------------- PROCEDIMIENTO ALMACENADO CRUD DE LOS EXAMENES MÉDICOS ---------------------------------------------
--- aqui pon tus procedimientos
+-- SP para insertar ExamenMedico
+GO
+CREATE PROCEDURE InsertarExamenMedico
+    @PacienteID INT,
+    @ConsultaID INT = NULL, -- Puede ser NULL
+    @TipoExamen VARCHAR(100),
+    @FechaExamen DATE,
+    @Resultado VARCHAR(255),
+    @Observaciones VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- Insertar el examen médico
+        INSERT INTO ExamenesMedicos 
+        (PacienteID, ConsultaID, TipoExamen, FechaExamen, Resultado, Observaciones)
+        VALUES 
+        (@PacienteID, @ConsultaID, @TipoExamen, @FechaExamen, @Resultado, @Observaciones);
+        
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+        
+        -- Devolver el ID del examen recién insertado
+        SELECT SCOPE_IDENTITY() AS ExamenID;
+    END TRY
+    BEGIN CATCH
+        -- Revertir transacción en caso de error
+        ROLLBACK TRANSACTION;
+        THROW; -- Lanza el error para manejarlo en la aplicación
+    END CATCH;
+END;
+
+--SP para Editar ExamenMedico
+GO
+
+CREATE PROCEDURE EditarExamenMedico
+    @ExamenID INT,
+    @PacienteID INT,
+    @ConsultaID INT = NULL, -- Puede ser NULL
+    @TipoExamen VARCHAR(100),
+    @FechaExamen DATE,
+    @Resultado VARCHAR(255),
+    @Observaciones VARCHAR(255)
+AS
+BEGIN
+    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- Actualizar los datos del examen médico
+        UPDATE ExamenesMedicos
+        SET 
+            PacienteID = @PacienteID,
+            ConsultaID = @ConsultaID, -- Si es NULL, se establecerá en NULL
+            TipoExamen = @TipoExamen,
+            FechaExamen = @FechaExamen,
+            Resultado = @Resultado,
+            Observaciones = @Observaciones
+        WHERE ExamenID = @ExamenID;
+
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+
+        -- Retornar el ID del examen actualizado
+        SELECT @ExamenID AS ExamenID;
+    END TRY
+    BEGIN CATCH
+        -- Revertir la transacción en caso de error
+        ROLLBACK TRANSACTION;
+
+        -- Manejo de errores
+        PRINT 'Error al actualizar el examen médico: ' + ERROR_MESSAGE();
+    END CATCH;
+END;
+
+--SP para eliminar ExamenMedico
+GO
+
+CREATE PROCEDURE EliminarExamenMedico
+    @ExamenID INT
+AS
+BEGIN
+    -- Actualizar el estado del examen para ocultarlo en lugar de eliminarlo permanentemente
+    UPDATE ExamenesMedicos
+    SET Observaciones = 'Este examen ha sido eliminado' -- Marcamos con una observación de eliminación
+    WHERE ExamenID = @ExamenID;
+
+    PRINT 'El examen médico ha sido eliminado correctamente.';
+END;
+GO
+
+
+--Datos de prueba
+EXEC InsertarExamenMedico
+    @PacienteID = 1,          -- ID del paciente
+    @ConsultaID = 2,          -- ID de la consulta (puede ser NULL si no se tiene)
+    @TipoExamen = 'Radiografía',
+    @FechaExamen = '2024-11-09',
+    @Resultado = 'Normal',
+    @Observaciones = 'Sin observaciones adicionales';
+
+
+select * from ExamenesMedicos
+
+	EXEC EditarExamenMedico
+    @ExamenID = 1,           -- ID del examen a editar
+    @PacienteID = 1,         -- Nuevo ID de paciente
+    @ConsultaID = 2,         -- Nuevo ID de consulta (puede ser NULL)
+    @TipoExamen = 'Tomografía',
+    @FechaExamen = '2024-11-10',
+    @Resultado = 'Anómalo',
+    @Observaciones = 'Requiere análisis adicional';
+-- FIN datos prueba
+GO
+
+--SP para mostrar ExamenesMedicos
+
+CREATE PROCEDURE MostrarExamenesMedicos
+AS
+BEGIN
+    SELECT 
+        e.ExamenID,
+        p.PacienteID,
+        CONCAT(p.NombrePaciente, ' ', p.ApellidoPaciente) AS NombreCompletoPaciente,
+        e.ConsultaID,
+        c.FechaConsulta,
+        e.TipoExamen,
+        e.FechaExamen,
+        e.Resultado,
+        e.Observaciones
+    FROM 
+        ExamenesMedicos e
+    INNER JOIN 
+        Pacientes p ON e.PacienteID = p.PacienteID
+    LEFT JOIN 
+        ConsultasMedicas c ON e.ConsultaID = c.ConsultaID
+    ORDER BY 
+        e.ExamenID ASC; -- Ordenar por el ID del examen en orden ascendente
+END;
+
+-- Datos de prueba
+exec MostrarExamenesMedicos
+select * from Usuarios
+--FIN datos prueba
 -----------------------------------------------
 
 

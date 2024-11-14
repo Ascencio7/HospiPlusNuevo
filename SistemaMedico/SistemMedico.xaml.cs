@@ -117,6 +117,28 @@ namespace HospiPlus.SistemaMedico
         #endregion
         //fin
 
+        //btn Consultas
+        #region btnconsultas
+
+        private void btnConsultasMedico_Click(object sender, RoutedEventArgs e)
+        {
+            frPrincipal.NavigationService.Navigate(new Uri("SistemaMedico/ConsultasMedico.xaml", UriKind.Relative));
+
+        }
+
+        private void btnConsultasMedico_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Cambiar el color cuando el cursor entra en el área del botón
+            btnConsultasMedico.Background = new SolidColorBrush(Color.FromRgb(102, 0, 161));
+        }
+
+        private void btnConsultasMedico_MouseLeave(object sender, MouseEventArgs e)
+        {
+            // Restaurar el color original cuando el cursor sale del área del botón
+            btnConsultasMedico.Background = new SolidColorBrush(Color.FromRgb(5, 135, 137)); // Color original
+        }
+        #endregion
+        //FIN btn consultas
 
         //Salir Medico
         #region btnSalirMedico
@@ -178,6 +200,7 @@ namespace HospiPlus.SistemaMedico
             frPrincipal.NavigationService.Navigate(new Uri("SistemaMedico/PaginaBienvenidaMedico.xaml", UriKind.Relative));
         }
 
+       
         #endregion
         //fin
     }

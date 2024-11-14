@@ -147,9 +147,9 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-        
 
-        
+
+
         private bool ValidarCampos()
         {
             if (
@@ -161,7 +161,7 @@ namespace HospiPlus.SistemaMedico
                 string.IsNullOrWhiteSpace(txtDiagnostico.Text) ||
                 string.IsNullOrWhiteSpace(txtObservaciones.Text) ||
                 string.IsNullOrWhiteSpace(txtSintomas.Text) ||
-                string.IsNullOrWhiteSpace(txtPeso.Text)) 
+                string.IsNullOrWhiteSpace(txtPeso.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
                 return false;
@@ -173,28 +173,30 @@ namespace HospiPlus.SistemaMedico
         {
             txtPeso.Clear();
 
-            
+
             cmbMedico.SelectedIndex = -1;
             txtAlergias.Clear();
             txtDiagnostico.Clear();
             txtObservaciones.Clear();
             txtAltura.Clear();
             txtSintomas.Clear();
-            
+
             dpFechaConsulta.SelectedDate = null;
         }
 
         private void gridGConsultM_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (gridConsultas.SelectedItem is ModeloConsultaPaciente consulta) 
-            {  cmbPaciente.Text = consulta.PacienteID; 
-                
-                txtAltura.Text = consulta.Altura.ToString(); 
-                txtPeso.Text = consulta.Peso.ToString(); 
-                txtAlergias.Text = consulta.Alergia; 
-                txtSintomas.Text = consulta.Sintomas; 
-                txtDiagnostico.Text = consulta.Diagnostico;  
-                dpFechaConsulta.SelectedDate = consulta.FechaConsulta; }
+            if (gridConsultas.SelectedItem is ModeloConsultaPaciente consulta)
+            {
+                cmbPaciente.Text = consulta.PacienteID;
+
+                txtAltura.Text = consulta.Altura.ToString();
+                txtPeso.Text = consulta.Peso.ToString();
+                txtAlergias.Text = consulta.Alergia;
+                txtSintomas.Text = consulta.Sintomas;
+                txtDiagnostico.Text = consulta.Diagnostico;
+                dpFechaConsulta.SelectedDate = consulta.FechaConsulta;
+            }
         }
 
         private void btnBuscarConsulSecre_Click(object sender, RoutedEventArgs e)
@@ -232,7 +234,7 @@ namespace HospiPlus.SistemaMedico
                             command.Parameters.AddWithValue("@Alergia", txtAlergias.Text);
                             command.Parameters.AddWithValue("@Sintomas", txtSintomas.Text);
                             command.Parameters.AddWithValue("@Diagnostico", txtDiagnostico.Text);
-                            command.Parameters.AddWithValue("@Observaciones", txtObservaciones.Text); 
+                            command.Parameters.AddWithValue("@Observaciones", txtObservaciones.Text);
                             command.Parameters.AddWithValue("@FechaConsulta", DateTime.Parse(dpFechaConsulta.Text));
 
                             command.ExecuteNonQuery();
@@ -278,10 +280,10 @@ namespace HospiPlus.SistemaMedico
                     }
                 }
 
-                // Configurar el ComboBox para mostrar el nombre y usar el ID como valor
+                
                 cmbPaciente.ItemsSource = pacientes;
-                cmbPaciente.DisplayMemberPath = "Value";  // Mostrar el nombre del paciente
-                cmbPaciente.SelectedValuePath = "Key";   // Usar el ID del paciente como valor
+                cmbPaciente.DisplayMemberPath = "Value";  
+                cmbPaciente.SelectedValuePath = "Key"; 
             }
             catch (Exception ex)
             {
@@ -313,7 +315,7 @@ namespace HospiPlus.SistemaMedico
                 try
                 {
                     // Asegúrate de que los valores seleccionados de los ComboBox son válidos
-                    if (cmbPaciente.SelectedValue == null || cmbMedico.SelectedValue == null)
+                    if (cmbPaciente.SelectedValue == null || cmbMedico.SelectedValue == null || cmbCitaID == null)
                     {
                         MessageBox.Show("Seleccione un paciente y un médico.");
                         return;
@@ -331,7 +333,7 @@ namespace HospiPlus.SistemaMedico
                         using (var command = conexion.CreateCommand())
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
-                            command.CommandText = "Ingresar_consulta";
+                            command.CommandText = "InsertarConsulta";
 
                             command.Parameters.AddWithValue("@CitaID", citaID);
                             command.Parameters.AddWithValue("@PacienteID", pacienteID);
@@ -343,14 +345,14 @@ namespace HospiPlus.SistemaMedico
                             command.Parameters.AddWithValue("@Diagnostico", txtDiagnostico.Text);
                             command.Parameters.AddWithValue("@Observaciones", txtObservaciones.Text);
                             command.Parameters.AddWithValue("@FechaConsulta", dpFechaConsulta.SelectedDate);
-                            
+
 
                             command.ExecuteNonQuery();
                         }
                     }
 
                     MessageBox.Show("Consulta agregada exitosamente.");
-                    CargarConsultas(); 
+                    CargarConsultas();
                 }
                 catch (Exception ex)
                 {
@@ -372,7 +374,7 @@ namespace HospiPlus.SistemaMedico
                         using (var command = conexion.CreateCommand())
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
-                            command.CommandText = "Editar_consulta";
+                            command.CommandText = "Editarconsulta";
 
 
                             command.Parameters.AddWithValue("@PacienteID", int.Parse(cmbPaciente.SelectedValuePath));

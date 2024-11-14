@@ -23,12 +23,7 @@
                    FontSize="24" 
                    FontFamily="Verdana" 
                    FontWeight="Bold"/>
-            <Label x:Name="lblModo" 
-                   Content="[Modo: Nuevo]" 
-                   FontSize="16" 
-                   FontFamily="Verdana" 
-                   Margin="20,0,0,0" 
-                   Foreground="#FF058789"/>
+            
         </StackPanel>
 
         <!-- Input Form -->
@@ -106,24 +101,24 @@
                           HorizontalAlignment="Right" 
                           Margin="0,20,0,0">
                     <Button x:Name="btnGuardar" 
-                            Content="Guardar Consulta"
-                            Width="120"
+                            Content="Guardar"
+                            Width="91"
                             Height="30"
                             Margin="0,0,10,0"
                             Background="#FF058789"
                             Foreground="White"
                             Click="btnGuardar_Click"/>
                     <Button x:Name="btnEditar" 
-                            Content="Editar Consulta"
-                            Width="120"
+                            Content="Editar"
+                            Width="88"
                             Height="30"
                             Margin="0,0,10,0"
                             Background="#FFD4AC0D"
                             Foreground="White"
                             Click="btnEditar_Click"/>
                     <Button x:Name="btnLimpiar" 
-                            Content="Limpiar Campos"
-                            Width="120"
+                            Content="Limpiar "
+                            Width="92"
                             Height="30"
                             Background="#FF808080"
                             Foreground="White"
@@ -152,4 +147,5 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</Page>
+</Page>        
+

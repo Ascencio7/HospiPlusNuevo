@@ -52,7 +52,7 @@ namespace HospiPlus.SistemaLogin
         {
             private SqlConnection connection =
 
-                new SqlConnection(@"Server= VLADIMIR\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
+                new SqlConnection(@"Server= LDB-N5\SQLEXPRESS;Database=HOSPIPLUS2;Integrated Security=True;Encrypt=False");
 
 
             public UsuarioInfo Login(string correo, string password)

@@ -65,7 +65,7 @@ namespace HospiPlus.SistemaMedico
 
 
 
-        private void CargarMedicos()
+        public void CargarMedicos()
         {
             try
             {
@@ -306,25 +306,9 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
-        private void limpiarcampos() 
-        {
-            txtDosisRecMedic.Clear();
-            txtDuraRecMedic.Clear();
-            txtFrecRecMedic.Clear();
-            txtInstrucRecMedic.Clear();
-        }
+        
 
-        private void btnCancelarRecetMedic_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult respuesta = MessageBox.Show("Seguro que desea cancelar la acción?.","??", MessageBoxButton.OKCancel);
-
-            if (respuesta == MessageBoxResult.OK) 
-            {
-                limpiarcampos();
-                CargarRecetas();
-
-            }
-        }
+        
 
         
     }
