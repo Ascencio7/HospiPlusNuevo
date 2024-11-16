@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using HospiPlus.ModeloPaciente;
 using HospiPlus.ModeloMedico;
 using System.Windows.Input;
+using System.Data;
 
 
 namespace HospiPlus.SistemaMedico
@@ -409,9 +410,90 @@ namespace HospiPlus.SistemaMedico
             }
         }
 
+        private void CancelarConsultaEnBD(int consultaID)
+        {
+            try
+            {
+                using (var connection = HospiPlus.DataAcces.ConexionDB.ObtenerCnx())
+                {
+                    HospiPlus.DataAcces.ConexionDB.AbrirConexion(connection);
+
+                    using (var command = new SqlCommand("CancelarConsulta", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@ConsultaID", consultaID);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read() && reader["AffectedRows"] != DBNull.Value)
+                            {
+                                int affectedRows = Convert.ToInt32(reader["AffectedRows"]);
+                                if (affectedRows > 0)
+                                {
+                                    MessageBox.Show($"La cita asociada a la consulta {consultaID} ha sido cancelada exitosamente.",
+                                                  "Éxito",
+                                                  MessageBoxButton.OK,
+                                                  MessageBoxImage.Information);
+
+                                    
+                                    CargarConsultas();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se pudo cancelar la cita. Verifique que la consulta exista.",
+                                                  "Advertencia",
+                                                  MessageBoxButton.OK,
+                                                  MessageBoxImage.Warning);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Number == 51000 ? "No se encontró la consulta especificada." :
+                                ex.Number == 51001 ? "Error en la configuración del sistema: Estado 'Cancelada' no encontrado." :
+                                $"Error de base de datos: {ex.Message}";
+
+                MessageBox.Show(mensaje,
+                               "Error",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado: {ex.Message}",
+                               "Error",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Error);
+            }
+        }
+
+        
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            if (gridConsultas.SelectedItem is ModeloConsultaPaciente selectedConsulta)
+            {
+                var result = MessageBox.Show(
+                    $"¿Está seguro de que desea cancelar la cita asociada a la consulta {selectedConsulta.ConsultaID}?",
+                    "Confirmar Cancelación",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    CancelarConsultaEnBD(selectedConsulta.ConsultaID);
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Por favor, seleccione una consulta para cancelar su cita asociada.",
+                    "Aviso",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
         }
     }
 }
