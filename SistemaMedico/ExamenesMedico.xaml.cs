@@ -237,58 +237,12 @@ namespace HospiPlus.SistemaMedico
             InsertarExamenMedico();
         }
 
-        private void btnEliminarExamMedic_Click_1(object sender, RoutedEventArgs e)
-        {
-            EliminarExamenMedico();
-
-        }
-
         private void btnCancelarExamMedic_Click_1(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("¿Desea cancelar la operación?", "HOSPI PLUS | Cancelar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 LimpiarCampos();
                 
-            }
-        }
-
-        
-        private void EliminarExamenMedico()
-        {
-            try
-            {
-                if (examenSeleccionadoId == 0)
-                {
-                    MessageBox.Show("Por favor, seleccione un examen para eliminar.", "HOSPI PLUS | Eliminar Examen", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    return;
-                }
-
-                if (MessageBox.Show("¿Está seguro de que desea eliminar este examen médico?", "HOSPI PLUS | Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-                {
-                    return;
-                }
-
-                using (var conexion = ConexionDB.ObtenerCnx())
-                {
-                    ConexionDB.AbrirConexion(conexion);
-                    using (var command = conexion.CreateCommand())
-                    {
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
-                        command.CommandText = "EliminarExamenMedico";
-
-                        command.Parameters.Add(new SqlParameter("@ExamenID", examenSeleccionadoId));
-
-                        command.ExecuteNonQuery();
-
-                        MessageBox.Show("El examen médico ha sido eliminado correctamente.", "HOSPI PLUS | Examen eliminado", MessageBoxButton.OK, MessageBoxImage.Information);
-                        CargarExamenesMedicos();
-                        LimpiarCampos();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al eliminar el examen médico: " + ex.Message + "\n" + ex.StackTrace, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
