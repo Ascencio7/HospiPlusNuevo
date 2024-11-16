@@ -1457,33 +1457,54 @@ END;
 
 --SP CancelarConsulta
 GO
-CREATE PROCEDURE CancelarConsulta
+ALTER PROCEDURE [dbo].[CancelarConsulta]
     @ConsultaID INT
 AS
 BEGIN
     SET NOCOUNT ON;
+    
+    BEGIN TRY
+        BEGIN TRANSACTION;
+            
+        DECLARE @CitaID INT;
+        DECLARE @EstadoCanceladaID INT;
 
-    DECLARE @EstadoCanceladaID INT;
+        -- Obtener el CitaID asociado a la consulta
+        SELECT @CitaID = CitaID 
+        FROM ConsultasMedicas 
+        WHERE ConsultaID = @ConsultaID;
 
-    -- Obtener el EstadoCitaID correspondiente a "Cancelada"
-    SELECT @EstadoCanceladaID = EstadoCitaID 
-    FROM EstadoCita 
-    WHERE CitaEstado = 'Cancelada';
+        -- Obtener el EstadoCitaID para "Cancelada"
+        SELECT @EstadoCanceladaID = EstadoCitaID 
+        FROM EstadoCita 
+        WHERE CitaEstado = 'Cancelada';
 
-    -- Verificar que se encontró el estado "Cancelada"
-    IF @EstadoCanceladaID IS NOT NULL
-    BEGIN
-        -- Actualizar el estado de la cita asociada a la consulta
+        IF @CitaID IS NULL
+        BEGIN
+            THROW 51000, 'No se encontró la consulta especificada.', 1;
+        END
+
+        IF @EstadoCanceladaID IS NULL
+        BEGIN
+            THROW 51001, 'No se encontró el estado "Cancelada" en la tabla EstadoCita.', 1;
+        END
+
+        -- Actualizar el estado de la cita
         UPDATE Citas
         SET EstadoCitaID = @EstadoCanceladaID
-        WHERE CitaID = (SELECT CitaID FROM ConsultasMedicas WHERE ConsultaID = @ConsultaID);
+        WHERE CitaID = @CitaID;
 
-        SELECT @ConsultaID AS CancelledConsultaID; -- Devuelve el ID de la consulta cancelada
-    END
-    ELSE
-    BEGIN
-        RAISERROR('El estado "Cancelada" no existe en la tabla EstadoCita.', 16, 1);
-    END
+        -- Retornar el número de filas afectadas
+        SELECT @@ROWCOUNT AS AffectedRows;
+            
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+            
+        THROW;
+    END CATCH
 END;
 
 

@@ -282,10 +282,10 @@ namespace HospiPlus.SistemaMedico
                     }
                 }
 
-                
+
                 cmbPaciente.ItemsSource = pacientes;
-                cmbPaciente.DisplayMemberPath = "Value";  
-                cmbPaciente.SelectedValuePath = "Key"; 
+                cmbPaciente.DisplayMemberPath = "Value";
+                cmbPaciente.SelectedValuePath = "Key";
             }
             catch (Exception ex)
             {
