@@ -119,13 +119,6 @@
             Background="#FF808080"
             Foreground="White"
             Click="btnLimpiar_Click"/>
-                    <Button x:Name="btnEliminar" 
-            Content="Eliminar"
-            Width="100"
-            Height="30"
-            Background="#FFD9534F"
-            Foreground="White"
-            Click="btnEliminar_Click"/>
                 </UniformGrid>
 
 

@@ -13,8 +13,7 @@
 
 
 
-        <DataGrid x:Name="gridConsultasAdmin" IsReadOnly="True" Margin="11,215,11,10" Cursor="Hand"/>
-
+        
 
 
         <Label Content="Gestión de Consultas Médicas" 
@@ -23,10 +22,35 @@
             FontWeight="Bold" Margin="10,10,383,399"/>
 
 
-        <Button x:Name="btnAgregarConsultaAdmin" Content="Agregar" HorizontalAlignment="Left" Height="38" Margin="27,126,0,0" VerticalAlignment="Top" Width="141" Click="btnAgregarConsultaAdmin_Click"/>
-        <DatePicker x:Name="dtFechaConsultaAdmin" HorizontalAlignment="Left" Margin="236,126,0,0" VerticalAlignment="Top" Width="206" Height="38"/>
-        <Button x:Name="btnBuscarConsultaPorFechaAdmin" Content="Buscar" HorizontalAlignment="Left" Margin="485,126,0,0" VerticalAlignment="Top" Width="141" Height="38"/>
-        <Button x:Name="btnCancelarBusquedaAdmin" Content="Cancelar" HorizontalAlignment="Left" Margin="640,126,0,0" VerticalAlignment="Top" Width="140" Height="38" Click="btnCancelarBusquedaAdmin_Click"/>
+        <Button x:Name="btnAgregarConsultaAdmin" Content="Agregar" HorizontalAlignment="Left" Height="38" Margin="20,56,0,0" VerticalAlignment="Top" Width="141" Click="btnAgregarConsultaAdmin_Click"/>
+        <Button x:Name="btnBuscarConsultaPorFechaAdmin" Content="Buscar" HorizontalAlignment="Left" Margin="439,56,0,0" VerticalAlignment="Top" Width="141" Height="38" Click="btnBuscarConsultaPorFechaAdmin_Click"/>
+        <Button x:Name="btnCancelarBusquedaAdmin" Content="Cancelar" HorizontalAlignment="Left" Margin="609,56,0,0" VerticalAlignment="Top" Width="140" Height="38" Click="btnCancelarBusquedaAdmin_Click"/>
+
+
+
+        <DataGrid x:Name="gridConsultasAdmin" Margin="20,108,26,28" 
+      ItemsSource="{Binding Consultas}" 
+      AutoGenerateColumns="False" 
+      IsReadOnly="True" KeyUp="gridConsultasAdmin_KeyUp" Cursor="Hand" SelectionChanged="gridConsultasAdmin_SelectionChanged_1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ConsultaID}"/>
+                <DataGridTextColumn Header="N° Cita" Binding="{Binding CitaID}"/>
+                <DataGridTextColumn Header="Paciente" Binding="{Binding NombreCompletoPaciente}"/>
+                <DataGridTextColumn Header="Médico" Binding="{Binding NombreCompletoMedico}"/>
+                <DataGridTextColumn Header="Especialidad" Binding="{Binding EspecialidadMedico}"/>
+                <DataGridTextColumn Header="Altura" Binding="{Binding Altura}"/>
+                <DataGridTextColumn Header="Peso" Binding="{Binding Peso}"/>
+                <DataGridTextColumn Header="Alergia" Binding="{Binding Alergia}"/>
+                <DataGridTextColumn Header="Síntomas" Binding="{Binding Sintomas}"/>
+                <DataGridTextColumn Header="Diagnóstico" Binding="{Binding Diagnostico}"/>
+                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}"/>
+                <DataGridTextColumn Header="Fecha Consulta" Binding="{Binding FechaConsulta, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                <DataGridTextColumn Header="Fecha Cita" Binding="{Binding FechaCita, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                <DataGridTextColumn Header="Estado Cita" Binding="{Binding EstadoCita}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DatePicker x:Name="dtFechaConsultaAdmin" HorizontalAlignment="Left" Margin="194,56,0,0" VerticalAlignment="Top" Width="206" Height="38" KeyUp="dtFechaConsultaAdmin_KeyUp"/>
 
     </Grid>
 </Page>

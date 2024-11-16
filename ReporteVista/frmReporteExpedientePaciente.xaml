@@ -11,7 +11,7 @@
 
         <TextBox x:Name="txtPacienteID" Width="200" Height="30" Margin="0,109,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" />
 
-        <Button x:Name="btnGenerarReporte" Content="Generar Reporte" Width="150" Height="30" Margin="0,186,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="btnGenerarReporte_Click" Background="#FF058789"/>
+        <Button x:Name="btnGenerarReporte" Content="Generar Reporte" Width="150" Height="30" Margin="0,186,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="btnGenerarReporte_Click" Background="#4CAF50" Foreground="White" />
 
         <Label x:Name="lblStatus" Content="" Margin="0,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="12" Foreground="Green"/>
     </Grid>
