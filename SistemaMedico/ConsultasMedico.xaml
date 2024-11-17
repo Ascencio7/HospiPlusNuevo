@@ -149,8 +149,11 @@
                 <DataGridTextColumn Header="Especialidad" Binding="{Binding EspecialidadM}" Width="120"/>
                 <DataGridTextColumn Header="Altura" Binding="{Binding Altura}" Width="80"/>
                 <DataGridTextColumn Header="Peso" Binding="{Binding Peso}" Width="80"/>
+                <DataGridTextColumn Header="Alergias" Binding="{Binding Alergias}" Width="80"/>
+                <DataGridTextColumn Header="Sintomas" Binding="{Binding Sintomas}" Width="80"/>
+                <DataGridTextColumn Header="Diagnostico" Binding="{Binding Diagnostico}" Width="80"/>
+                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" Width="80"/>
                 <DataGridTextColumn Header="Fecha Consulta" Binding="{Binding FechaConsulta, StringFormat=d}" Width="120"/>
-                <DataGridTextColumn Header="Estado Cita" Binding="{Binding EstadoCita}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

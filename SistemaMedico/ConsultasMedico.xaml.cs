@@ -246,6 +246,7 @@ namespace HospiPlus.SistemaMedico
 
                     MessageBox.Show("Consulta agregada exitosamente.", "HOSPI PLUS | Consulta agregada", MessageBoxButton.OK, MessageBoxImage.Information);
                     CargarConsultas();  // Recarga la lista de consultas
+                    LimpiarCampos();
                 }
                 catch (Exception ex)
                 {
@@ -377,7 +378,7 @@ namespace HospiPlus.SistemaMedico
                         using (var command = conexion.CreateCommand())
                         {
                             command.CommandType = System.Data.CommandType.StoredProcedure;
-                            command.CommandText = "Editarconsulta";
+                            command.CommandText = "EditarConsulta";
 
 
                             command.Parameters.AddWithValue("@PacienteID", int.Parse(cmbPaciente.SelectedValuePath));
@@ -394,6 +395,7 @@ namespace HospiPlus.SistemaMedico
                     }
                     MessageBox.Show("Consulta modificada exitosamente.", "HOSPI PLUS | Consulta modificada", MessageBoxButton.OK, MessageBoxImage.Information);
                     CargarConsultas();
+                    LimpiarCampos();
                 }
                 catch (Exception ex)
                 {
