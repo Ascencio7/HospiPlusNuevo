@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid x:Name="gridGestorExamenAdmin" Margin="20,108,26,28" IsReadOnly="True" SelectionChanged="gridGestorExamenAdmin_SelectionChanged" AutoGenerateColumns="False" KeyUp="gridGestorExamenAdmin_KeyUp" Grid.ColumnSpan="2">
+        <DataGrid x:Name="gridGestorExamenAdmin" ItemsSource="{Binding ExamenesMedicos}" Margin="20,108,26,28" IsReadOnly="True" SelectionChanged="gridGestorExamenAdmin_SelectionChanged" AutoGenerateColumns="False" KeyUp="gridGestorExamenAdmin_KeyUp" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Pacientes" Binding="{Binding Pacientes}"/>

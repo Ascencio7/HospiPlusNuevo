@@ -23,13 +23,14 @@
         <DatePicker x:Name="dtFechaExamMedic" HorizontalAlignment="Left" Margin="420,80,0,0" VerticalAlignment="Top" Width="166"/>
 
         <!-- DataGrid para mostrar los exámenes -->
-        <DataGrid x:Name="gridGestorExamenMedico" IsReadOnly="True" Margin="20,222,26,28" SelectionChanged="gridGestorExamenMedico_SelectionChanged">
+        <DataGrid x:Name="gridGestorExamenMedico" IsReadOnly="True" Margin="20,222,26,28" AutoGenerateColumns="False"  SelectionChanged="gridGestorExamenMedico_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Paciente" Binding="{Binding Pacientes}" Width="*" />
-                <DataGridTextColumn Header="Tipo de Examen" Binding="{Binding TipoExamen}" Width="*" />
-                <DataGridTextColumn Header="Fecha del Examen" Binding="{Binding FechaExamen, StringFormat=\{0:dd/MM/yyyy\}}" Width="*" />
-                <DataGridTextColumn Header="Resultado" Binding="{Binding Resultado}" Width="*" />
-                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" Width="*" />
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Paciente" Binding="{Binding Pacientes}" />
+                <DataGridTextColumn Header="Tipo Examen" Binding="{Binding TipoExamen}" />
+                <DataGridTextColumn Header="Fecha Examen" Binding="{Binding FechaExamen, StringFormat='yyyy-MM-dd'}" />
+                <DataGridTextColumn Header="Resultado" Binding="{Binding Resultado}" />
+                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" />
             </DataGrid.Columns>
         </DataGrid>
 

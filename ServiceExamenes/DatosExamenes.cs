@@ -41,14 +41,12 @@ namespace HospiPlus.ServiceExamenes
                             ExamenesModel model = new ExamenesModel
                             {
                                 ID = dr.GetInt32(dr.GetOrdinal("ExamenID")),
-                                //PacienteID = dr.GetInt32(dr.GetOrdinal("PacienteID")),
-                                Pacientes = dr.GetString(dr.GetOrdinal("NombreCompletoPaciente")),
-                                //ConsultaID = dr.IsDBNull(dr.GetOrdinal("ConsultaID")) ? (int?)null : dr.GetInt32(dr.GetOrdinal("ConsultaID")),
-                                FechaConsulta = dr.GetDateTime(dr.GetOrdinal("FechaConsulta")),
-                                TipoExamen = dr.GetString(dr.GetOrdinal("TipoExamen")),
-                                FechaExamen = dr.GetDateTime(dr.GetOrdinal("FechaExamen")),
-                                Resultado = dr.GetString(dr.GetOrdinal("Resultado")),
-                                Observaciones = dr.GetString(dr.GetOrdinal("Observaciones"))
+                                Pacientes = dr.IsDBNull(dr.GetOrdinal("NombreCompletoPaciente")) ? string.Empty : dr.GetString(dr.GetOrdinal("NombreCompletoPaciente")),
+                                FechaConsulta = dr.IsDBNull(dr.GetOrdinal("FechaConsulta")) ? DateTime.MinValue : dr.GetDateTime(dr.GetOrdinal("FechaConsulta")),
+                                TipoExamen = dr.IsDBNull(dr.GetOrdinal("TipoExamen")) ? string.Empty : dr.GetString(dr.GetOrdinal("TipoExamen")),
+                                FechaExamen = dr.IsDBNull(dr.GetOrdinal("FechaExamen")) ? DateTime.MinValue : dr.GetDateTime(dr.GetOrdinal("FechaExamen")),
+                                Resultado = dr.IsDBNull(dr.GetOrdinal("Resultado")) ? string.Empty : dr.GetString(dr.GetOrdinal("Resultado")),
+                                Observaciones = dr.IsDBNull(dr.GetOrdinal("Observaciones")) ? string.Empty : dr.GetString(dr.GetOrdinal("Observaciones"))
                             };
 
                             lsExamenes.Add(model);
@@ -70,5 +68,6 @@ namespace HospiPlus.ServiceExamenes
 
             return lsExamenes;
         }
+
     }
 }

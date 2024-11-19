@@ -111,12 +111,15 @@ namespace HospiPlus.SistemaAdministrador
         {
             if (gridGestorExamenAdmin.SelectedItem is ExamenesModel examenes)
             {
-                dtBuscarExamenPorFechaAdmin.Text = examenes.FechaExamen.ToString("yyyy-MM-dd");
+                // Verifica si FechaExamen tiene un valor antes de asignarlo
+                dtBuscarExamenPorFechaAdmin.Text = examenes.FechaExamen.HasValue
+                    ? examenes.FechaExamen.Value.ToString("yyyy-MM-dd")
+                    : string.Empty; // Asigna una cadena vacía si es null
+
                 examenid = examenes.ID;
             }
         }
         #endregion
-
 
 
         #region Metodo Buscar Examen por fecha
@@ -179,12 +182,24 @@ namespace HospiPlus.SistemaAdministrador
             {
                 if (gridGestorExamenAdmin.SelectedItem is ExamenesModel examenSeleccionado)
                 {
-                    DateTime fechaExamenSeleccionada = examenSeleccionado.FechaExamen;
-                    buscarExamenPorFecha(fechaExamenSeleccionada);
+                    // Verifica si FechaExamen tiene un valor válido
+                    if (examenSeleccionado.FechaExamen.HasValue)
+                    {
+                        DateTime fechaExamenSeleccionada = examenSeleccionado.FechaExamen.Value;
+                        buscarExamenPorFecha(fechaExamenSeleccionada);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La fecha del examen seleccionado no es válida.",
+                                        "Advertencia",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
                 }
             }
         }
         #endregion
+
 
 
         #region Evento ENTER para el DatePicker

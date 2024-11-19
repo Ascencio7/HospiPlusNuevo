@@ -33,9 +33,11 @@ namespace HospiPlus.SistemaMedico
             try
             {
                 List<ExamenesModel> examenes = new List<ExamenesModel>();
+
                 using (var conexion = ConexionDB.ObtenerCnx())
                 {
                     ConexionDB.AbrirConexion(conexion);
+
                     using (var command = conexion.CreateCommand())
                     {
                         command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -45,7 +47,7 @@ namespace HospiPlus.SistemaMedico
                         {
                             while (leertabla.Read())
                             {
-                                ExamenesModel examen = new ExamenesModel()
+                                examenes.Add(new ExamenesModel
                                 {
                                     ID = Convert.ToInt32(leertabla["ExamenID"]),
                                     Pacientes = leertabla["NombreCompletoPaciente"].ToString(),
@@ -53,14 +55,13 @@ namespace HospiPlus.SistemaMedico
                                     FechaExamen = Convert.ToDateTime(leertabla["FechaExamen"]),
                                     Resultado = leertabla["Resultado"].ToString(),
                                     Observaciones = leertabla["Observaciones"].ToString()
-                                };
-
-                                examenes.Add(examen);
+                                });
                             }
                         }
                     }
                 }
 
+                // Asignar la lista al DataGrid
                 gridGestorExamenMedico.ItemsSource = examenes;
             }
             catch (Exception ex)
@@ -68,6 +69,7 @@ namespace HospiPlus.SistemaMedico
                 MessageBox.Show("Error al cargar los exámenes médicos: " + ex.Message, "HOSPI PLUS | Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         // Método para insertar un nuevo examen médico
         private void InsertarExamenMedico()
@@ -157,6 +159,7 @@ namespace HospiPlus.SistemaMedico
                 btnModificarExamMedic.IsEnabled = true;
             }
         }
+
 
         // Método para modificar un examen médico
         private void btnModificarExamMedic_Click(object sender, RoutedEventArgs e)
